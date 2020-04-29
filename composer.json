@@ -1,0 +1,32 @@
+{
+    "name": "smalls/video-tools",
+    "description": "短视频的拓展包，集成各大短视频的去水印功能",
+    "type": "library",
+    "keywords": [
+        "smalls",
+        "video-tools"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ming",
+            "email": "qiumingan98@qq.com"
+        }
+    ],
+    "require": {
+        "php" : ">= 7.1.0",
+        "ext-json": "*",
+        "ext-openssl": "*",
+        "ext-SimpleXML": "*",
+        "guzzlehttp/guzzle": "6.4"
+
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=7.5 <8.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Smalls\\VideoTools\\": "src"
+        }
+    }
+}

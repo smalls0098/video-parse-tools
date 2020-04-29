@@ -1,0 +1,5 @@
+/.git
+/.idea
+/vendor
+composer.lock
+*.log
