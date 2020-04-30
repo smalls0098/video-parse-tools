@@ -21,8 +21,7 @@ class DouYin extends Base implements IVideo
     }
 
     /**
-     * URL必须是包含douyin.com或者iesdouyin.com两个域名其中一个才能继续执行
-     * the URL must contain one of the domain names douyin.com or iesdouyin.com to continue execution
+     * 更新时间：2020/4/30
      * @param string $url
      * @return array
      * @throws ErrorVideoException
