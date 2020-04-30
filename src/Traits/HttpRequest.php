@@ -64,24 +64,6 @@ trait HttpRequest
     }
 
     /**
-     * 公共GET方法
-     * @param $url
-     * @param array $query
-     * @param array $headers
-     * @return mixed|string
-     */
-    public function getCookie($url, $query = [], $headers = [])
-    {
-        $response = $this->getHttpClient($this->getBaseOptions())->get($url, [
-            'headers' => $headers,
-            'query' => $query,
-        ]);
-        $headers = $response->getHeaders();
-        var_dump($headers);
-        return "";
-    }
-
-    /**
      * 公共POST方法
      * @param $url
      * @param $data

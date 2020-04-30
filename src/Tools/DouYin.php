@@ -44,8 +44,6 @@ class DouYin extends Base implements IVideo
         preg_match('/dytk:[^+]"(.*?)"[^+]}\);/i', $contents, $dyTks);
         preg_match('/itemId:[^+]"(.*?)",/i', $contents, $itemIds);
 
-        var_dump($contents);
-
         if ($dyTks == null || $itemIds == null) {
             throw new ErrorVideoException("{DouYin} dyTk or itemId is empty, there may be a problem with the website");
         }
