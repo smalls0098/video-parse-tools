@@ -7,7 +7,7 @@
 ==
     composer require smalls/video-tools
  ********
- ***PHP>=7*
+ ***PHP>=5.6*
  
  VideoManager使用文档：(可以参考tests/test.php)
  ==

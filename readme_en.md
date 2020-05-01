@@ -7,7 +7,7 @@ install：
 ==
     composer require smalls/video-tools
  ********
- ***PHP>=7*
+ ***PHP>=5.6*
  
  VideoManager doc：(reference:tests/test.php)
  ==
