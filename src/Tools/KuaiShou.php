@@ -5,6 +5,7 @@ namespace Smalls\VideoTools\Tools;
 
 use Smalls\VideoTools\Exception\ErrorVideoException;
 use Smalls\VideoTools\Interfaces\IVideo;
+use Smalls\VideoTools\Logic\KuaiShouLogic;
 
 /**
  * Created By 1
@@ -16,41 +17,20 @@ class KuaiShou extends Base implements IVideo
 {
 
     /**
-     * 更新时间：2020/4/30
+     * 更新时间：2020/6/9
+     * 快手会封IP，如果你是APP端的软件，建议把快手集成在本地。如果是小程序或者网页那也没办法了。
+     * 你有什么办法也可以进行自己封装
      * @param string $url
      * @return array
      * @throws ErrorVideoException
      */
     public function start(string $url): array
     {
-        if (empty($url)) {
-            throw new ErrorVideoException("{KuaiShou} url cannot be empty");
-        }
-
-        if (strpos($url, "ziyang.m.kspkg.com") == false && strpos($url, "kuaishou.com") == false && strpos($url, "gifshow.com") == false && strpos($url, "chenzhongtech.com") == false) {
-            throw new ErrorVideoException("{KuaiShou} the URL must contain one of the domain names ziyang.m.kspkg.com or kuaishou.com or gifshow.com or chenzhongtech.com to continue execution");
-        }
-
-        $contents = $this->get($url, [], [
-            'User-Agent' => self::ANDROID_USER_AGENT,
-            'cookie' => 'did=web_00536bb16309421a93a09c3e4998aa04; didv=' . time() . '000; clientid=3; client_key=6589' . rand(1000, 9999),
-        ]);
-
-        preg_match('/data-pagedata="(.*?)"/i', $contents, $match);
-        if ($this->checkEmptyMatch($match)) {
-            throw new ErrorVideoException("{KuaiShou} contents parsing failed");
-        }
-        $contents = htmlspecialchars_decode($match[1]);
-        $data = json_decode($contents, true);
-
-        return $this->returnData(
-            $url,
-            isset($data['user']['name']) ? $data['user']['name'] : '',
-            isset($data['user']['avatar']) ? $data['user']['avatar'] : '',
-            isset($data['video']['caption']) ? $data['video']['caption'] : '',
-            isset($data['video']['poster']) ? $data['video']['poster'] : '',
-            isset($data['video']['srcNoMark']) ? $data['video']['srcNoMark'] : '',
-            isset($data['video']['type']) ? $data['video']['type'] : 'video'
-        );
+        $this->logic = new KuaiShouLogic($url);
+        $this->logic->checkUrlHasTrue();
+        $this->logic->setContents();
+        $this->logic->formatData();
+        return $this->exportData();
     }
+
 }

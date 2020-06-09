@@ -5,6 +5,8 @@ namespace Smalls\VideoTools\Tools;
 
 use Smalls\VideoTools\Exception\ErrorVideoException;
 use Smalls\VideoTools\Interfaces\IVideo;
+use Smalls\VideoTools\Logic\TouTiaoLogic;
+use Smalls\VideoTools\Utils\CommonUtil;
 
 /**
  * Created By 1
@@ -12,11 +14,11 @@ use Smalls\VideoTools\Interfaces\IVideo;
  * Email：smalls0098@gmail.com
  * Date：2020/4/27 - 14:32
  **/
-class XiGua extends TouTiao implements IVideo
+class XiGua extends Base implements IVideo
 {
 
     /**
-     * 更新时间：2020/4/30
+     * 更新时间：2020/6/9
      * @param string $url
      * @return array
      * @throws ErrorVideoException
@@ -24,16 +26,18 @@ class XiGua extends TouTiao implements IVideo
     public function start(string $url): array
     {
         if (empty($url)) {
-            throw new ErrorVideoException("{XiGua} url cannot be empty");
+            throw new ErrorVideoException("url cannot be empty");
         }
         if (strpos($url, "xigua.com") == false) {
-            throw new ErrorVideoException("{XiGua} the URL must contain one of the domain names xigua.com to continue execution");
+            throw new ErrorVideoException("there was a problem with url verification");
         }
         preg_match('/group\/([0-9]+)\/?/i', $url, $match);
-        if ($this->checkEmptyMatch($match)) {
-            throw new ErrorVideoException("{XiGua} url parsing failed");
+        if (CommonUtil::checkEmptyMatch($match)) {
+            throw new ErrorVideoException("url parsing failed");
         }
-
-        return $this->getContents($url, $match[1]);
+        $this->logic = new TouTiaoLogic($url);
+        $this->logic->setContents($match[1]);
+        return $this->exportData();
     }
+
 }

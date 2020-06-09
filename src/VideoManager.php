@@ -5,6 +5,7 @@ namespace Smalls\VideoTools;
 
 use Smalls\VideoTools\Exception\InvalidManagerException;
 use Smalls\VideoTools\Interfaces\IVideo;
+use Smalls\VideoTools\Tools\Bili;
 use Smalls\VideoTools\Tools\DouYin;
 use Smalls\VideoTools\Tools\HuoShan;
 use Smalls\VideoTools\Tools\KuaiShou;
@@ -44,6 +45,7 @@ use Smalls\VideoTools\Tools\ZuiYou;
  * @method static MoMo MoMo(...$params)
  * @method static ShuaBao ShuaBao(...$params)
  * @method static XiaoKaXiu XiaoKaXiu(...$params)
+ * @method static Bili Bili(...$params)
  */
 class VideoManager
 {
