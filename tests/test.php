@@ -8,14 +8,16 @@
 
 require '../vendor/autoload.php';
 
-use Smalls\VideoTools\Enumerates\BiliQualityType;
 use Smalls\VideoTools\VideoManager;
 
 $res = '';
-$res = VideoManager::DouYin()->start("https://v.douyin.com/JeoLRe4/");
-var_dump($res['video_url']);
-//$res = VideoManager::KuaiShou()->start("https://v.kuaishou.com/2RbSva");
+//$res = VideoManager::DouYin()->start("https://v.douyin.com/JeoLRe4/");
 //var_dump($res['video_url']);
+$res = VideoManager::KuaiShou([
+    'proxy_whitelist' => ['kuaishou'],
+    'proxy' => '221.122.91.75:10286',
+])->start("https://v.kuaishou.com/2RbSva");
+var_dump($res);
 //$res = VideoManager::HuoShan()->start("https://share.huoshan.com/hotsoon/s/kcU0XOnSO78/");
 //var_dump($res['video_url']);
 //$res = VideoManager::TouTiao()->start("https://m.toutiaoimg.cn/a6818537223466516995/?app=news_article&is_hit_share_recommend=0");
