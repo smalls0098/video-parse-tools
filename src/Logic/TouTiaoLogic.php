@@ -1,51 +1,30 @@
 <?php
+declare (strict_types=1);
 
 namespace Smalls\VideoTools\Logic;
 
 use Smalls\VideoTools\Enumerates\UserGentType;
 use Smalls\VideoTools\Exception\ErrorVideoException;
-use Smalls\VideoTools\Traits\HttpRequest;
 use Smalls\VideoTools\Utils\CommonUtil;
 
 /**
  * Created By 1
  * Author：smalls
  * Email：smalls0098@gmail.com
- * Date：2020/6/9 - 14:00
+ * Date：2020/6/10 - 14:00
  **/
-class TouTiaoLogic
+class TouTiaoLogic extends Base
 {
-    use HttpRequest;
 
-    private $url;
     private $itemId;
     private $contents;
 
-    /**
-     * KuaiShouLogic constructor.
-     * @param $url
-     */
-    public function __construct($url)
-    {
-        $this->url = $url;
-    }
-
-
-    public function checkUrlHasTrue()
-    {
-        if (empty($this->url)) {
-            throw new ErrorVideoException("url cannot be empty");
-        }
-        if (strpos($this->url, "toutiaoimg.com") == false && strpos($this->url, "toutiaoimg.cn") == false) {
-            throw new ErrorVideoException("there was a problem with url verification");
-        }
-    }
 
     public function setItemId()
     {
         preg_match('/a([0-9]+)\/?/i', $this->url, $match);
         if (CommonUtil::checkEmptyMatch($match)) {
-            throw new ErrorVideoException("url parsing failed");
+            throw new ErrorVideoException("获取不到item_id参数信息");
         }
         $this->itemId = $match[1];
     }
@@ -63,7 +42,7 @@ class TouTiaoLogic
         ]);
 
         if (empty($contents['data']['video_id'])) {
-            throw new ErrorVideoException("contents parsing failed");
+            throw new ErrorVideoException("获取不到指定的内容信息");
         }
         $this->contents = $contents;
     }

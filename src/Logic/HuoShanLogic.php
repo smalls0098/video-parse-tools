@@ -1,23 +1,20 @@
 <?php
+declare (strict_types=1);
 
 namespace Smalls\VideoTools\Logic;
 
 use Smalls\VideoTools\Enumerates\UserGentType;
 use Smalls\VideoTools\Exception\ErrorVideoException;
-use Smalls\VideoTools\Traits\HttpRequest;
 use Smalls\VideoTools\Utils\CommonUtil;
 
 /**
  * Created By 1
  * Author：smalls
  * Email：smalls0098@gmail.com
- * Date：2020/6/9 - 13:40
+ * Date：2020/6/10 - 13:40
  **/
-class HuoShanLogic
+class HuoShanLogic extends Base
 {
-    use HttpRequest;
-
-    private $url;
 
     private $itemId;
     /**
@@ -25,25 +22,6 @@ class HuoShanLogic
      */
     private $contents;
 
-    /**
-     * HuoShanLogic constructor.
-     * @param $url
-     */
-    public function __construct($url)
-    {
-        $this->url = $url;
-    }
-
-
-    public function checkUrlHasTrue()
-    {
-        if (empty($this->url)) {
-            throw new ErrorVideoException("url cannot be empty");
-        }
-        if (strpos($this->url, "huoshan.com") == false) {
-            throw new ErrorVideoException("there was a problem with url verification");
-        }
-    }
 
     public function setItemId()
     {
@@ -52,7 +30,7 @@ class HuoShanLogic
         ]);
         preg_match('/item_id=([0-9]+)&tag/i', $originalUrl, $match);
         if (CommonUtil::checkEmptyMatch($match)) {
-            throw new ErrorVideoException("originalUrl parsing failed");
+            throw new ErrorVideoException("item_id获取不到参数");
         }
         $this->itemId = $match[1];
         return $this->itemId;
@@ -67,7 +45,7 @@ class HuoShanLogic
         ]);
 
         if ((isset($contents['status_code']) && $contents['status_code'] != 0) || (isset($contents['data']) && $contents['data'] == null)) {
-            throw new ErrorVideoException("contents parsing failed");
+            throw new ErrorVideoException("获取不到指定的内容信息");
         }
         $this->contents = $contents;
     }

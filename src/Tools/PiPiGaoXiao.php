@@ -17,14 +17,14 @@ class PiPiGaoXiao extends Base implements IVideo
 {
 
     /**
-     * 更新时间：2020/6/9
+     * 更新时间：2020/6/10
      * @param string $url
      * @return array
      * @throws ErrorVideoException
      */
     public function start(string $url): array
     {
-        $this->logic = new PiPiGaoXiaoLogic($url);
+        $this->logic = new PiPiGaoXiaoLogic($url,$this->config->get('pipigaoxiao'));
         $this->logic->checkUrlHasTrue();
         $this->logic->setPostId();
         $this->logic->setContents();

@@ -6,48 +6,36 @@ namespace Smalls\VideoTools\Logic;
 use Smalls\VideoTools\Enumerates\BiliQualityType;
 use Smalls\VideoTools\Enumerates\UserGentType;
 use Smalls\VideoTools\Exception\ErrorVideoException;
-use Smalls\VideoTools\Traits\HttpRequest;
 use Smalls\VideoTools\Utils\CommonUtil;
 
 /**
  * Created By 1
  * Author：smalls
  * Email：smalls0098@gmail.com
- * Date：2020/6/9 - 12:50
+ * Date：2020/6/10 - 12:50
  **/
-class BiliLogic
+class BiliLogic extends Base
 {
-
-    use HttpRequest;
 
     private $cookie = '';
     private $quality = BiliQualityType::LEVEL_5;
-    private $url;
     private $aid;
     private $cid;
     private $contents;
 
     /**
      * BiliLogic constructor.
+     * @param $url
      * @param string $cookie
      * @param int $quality
-     * @param $url
+     * @param $urlList
      */
-    public function __construct($url, string $cookie, int $quality)
+    public function __construct($url, string $cookie, int $quality, $urlList)
     {
         $this->cookie = $cookie;
         $this->quality = $quality;
         $this->url = $url;
-    }
-
-    public function checkUrlHasTrue()
-    {
-        if (empty($this->url)) {
-            throw new ErrorVideoException("url cannot be empty");
-        }
-        if (strpos($this->url, "b23.tv") == false && strpos($this->url, "www.bilibili.com") == false) {
-            throw new ErrorVideoException("there was a problem with url verification");
-        }
+        $this->urlList = $urlList;
     }
 
     public function setAidAndCid()
@@ -58,7 +46,7 @@ class BiliLogic
         preg_match('/"aid":([0-9]+),/i', $contents, $aid);
         preg_match('/"cid":([0-9]+),/i', $contents, $cid);
         if (CommonUtil::checkEmptyMatch($aid) || CommonUtil::checkEmptyMatch($cid)) {
-            throw new ErrorVideoException("url parsing failed");
+            throw new ErrorVideoException("aid或cid获取不到参数");
         }
         $this->aid = $aid[1];
         $this->cid = $cid[1];

@@ -7,7 +7,7 @@ namespace Smalls\VideoTools\Utils;
  * Created By 1
  * Author：smalls
  * Email：smalls0098@gmail.com
- * Date：2020/6/9 - 12:56
+ * Date：2020/6/10 - 12:56
  **/
 class CommonUtil
 {
@@ -23,14 +23,27 @@ class CommonUtil
         return $match == null || empty($match[1]);
     }
 
-    public static function getData($data) {
-        if(empty($data)) {
+    public static function getData($data)
+    {
+        if (empty($data)) {
             return '';
         }
-        if($data == null) {
+        if ($data == null) {
             return '';
         }
         return $data;
+    }
+
+    public static function checkArrContainStr(array $arr, string $str)
+    {
+        $result = false;
+        foreach ($arr as $v) {
+            if (strpos($str, $v)) {
+                $result = true;
+                break;
+            }
+        }
+        return $result;
     }
 
 }

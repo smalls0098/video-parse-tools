@@ -74,7 +74,6 @@ class VideoManager
     private function create(string $method, array $params)
     {
         $className = __NAMESPACE__ . '\\Tools\\' . $method;
-
         if (!class_exists($className)) {
             throw new InvalidManagerException("the method name does not exist . method : {$method}");
         }

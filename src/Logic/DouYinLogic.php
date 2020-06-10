@@ -1,47 +1,24 @@
 <?php
+declare (strict_types=1);
 
 namespace Smalls\VideoTools\Logic;
 
 use Smalls\VideoTools\Enumerates\UserGentType;
 use Smalls\VideoTools\Exception\ErrorVideoException;
-use Smalls\VideoTools\Traits\HttpRequest;
 use Smalls\VideoTools\Utils\CommonUtil;
 
 /**
  * Created By 1
  * Author：smalls
  * Email：smalls0098@gmail.com
- * Date：2020/6/9 - 13:05
+ * Date：2020/6/10 - 13:05
  **/
-class DouYinLogic
+class DouYinLogic extends Base
 {
 
-    use HttpRequest;
-
-    private $url;
     private $contents;
     private $dyTkId;
     private $itemId;
-
-    /**
-     * DouYinLogic constructor.
-     * @param $url
-     */
-    public function __construct($url)
-    {
-        $this->url = $url;
-    }
-
-
-    public function checkUrlHasTrue()
-    {
-        if (empty($this->url)) {
-            throw new ErrorVideoException("url cannot be empty");
-        }
-        if (strpos($this->url, "douyin.com") == false && strpos($this->url, "iesdouyin.com") == false) {
-            throw new ErrorVideoException("there was a problem with url verification");
-        }
-    }
 
     public function setDyTksAndItemIds()
     {
@@ -51,7 +28,7 @@ class DouYinLogic
         preg_match('/dytk:[^+]"(.*?)"[^+]}\);/i', $contents, $dyTks);
         preg_match('/itemId:[^+]"(.*?)",/i', $contents, $itemIds);
         if (CommonUtil::checkEmptyMatch($dyTks) || CommonUtil::checkEmptyMatch($itemIds)) {
-            throw new ErrorVideoException("dyTk or itemId is empty, there may be a problem with the website");
+            throw new ErrorVideoException("dytks或itemid获取不到");
         }
         $this->dyTkId = $dyTks[1];
         $this->itemId = $itemIds[1];
@@ -71,7 +48,7 @@ class DouYinLogic
             throw new ErrorVideoException("parsing failed");
         }
         if (empty($contents['item_list'][0])) {
-            throw new ErrorVideoException("contents not exist item_list");
+            throw new ErrorVideoException("不存在item_list无法获取视频信息");
         }
         $this->contents = $contents;
     }

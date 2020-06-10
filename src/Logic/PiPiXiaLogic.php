@@ -1,46 +1,24 @@
 <?php
+declare (strict_types=1);
 
 namespace Smalls\VideoTools\Logic;
 
 use Smalls\VideoTools\Enumerates\UserGentType;
 use Smalls\VideoTools\Exception\ErrorVideoException;
-use Smalls\VideoTools\Traits\HttpRequest;
 use Smalls\VideoTools\Utils\CommonUtil;
 
 /**
  * Created By 1
  * Author：smalls
  * Email：smalls0098@gmail.com
- * Date：2020/6/9 - 14:13
+ * Date：2020/6/10 - 14:13
  **/
-class PiPiXiaLogic
+class PiPiXiaLogic extends Base
 {
 
-    use HttpRequest;
-
-    private $url;
     private $itemId;
     private $contents;
 
-    /**
-     * PiPiXiaLogic constructor.
-     * @param $url
-     */
-    public function __construct($url)
-    {
-        $this->url = $url;
-    }
-
-    public function checkUrlHasTrue()
-    {
-        if (empty($this->url)) {
-            throw new ErrorVideoException("url cannot be empty");
-        }
-
-        if (strpos($this->url, "pipix.com") == false) {
-            throw new ErrorVideoException("the URL must contain one of the domain names pipix.com to continue execution");
-        }
-    }
 
     public function setItemId()
     {
@@ -50,7 +28,7 @@ class PiPiXiaLogic
 
         preg_match('/item\/([0-9]+)\?/i', $originalUrl, $match);
         if (CommonUtil::checkEmptyMatch($match)) {
-            throw new ErrorVideoException("originalUrl parsing failed");
+            throw new ErrorVideoException("获取不到item_id信息");
         }
         $this->itemId = $match[1];
     }
@@ -67,7 +45,7 @@ class PiPiXiaLogic
         ]);
 
         if (empty($contents['data']['item'])) {
-            throw new ErrorVideoException("contents parsing failed");
+            throw new ErrorVideoException("获取不到指定的内容信息");
         }
         $this->contents = $contents;
     }

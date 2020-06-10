@@ -1,10 +1,10 @@
 <?php
+declare (strict_types=1);
 
 namespace Smalls\VideoTools\Logic;
 
 use Smalls\VideoTools\Enumerates\UserGentType;
 use Smalls\VideoTools\Exception\ErrorVideoException;
-use Smalls\VideoTools\Traits\HttpRequest;
 use Smalls\VideoTools\Utils\CommonUtil;
 use Smalls\VideoTools\Utils\MeiPaiUtil;
 
@@ -12,14 +12,11 @@ use Smalls\VideoTools\Utils\MeiPaiUtil;
  * Created By 1
  * Author：smalls
  * Email：smalls0098@gmail.com
- * Date：2020/6/9 - 14:51
+ * Date：2020/6/10 - 14:51
  **/
-class MeiPaiLogic
+class MeiPaiLogic extends Base
 {
 
-    use HttpRequest;
-
-    private $url;
     private $title;
     private $userName;
     private $userPic;
@@ -27,26 +24,6 @@ class MeiPaiLogic
     private $videoBase64Url;
     private $contents;
 
-    /**
-     * HuoShanLogic constructor.
-     * @param $url
-     */
-    public function __construct($url)
-    {
-        $this->url = $url;
-    }
-
-
-    public function checkUrlHasTrue()
-    {
-        if (empty($this->url)) {
-            throw new ErrorVideoException("url cannot be empty");
-        }
-
-        if (strpos($this->url, "www.meipai.com") == false) {
-            throw new ErrorVideoException("there was a problem with url verification");
-        }
-    }
 
     public function setContents()
     {
@@ -66,7 +43,7 @@ class MeiPaiLogic
         preg_match('/<title>(.*?)<\/title>/i', $contents, $titleMatches);
 
         if (CommonUtil::checkEmptyMatch($videoMatches) || CommonUtil::checkEmptyMatch($userInfoMatches) || CommonUtil::checkEmptyMatch($videoImageMatches) || CommonUtil::checkEmptyMatch($titleMatches)) {
-            throw new ErrorVideoException("parsing failed");
+            throw new ErrorVideoException("获取不到视频信息和用户信息");
         }
         $this->title = $titleMatches[1];
         $this->userName = $userInfoMatches[1];

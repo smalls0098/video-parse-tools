@@ -3,8 +3,7 @@ declare (strict_types=1);
 
 namespace Smalls\VideoTools\Tools;
 
-use Smalls\VideoTools\Enumerates\UserGentType;
-use Smalls\VideoTools\Traits\HttpRequest;
+use Smalls\VideoTools\Utils\Config;
 
 /**
  * Created By 1
@@ -17,12 +16,24 @@ class Base
 
     protected $logic;
 
-    use HttpRequest;
+    /**
+     * @var Config
+     */
+    protected $config;
 
-    //三个b不同客户端的User-Agent ：windows、android、ios （其他可以自己添加）
-    const WIN_USER_AGENT = UserGentType::WIN_USER_AGENT;
-    const IOS_USER_AGENT = UserGentType::IOS_USER_AGENT;
-    const ANDROID_USER_AGENT = UserGentType::ANDROID_USER_AGENT;
+    /**
+     * Base constructor.
+     * @param $params
+     */
+    public function __construct($params)
+    {
+        if (!$params || !is_array($params)) {
+            $config = include __DIR__ . '/../../config/url-validator.php';
+            $this->config = new Config($config);
+        } else {
+            $this->config = $params;
+        }
+    }
 
 
     /**

@@ -22,8 +22,8 @@ class Bili extends Base implements IVideo
     private $url;
 
     /**
-     * 更新时间：2020/6/9
-     * B站有一个问题，就是解析出来的链接需要设置referer
+     * 更新时间：2020/6/10
+     * B.站有一个问题，就是解析出来的链接需要设置referer
      * 如果把IP定位到国外就不会有事
      * 我建议多加一个节点到香港之类的，专门用于指定的一些解析。
      * 也可以使用代理，需要自己写一下，我后续如果有弄可以加进去
@@ -38,13 +38,13 @@ class Bili extends Base implements IVideo
     }
 
     /**
-     * 更新时间：2020/6/9
+     * 更新时间：2020/6/10
      * @return array
      * @throws ErrorVideoException
      */
     public function execution(): array
     {
-        $this->logic = new BiliLogic($this->url, $this->cookie, $this->quality);
+        $this->logic = new BiliLogic($this->url, $this->cookie, $this->quality, $this->config->get('bili'));
         $this->logic->checkUrlHasTrue();
         $this->logic->setAidAndCid();
         $this->logic->setContents();

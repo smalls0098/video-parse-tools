@@ -1,51 +1,30 @@
 <?php
+declare (strict_types=1);
 
 namespace Smalls\VideoTools\Logic;
 
 use Smalls\VideoTools\Enumerates\UserGentType;
 use Smalls\VideoTools\Exception\ErrorVideoException;
-use Smalls\VideoTools\Traits\HttpRequest;
 use Smalls\VideoTools\Utils\CommonUtil;
 
 /**
  * Created By 1
  * Author：smalls
  * Email：smalls0098@gmail.com
- * Date：2020/6/9 - 14:13
+ * Date：2020/6/10 - 14:13
  **/
-class WeiShiLogic
+class WeiShiLogic extends Base
 {
 
-    use HttpRequest;
-
-    private $url;
     private $feedId;
     private $contents;
 
-    /**
-     * WeiShiLogic constructor.
-     * @param $url
-     */
-    public function __construct($url)
-    {
-        $this->url = $url;
-    }
-
-    public function checkUrlHasTrue()
-    {
-        if (empty($this->url)) {
-            throw new ErrorVideoException("url cannot be empty");
-        }
-        if (strpos($this->url, "weishi.qq.com") == false) {
-            throw new ErrorVideoException("there was a problem with url verification");
-        }
-    }
 
     public function setFeedId()
     {
         preg_match('/feed\/(.*?)\/wsfeed/i', $this->url, $match);
         if (CommonUtil::checkEmptyMatch($match)) {
-            throw new ErrorVideoException("url parsing failed");
+            throw new ErrorVideoException("feed_id参数获取失败");
         }
         $this->feedId = $match[1];
     }

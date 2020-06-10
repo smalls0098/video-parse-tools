@@ -1,53 +1,30 @@
 <?php
+declare (strict_types=1);
 
 namespace Smalls\VideoTools\Logic;
 
 use Smalls\VideoTools\Enumerates\UserGentType;
 use Smalls\VideoTools\Exception\ErrorVideoException;
-use Smalls\VideoTools\Traits\HttpRequest;
 use Smalls\VideoTools\Utils\CommonUtil;
 
 /**
  * Created By 1
  * Author：smalls
  * Email：smalls0098@gmail.com
- * Date：2020/6/9 - 16:41
+ * Date：2020/6/10 - 16:41
  **/
-class QuanMingGaoXiaoLogic
+class QuanMingGaoXiaoLogic extends Base
 {
 
-    use HttpRequest;
-
-    private $url;
     private $contentId;
-
     private $contents;
 
-    /**
-     * QuanMingGaoXiaoLogic constructor.
-     * @param $url
-     */
-    public function __construct($url)
-    {
-        $this->url = $url;
-    }
-
-    public function checkUrlHasTrue()
-    {
-        if (empty($this->url)) {
-            throw new ErrorVideoException("url cannot be empty");
-        }
-
-        if (strpos($this->url, "longxia.music.xiaomi.com") == false) {
-            throw new ErrorVideoException("there was a problem with url verification");
-        }
-    }
 
     public function setContentId()
     {
         preg_match('/video\/([0-9]+)\?/i', $this->url, $itemMatches);
         if (CommonUtil::checkEmptyMatch($itemMatches)) {
-            throw new ErrorVideoException("itemMatches parsing failed");
+            throw new ErrorVideoException("获取不到content_id信息");
         }
         $this->contentId = $itemMatches[1];
         return $itemMatches[1];
@@ -66,7 +43,7 @@ class QuanMingGaoXiaoLogic
             throw new ErrorVideoException("contents code not 200 parsing failed");
         }
         if (empty($contents['data']['videoInfo'])) {
-            throw new ErrorVideoException("contents not exist data -> videoInfo");
+            throw new ErrorVideoException("内容不存在 data -> videoInfo");
         }
         $this->contents = $contents['data']['videoInfo'];
     }

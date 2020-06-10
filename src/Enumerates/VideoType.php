@@ -1,4 +1,5 @@
 <?php
+declare (strict_types=1);
 
 namespace Smalls\VideoTools\Enumerates;
 
@@ -6,7 +7,7 @@ namespace Smalls\VideoTools\Enumerates;
  * Created By 1
  * Author：smalls
  * Email：smalls0098@gmail.com
- * Date：2020/6/9 - 17:23
+ * Date：2020/6/10 - 17:23
  **/
 class VideoType
 {

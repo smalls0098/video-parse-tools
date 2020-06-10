@@ -1,4 +1,5 @@
 <?php
+declare (strict_types=1);
 
 namespace Smalls\VideoTools\Utils;
 
@@ -6,7 +7,7 @@ namespace Smalls\VideoTools\Utils;
  * Created By 1
  * Author：smalls
  * Email：smalls0098@gmail.com
- * Date：2020/6/9 - 14:50
+ * Date：2020/6/10 - 14:50
  **/
 class MeiPaiUtil
 {

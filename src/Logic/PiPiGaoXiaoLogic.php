@@ -1,52 +1,30 @@
 <?php
+declare (strict_types=1);
 
 namespace Smalls\VideoTools\Logic;
 
 use Smalls\VideoTools\Enumerates\UserGentType;
 use Smalls\VideoTools\Exception\ErrorVideoException;
-use Smalls\VideoTools\Traits\HttpRequest;
 use Smalls\VideoTools\Utils\CommonUtil;
 
 /**
  * Created By 1
  * Author：smalls
  * Email：smalls0098@gmail.com
- * Date：2020/6/9 - 18:22
+ * Date：2020/6/10 - 18:22
  **/
-class PiPiGaoXiaoLogic
+class PiPiGaoXiaoLogic extends Base
 {
-    use HttpRequest;
 
-    private $url;
     private $postId;
     private $contents;
 
-    /**
-     * HuoShanLogic constructor.
-     * @param $url
-     */
-    public function __construct($url)
-    {
-        $this->url = $url;
-    }
-
-
-    public function checkUrlHasTrue()
-    {
-        if (empty($this->url)) {
-            throw new ErrorVideoException("url cannot be empty");
-        }
-
-        if (strpos($this->url, "ippzone.com") == false) {
-            throw new ErrorVideoException("there was a problem with url verification");
-        }
-    }
 
     public function setPostId()
     {
         preg_match('/pp\/post\/([0-9]+)/i', $this->url, $match);
         if (CommonUtil::checkEmptyMatch($match)) {
-            throw new ErrorVideoException("url parsing failed");
+            throw new ErrorVideoException("获取不到post_id信息");
         }
         $this->postId = $match[1];
     }
@@ -59,7 +37,7 @@ class PiPiGaoXiaoLogic
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,
         ]);
         if ((isset($contents['ret']) && $contents['ret'] != 1) || (isset($contents['data']['post']['imgs'][0]['id']) && !$contents['data']['post']['imgs'][0]['id'])) {
-            throw new ErrorVideoException("{PiPiGaoXiao} contents parsing failed");
+            throw new ErrorVideoException("获取不到指定的内容信息");
         }
         $this->contents = $contents;
     }

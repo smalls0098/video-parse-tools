@@ -1,53 +1,30 @@
 <?php
+declare (strict_types=1);
 
 namespace Smalls\VideoTools\Logic;
 
 use Smalls\VideoTools\Enumerates\UserGentType;
 use Smalls\VideoTools\Exception\ErrorVideoException;
-use Smalls\VideoTools\Traits\HttpRequest;
 use Smalls\VideoTools\Utils\CommonUtil;
 
 /**
  * Created By 1
  * Author：smalls
  * Email：smalls0098@gmail.com
- * Date：2020/6/9 - 18:22
+ * Date：2020/6/10 - 18:22
  **/
-class XiaoKaXiuLogic
+class XiaoKaXiuLogic extends Base
 {
-    use HttpRequest;
 
-    private $url;
     private $contents;
     private $videoId;
-
-    /**
-     * HuoShanLogic constructor.
-     * @param $url
-     */
-    public function __construct($url)
-    {
-        $this->url = $url;
-    }
-
-
-    public function checkUrlHasTrue()
-    {
-        if (empty($this->url)) {
-            throw new ErrorVideoException("url cannot be empty");
-        }
-
-        if (strpos($this->url, "mobile.xiaokaxiu.com") == false) {
-            throw new ErrorVideoException("there was a problem with url verification");
-        }
-    }
 
     public function setVideoId()
     {
         preg_match('/video\?id=([0-9]+)/i', $this->url, $itemMatches);
 
         if (CommonUtil::checkEmptyMatch($itemMatches)) {
-            throw new ErrorVideoException("url parsing failed");
+            throw new ErrorVideoException("获取不到video_id参数信息");
         }
         $this->videoId = $itemMatches[1];
     }
@@ -64,7 +41,7 @@ class XiaoKaXiuLogic
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,
         ]);
         if (isset($contents['code']) && $contents['code'] != 0) {
-            throw new ErrorVideoException("contents parsing failed");
+            throw new ErrorVideoException("获取不到指定的内容信息");
         }
         $this->contents = $contents;
     }

@@ -18,24 +18,19 @@ class XiGua extends Base implements IVideo
 {
 
     /**
-     * 更新时间：2020/6/9
+     * 更新时间：2020/6/10
      * @param string $url
      * @return array
      * @throws ErrorVideoException
      */
     public function start(string $url): array
     {
-        if (empty($url)) {
-            throw new ErrorVideoException("url cannot be empty");
-        }
-        if (strpos($url, "xigua.com") == false) {
-            throw new ErrorVideoException("there was a problem with url verification");
-        }
+        $this->logic = new TouTiaoLogic($url, $this->config->get('xigua'));
+        $this->logic->checkUrlHasTrue();
         preg_match('/group\/([0-9]+)\/?/i', $url, $match);
         if (CommonUtil::checkEmptyMatch($match)) {
-            throw new ErrorVideoException("url parsing failed");
+            throw new ErrorVideoException("item_id获取失败");
         }
-        $this->logic = new TouTiaoLogic($url);
         $this->logic->setContents($match[1]);
         return $this->exportData();
     }
