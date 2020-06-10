@@ -24,7 +24,7 @@ class PiPiGaoXiao extends Base implements IVideo
      */
     public function start(string $url): array
     {
-        $this->logic = new PiPiGaoXiaoLogic($url,$this->config->get('pipigaoxiao'));
+        $this->logic = new PiPiGaoXiaoLogic($url,$this->urlValidator->get('pipigaoxiao'), $this->config);
         $this->logic->checkUrlHasTrue();
         $this->logic->setPostId();
         $this->logic->setContents();

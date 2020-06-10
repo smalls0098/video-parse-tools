@@ -24,7 +24,7 @@ class LiVideo extends Base implements IVideo
      */
     public function start(string $url): array
     {
-        $this->logic = new LiVideoLogic($url, $this->config->get('livideo'));
+        $this->logic = new LiVideoLogic($url, $this->urlValidator->get('livideo'), $this->config);
         $this->logic->checkUrlHasTrue();
         $this->logic->setContents();
         $this->logic->setVideoUrl();

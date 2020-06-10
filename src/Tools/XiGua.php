@@ -25,7 +25,7 @@ class XiGua extends Base implements IVideo
      */
     public function start(string $url): array
     {
-        $this->logic = new TouTiaoLogic($url, $this->config->get('xigua'));
+        $this->logic = new TouTiaoLogic($url, $this->urlValidator->get('xigua'), $this->config);
         $this->logic->checkUrlHasTrue();
         preg_match('/group\/([0-9]+)\/?/i', $url, $match);
         if (CommonUtil::checkEmptyMatch($match)) {

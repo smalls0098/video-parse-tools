@@ -24,7 +24,7 @@ class MoMo extends Base implements IVideo
      */
     public function start(string $url): array
     {
-        $this->logic = new MoMoLogic($url, $this->config->get('momo'));
+        $this->logic = new MoMoLogic($url, $this->urlValidator->get('momo'), $this->config);
         $this->logic->checkUrlHasTrue();
         $this->logic->setFeedId();
         $this->logic->setContents();

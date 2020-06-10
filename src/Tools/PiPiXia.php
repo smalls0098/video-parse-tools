@@ -24,7 +24,7 @@ class PiPiXia extends Base implements IVideo
      */
     public function start(string $url): array
     {
-        $this->logic = new PiPiXiaLogic($url, $this->config->get('pipixia'));
+        $this->logic = new PiPiXiaLogic($url, $this->urlValidator->get('pipixia'), $this->config);
         $this->logic->checkUrlHasTrue();
         $this->logic->setItemId();
         $this->logic->setContents();

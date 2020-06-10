@@ -24,7 +24,7 @@ class ZuiYou extends Base implements IVideo
      */
     public function start(string $url): array
     {
-        $this->logic = new ZuiYouLogic($url, $this->config->get('zuiyou'));
+        $this->logic = new ZuiYouLogic($url, $this->urlValidator->get('zuiyou'), $this->config);
         $this->logic->checkUrlHasTrue();
         $this->logic->setPId();
         $this->logic->setContents();

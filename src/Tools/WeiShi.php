@@ -24,7 +24,7 @@ class WeiShi extends Base implements IVideo
      */
     public function start(string $url): array
     {
-        $this->logic = new WeiShiLogic($url, $this->config->get('weishi'));
+        $this->logic = new WeiShiLogic($url, $this->urlValidator->get('weishi'), $this->config);
         $this->logic->checkUrlHasTrue();
         $this->logic->setFeedId();
         $this->logic->setContents();

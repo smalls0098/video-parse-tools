@@ -24,7 +24,7 @@ class XiaoKaXiu extends Base implements IVideo
      */
     public function start(string $url): array
     {
-        $this->logic = new XiaoKaXiuLogic($url, $this->config->get('xiaokaxiu'));
+        $this->logic = new XiaoKaXiuLogic($url, $this->urlValidator->get('xiaokaxiu'), $this->config);
         $this->logic->checkUrlHasTrue();
         $this->logic->setVideoId();
         $this->logic->setContents();

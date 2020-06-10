@@ -17,6 +17,13 @@ class Base
     protected $logic;
 
     /**
+     * url验证列表
+     * @var Config
+     */
+    protected $urlValidator;
+
+    /**
+     * 公共配置列表
      * @var Config
      */
     protected $config;
@@ -25,13 +32,15 @@ class Base
      * Base constructor.
      * @param $params
      */
-    public function __construct($params)
+    public function __construct($params = [])
     {
-        if (!$params || !is_array($params)) {
+        list($params) = $params;
+        $this->config = new Config($params);
+        if (!array_key_exists('url-validators', $params)) {
             $config = include __DIR__ . '/../../config/url-validator.php';
-            $this->config = new Config($config);
+            $this->urlValidator = new Config($config);
         } else {
-            $this->config = $params;
+            $this->urlValidator = $params['url_validator'];
         }
     }
 
@@ -62,6 +71,10 @@ class Base
         ];
     }
 
+    /**
+     * 导出结果数据
+     * @return array
+     */
     protected function exportData()
     {
         return $this->returnData(

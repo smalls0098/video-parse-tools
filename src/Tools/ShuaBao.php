@@ -24,7 +24,7 @@ class ShuaBao extends Base implements IVideo
      */
     public function start(string $url): array
     {
-        $this->logic = new ShuaBaoLogic($url, $this->config->get('shuabao'));
+        $this->logic = new ShuaBaoLogic($url, $this->urlValidator->get('shuabao'), $this->config);
         $this->logic->checkUrlHasTrue();
         $this->logic->setShowId();
         $this->logic->setContents();

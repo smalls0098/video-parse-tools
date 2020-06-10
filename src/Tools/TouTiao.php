@@ -24,7 +24,7 @@ class TouTiao extends Base implements IVideo
      */
     public function start(string $url): array
     {
-        $this->logic = new TouTiaoLogic($url, $this->config->get('toutiao'));
+        $this->logic = new TouTiaoLogic($url, $this->urlValidator->get('toutiao'), $this->config);
         $this->logic->checkUrlHasTrue();
         $this->logic->setItemId();
         $this->logic->setContents();

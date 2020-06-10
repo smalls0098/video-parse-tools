@@ -24,7 +24,7 @@ class QuanMingGaoXiao extends Base implements IVideo
      */
     public function start(string $url): array
     {
-        $this->logic = new QuanMingGaoXiaoLogic($url, $this->config->get('quanminggaoxiao'));
+        $this->logic = new QuanMingGaoXiaoLogic($url, $this->urlValidator->get('quanminggaoxiao'), $this->config);
         $this->logic->checkUrlHasTrue();
         $this->logic->setContentId();
         $this->logic->getContents();

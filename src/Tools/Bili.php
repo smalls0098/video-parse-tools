@@ -44,7 +44,7 @@ class Bili extends Base implements IVideo
      */
     public function execution(): array
     {
-        $this->logic = new BiliLogic($this->url, $this->cookie, $this->quality, $this->config->get('bili'));
+        $this->logic = new BiliLogic($this->url, $this->cookie, $this->quality, $this->urlValidator->get('bili'), $this->config);
         $this->logic->checkUrlHasTrue();
         $this->logic->setAidAndCid();
         $this->logic->setContents();

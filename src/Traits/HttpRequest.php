@@ -30,10 +30,39 @@ trait HttpRequest
      */
     public function get($url, $query = [], $headers = [])
     {
-        return $this->request('get', $url, [
+        $params = [
             'headers' => $headers,
             'query' => $query,
-        ]);
+        ];
+        if ($this->isProxy) {
+            $params['proxy'] = [
+                'http' => $this->proxyIpPort,
+                'https' => $this->proxyIpPort,
+            ];
+        }
+        return $this->request('get', $url, $params);
+    }
+
+    /**
+     * 公共POST方法
+     * @param $url
+     * @param $data
+     * @param array $headers
+     * @return mixed|string
+     */
+    public function post($url, $data, $headers = [])
+    {
+        $options = [
+            'headers' => $headers,
+        ];
+
+        if (!is_array($data)) {
+            $options['body'] = $data;
+        } else {
+            $options['form_params'] = $data;
+        }
+
+        return $this->request('post', $url, $options);
     }
 
     /**
@@ -61,28 +90,6 @@ trait HttpRequest
             return "";
         }
         return "";
-    }
-
-    /**
-     * 公共POST方法
-     * @param $url
-     * @param $data
-     * @param array $headers
-     * @return mixed|string
-     */
-    public function post($url, $data, $headers = [])
-    {
-        $options = [
-            'headers' => $headers,
-        ];
-
-        if (!is_array($data)) {
-            $options['body'] = $data;
-        } else {
-            $options['form_params'] = $data;
-        }
-
-        return $this->request('post', $url, $options);
     }
 
     public function getBaseOptions()

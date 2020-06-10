@@ -24,7 +24,7 @@ class MeiPai extends Base implements IVideo
      */
     public function start(string $url): array
     {
-        $this->logic = new MeiPaiLogic($url, $this->config->get('meipai'));
+        $this->logic = new MeiPaiLogic($url, $this->urlValidator->get('meipai'), $this->config);
         $this->logic->checkUrlHasTrue();
         $this->logic->setContents();
         $this->logic->setVideoRelatedInfo();

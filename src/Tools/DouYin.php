@@ -24,7 +24,7 @@ class DouYin extends Base implements IVideo
      */
     public function start(string $url): array
     {
-        $this->logic = new DouYinLogic($url, $this->config->get('douyin'));
+        $this->logic = new DouYinLogic($url, $this->urlValidator->get('douyin'), $this->config);
         $this->logic->checkUrlHasTrue();
         $this->logic->setDyTksAndItemIds();
         $this->logic->setContents();

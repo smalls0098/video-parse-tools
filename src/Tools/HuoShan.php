@@ -24,7 +24,7 @@ class HuoShan extends Base implements IVideo
      */
     public function start(string $url): array
     {
-        $this->logic = new HuoShanLogic($url, $this->config->get('huoshan'));
+        $this->logic = new HuoShanLogic($url, $this->urlValidator->get('huoshan'), $this->config);
         $this->logic->checkUrlHasTrue();
         $this->logic->setItemId();
         $this->logic->setContents();
