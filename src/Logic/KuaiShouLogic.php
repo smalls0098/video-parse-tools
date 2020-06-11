@@ -19,17 +19,17 @@ class KuaiShouLogic extends Base
     private $match;
     private $contents;
 
+    /**
+     * 多了可能是短时间屏蔽IP
+     * @throws ErrorVideoException
+     */
     public function setContents()
     {
-        $time = time();
-        $did = md5($this->did());
-        $contents = $this->get($this->url, [
-            'did' => 'web_' . $did
-        ], [
-            'User-Agent' => UserGentType::ANDROID_USER_AGENT . ' ' . $did,
-            'cookie' => 'did=web_' . $did . '; didv=' . $time . '000; clientid=3; client_key=65890b29',
+        $cookie = $this->config->get('kuaishou_cookie', 'did=web_00536bb16309421a93a09c3e4998aa04; didv=1586963699000; clientid=3; client_key=65890b29; kuaishou.live.bfb1s=7206d814e5c089a58c910ed8bf52ace5; Hm_lvt_86a27b7db2c5c0ae37fee4a8a35033ee=1589811139,1591779408,1591880526; Hm_lpvt_86a27b7db2c5c0ae37fee4a8a35033ee=1591880526');
+        $contents = $this->get($this->url, [], [
+            'User-Agent' => UserGentType::ANDROID_USER_AGENT,
+            'cookie' => $cookie,
         ]);
-
         preg_match('/data-pagedata="(.*?)"/i', $contents, $this->match);
         if (CommonUtil::checkEmptyMatch($this->match)) {
             throw new ErrorVideoException("获取不到指定的内容信息");
@@ -43,23 +43,6 @@ class KuaiShouLogic extends Base
             throw new ErrorVideoException("内容为空");
         }
         $this->contents = json_decode($contents, true);
-    }
-
-    public function did()
-    {
-        $rand = $this->random();
-        $e = (1e9 * $rand) >> 0;
-        $p = '0123456789ABCDEF';
-        $s = "";
-        for ($i = 0; $i < 7; $i++) {
-            $s .= $p{16 * $this->random()};
-        }
-        return $e . $s;
-    }
-
-    private function random()
-    {
-        return 0 + mt_rand() / mt_getrandmax() * (1 - 0);
     }
 
     /**

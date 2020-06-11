@@ -16,6 +16,7 @@ $res = '';
 $res = VideoManager::KuaiShou([
     'proxy_whitelist' => ['kuaishou'],
     'proxy' => '221.122.91.75:10286',
+    'kuaishou_cookie' => 'did=web_00536bb16309421a93a09c3e4998aa04; didv=1586963699000; clientid=3; client_key=65890b29; kuaishou.live.bfb1s=7206d814e5c089a58c910ed8bf52ace5; Hm_lvt_86a27b7db2c5c0ae37fee4a8a35033ee=1589811139,1591779408,1591880526; Hm_lpvt_86a27b7db2c5c0ae37fee4a8a35033ee=1591880526'
 ])->start("https://v.kuaishou.com/2RbSva");
 var_dump($res);
 //$res = VideoManager::HuoShan()->start("https://share.huoshan.com/hotsoon/s/kcU0XOnSO78/");

@@ -37,7 +37,7 @@ class Base
      * 公共配置文件
      * @var Config
      */
-    private $config;
+    protected $config;
 
     protected $isProxy = false;
 

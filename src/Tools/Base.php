@@ -3,6 +3,7 @@ declare (strict_types=1);
 
 namespace Smalls\VideoTools\Tools;
 
+use Smalls\VideoTools\Exception\InvalidManagerException;
 use Smalls\VideoTools\Utils\Config;
 
 /**
@@ -31,9 +32,13 @@ class Base
     /**
      * Base constructor.
      * @param $params
+     * @throws InvalidManagerException
      */
     public function __construct($params = [])
     {
+        if (isset($params) && empty($params[0])) {
+            throw new InvalidManagerException("参数格式错误，必须为数组");
+        }
         list($params) = $params;
         $this->config = new Config($params);
         if (!array_key_exists('url-validators', $params)) {
