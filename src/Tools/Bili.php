@@ -4,7 +4,6 @@ declare (strict_types=1);
 namespace Smalls\VideoTools\Tools;
 
 use Smalls\VideoTools\Enumerates\BiliQualityType;
-use Smalls\VideoTools\Exception\ErrorVideoException;
 use Smalls\VideoTools\Interfaces\IVideo;
 use Smalls\VideoTools\Logic\BiliLogic;
 
@@ -29,7 +28,6 @@ class Bili extends Base implements IVideo
      * 也可以使用代理，需要自己写一下，我后续如果有弄可以加进去
      * @param string $url
      * @return array
-     * @throws ErrorVideoException
      */
     public function start(string $url): array
     {
@@ -40,7 +38,6 @@ class Bili extends Base implements IVideo
     /**
      * 更新时间：2020/6/10
      * @return array
-     * @throws ErrorVideoException
      */
     public function execution(): array
     {

@@ -3,7 +3,6 @@ declare (strict_types=1);
 
 namespace Smalls\VideoTools\Tools;
 
-use Smalls\VideoTools\Exception\ErrorVideoException;
 use Smalls\VideoTools\Interfaces\IVideo;
 use Smalls\VideoTools\Logic\KuaiShouLogic;
 
@@ -22,7 +21,6 @@ class KuaiShou extends Base implements IVideo
      * 你有什么办法也可以进行自己封装
      * @param string $url
      * @return array
-     * @throws ErrorVideoException
      */
     public function start(string $url): array
     {

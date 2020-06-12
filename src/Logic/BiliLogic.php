@@ -29,13 +29,15 @@ class BiliLogic extends Base
      * @param string $cookie
      * @param int $quality
      * @param $urlList
+     * @param $config
      */
-    public function __construct($url, string $cookie, int $quality, $urlList)
+    public function __construct($url, string $cookie, int $quality, $urlList, $config)
     {
         $this->cookie = $cookie;
         $this->quality = $quality;
         $this->url = $url;
         $this->urlList = $urlList;
+        $this->config = $config;
     }
 
     public function setAidAndCid()

@@ -9,7 +9,6 @@ namespace Smalls\VideoTools\Tools;
  * Date：2020/4/26 - 21:57
  **/
 
-use Smalls\VideoTools\Exception\ErrorVideoException;
 use Smalls\VideoTools\Interfaces\IVideo;
 use Smalls\VideoTools\Logic\PiPiXiaLogic;
 
@@ -20,7 +19,6 @@ class PiPiXia extends Base implements IVideo
      * 更新时间：2020/6/10
      * @param string $url
      * @return array
-     * @throws ErrorVideoException
      */
     public function start(string $url): array
     {

@@ -3,7 +3,6 @@ declare (strict_types=1);
 
 namespace Smalls\VideoTools\Tools;
 
-use Smalls\VideoTools\Exception\ErrorVideoException;
 use Smalls\VideoTools\Interfaces\IVideo;
 use Smalls\VideoTools\Logic\PiPiGaoXiaoLogic;
 
@@ -20,11 +19,10 @@ class PiPiGaoXiao extends Base implements IVideo
      * 更新时间：2020/6/10
      * @param string $url
      * @return array
-     * @throws ErrorVideoException
      */
     public function start(string $url): array
     {
-        $this->logic = new PiPiGaoXiaoLogic($url,$this->urlValidator->get('pipigaoxiao'), $this->config);
+        $this->logic = new PiPiGaoXiaoLogic($url, $this->urlValidator->get('pipigaoxiao'), $this->config);
         $this->logic->checkUrlHasTrue();
         $this->logic->setPostId();
         $this->logic->setContents();

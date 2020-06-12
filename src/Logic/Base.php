@@ -29,18 +29,27 @@ class Base
      */
     protected $urlList;
     /**
-     * 是否开启检查列表
+     * 是否开启检查验证列表
      * @var bool
      */
     private $isCheckUrl = true;
     /**
-     * 公共配置文件
+     * 公共配置器
      * @var Config
      */
     protected $config;
 
+
+    /**
+     * 代理类型 默认为false
+     * @var bool
+     */
     protected $isProxy = false;
 
+    /**
+     * 代理IP和端口号，需要用:隔开
+     * @var mixed|string
+     */
     protected $proxyIpPort = "";
 
     public function __construct($url, $urlList, $config)
@@ -48,13 +57,15 @@ class Base
         $this->url = $url;
         $this->urlList = $urlList;
         $this->config = $config;
-        $this->isCheckUrl = $this->config->get('is_check_url', true);
-        $className = str_replace(__NAMESPACE__, "", get_class($this));
-        $className = substr($className, 1, strlen($className) - 6);
-        $className = strtolower($className);
-        $proxyWhitelist = $this->config->get('proxy_whitelist', []);
-        $this->isProxy = in_array($className, $proxyWhitelist);
-        $this->proxyIpPort = $this->config->get('proxy', '');
+        if (isset($this->config)) {
+            $this->isCheckUrl = $this->config->get('is_check_url', true);
+            $className = str_replace(__NAMESPACE__, "", get_class($this));
+            $className = substr($className, 1, strlen($className) - 6);
+            $className = strtolower($className);
+            $proxyWhitelist = $this->config->get('proxy_whitelist', []);
+            $this->isProxy = in_array($className, $proxyWhitelist);
+            $this->proxyIpPort = $this->config->get('proxy', '');
+        }
     }
 
     public function checkUrlHasTrue()

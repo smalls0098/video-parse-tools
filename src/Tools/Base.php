@@ -3,7 +3,7 @@ declare (strict_types=1);
 
 namespace Smalls\VideoTools\Tools;
 
-use Smalls\VideoTools\Exception\InvalidManagerException;
+use phpDocumentor\Reflection\Types\Object_;
 use Smalls\VideoTools\Utils\Config;
 
 /**
@@ -15,16 +15,21 @@ use Smalls\VideoTools\Utils\Config;
 class Base
 {
 
+    const URL_VALIDATOR = 'url_validator';
+    /**
+     * 解析逻辑层
+     * @var Object
+     */
     protected $logic;
 
     /**
-     * url验证列表
+     * url验证器
      * @var Config
      */
     protected $urlValidator;
 
     /**
-     * 公共配置列表
+     * 公共配置器
      * @var Config
      */
     protected $config;
@@ -32,20 +37,18 @@ class Base
     /**
      * Base constructor.
      * @param $params
-     * @throws InvalidManagerException
      */
     public function __construct($params = [])
     {
-        if (isset($params) && empty($params[0])) {
-            throw new InvalidManagerException("参数格式错误，必须为数组");
+        if (isset($params) && isset($params[0])) {
+            list($params) = $params;
+            $this->config = new Config($params);
         }
-        list($params) = $params;
-        $this->config = new Config($params);
-        if (!array_key_exists('url-validators', $params)) {
+        if (empty($params[0][self::URL_VALIDATOR])) {
             $config = include __DIR__ . '/../../config/url-validator.php';
             $this->urlValidator = new Config($config);
         } else {
-            $this->urlValidator = $params['url_validator'];
+            $this->urlValidator = $params[0][self::URL_VALIDATOR];
         }
     }
 
