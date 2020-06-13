@@ -11,12 +11,12 @@ require '../vendor/autoload.php';
 use Smalls\VideoTools\VideoManager;
 
 $res = '';
-$res = VideoManager::DouYin()->start("https://v.douyin.com/JeoLRe4/");
-var_dump($res);
+//$res = VideoManager::DouYin()->start("https://v.douyin.com/JeoLRe4/");
+//var_dump($res);
 $res = VideoManager::KuaiShou([
-    'proxy_whitelist' => ['kuaishou'],
-    'proxy' => '221.122.91.75:10286',
-    'kuaishou_cookie' => 'did=web_00536bb16309421a93a09c3e4998aa04; didv=1586963699000; clientid=3; client_key=65890b29; kuaishou.live.bfb1s=7206d814e5c089a58c910ed8bf52ace5; Hm_lvt_86a27b7db2c5c0ae37fee4a8a35033ee=1589811139,1591779408,1591880526; Hm_lpvt_86a27b7db2c5c0ae37fee4a8a35033ee=1591880526'
+//    'proxy_whitelist' => ['kuaishou'],
+//    'proxy' => '221.122.91.75:10286',
+    'kuaishou_cookie' => 'kuaishou.live.bfb1s=ac5f27b3b62895859c4c1622f49856a4; clientid=3; did=web_c089d7edf03502e6e27d3ee2b6a547cf; client_key=65890b29; didv=1592015417526; sid=227eada9ed50276a16b8da39; Hm_lvt_86a27b7db2c5c0ae37fee4a8a35033ee=1589811139,1591779408,1591880526,1592015440; Hm_lpvt_86a27b7db2c5c0ae37fee4a8a35033ee=1592015440'
 ])->start("https://v.kuaishou.com/2RbSva");
 var_dump($res);
 //$res = VideoManager::HuoShan()->start("https://share.huoshan.com/hotsoon/s/kcU0XOnSO78/");
