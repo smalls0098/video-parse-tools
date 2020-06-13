@@ -13,12 +13,13 @@ use Smalls\VideoTools\VideoManager;
 $res = '';
 //$res = VideoManager::DouYin()->start("https://v.douyin.com/JeoLRe4/");
 //var_dump($res);
-$res = VideoManager::KuaiShou([
-//    'proxy_whitelist' => ['kuaishou'],
-//    'proxy' => '221.122.91.75:10286',
-    'kuaishou_cookie' => 'kuaishou.live.bfb1s=ac5f27b3b62895859c4c1622f49856a4; clientid=3; did=web_c089d7edf03502e6e27d3ee2b6a547cf; client_key=65890b29; didv=1592015417526; sid=227eada9ed50276a16b8da39; Hm_lvt_86a27b7db2c5c0ae37fee4a8a35033ee=1589811139,1591779408,1591880526,1592015440; Hm_lpvt_86a27b7db2c5c0ae37fee4a8a35033ee=1592015440'
-])->start("https://v.kuaishou.com/2RbSva");
-var_dump($res);
+//$res = VideoManager::KuaiShou([
+////    'proxy_whitelist' => ['kuaishou'],
+////    'proxy' => '221.122.91.75:10286',
+//    'kuaishou_cookie' => 'did=web_a6a7e3e1a4014bc695f672424895d4b1; didv=1591109751000; clientid=3; client_key=65890b29; Hm_lvt_86a27b7db2c5c0ae37fee4a8a35033ee=1591109757,1591970427; kuaishou.live.bfb1s=9b8f70844293bed778aade6e0a8f9942; userId=51611533; userId=51611533; kuaishou.live.web_st=ChRrdWFpc2hvdS5saXZlLndlYi5zdBKgAaCjxgTeOKOKuBZb5DHiOZCRd47RetP6Uq7ja8Qc0K8YUzu_Dnd2zXqKdQxBk7WoqxC4hPA2XrlP9-gKRy0E7pJXWIVoNcoPLqHZ20r8XKIv-NW8dXdxmwAefMMQzOahP0M37oaBe5ryNzgZi84YdjOgyW-NBqbGSRqtr4yp7DONw_5N8SaKff4SUwt5iBh5K6h1rekzLxA7KnJNQXRFsroaEhq2DZZ7DUHSmXUzdRyAf3O3USIgqzysiMZcXUjuioTj7guBkES98eKxDNMXR44vGILtMMMoBTAB; kuaishou.live.web_ph=ea1aa21b1f3b1305776dd0eebc926ba94a3e'
+//])->start("https://v.kuaishou.com/2RbSva");
+//$res = VideoManager::KuaiShou()->start("https://v.kuaishou.com/2RbSva");
+//var_dump($res);
 //$res = VideoManager::HuoShan()->start("https://share.huoshan.com/hotsoon/s/kcU0XOnSO78/");
 //var_dump($res['video_url']);
 //$res = VideoManager::TouTiao()->start("https://m.toutiaoimg.cn/a6818537223466516995/?app=news_article&is_hit_share_recommend=0");
@@ -47,5 +48,8 @@ var_dump($res);
 //var_dump($res['video_url']);
 //$res = VideoManager::Bili()->setUrl("https://b23.tv/av84665662")->setQuality(BiliQualityType::LEVEL_2)->execution();
 //var_dump($res['video_url']);
+//$res = VideoManager::WeiBo()->start("http://weibo.com/tv/v/EFSNuE1Ky");
+$res = VideoManager::WeiBo()->start("http://weibo.com/tv/v/EFSNuE1Ky");
+var_dump($res);
 
 

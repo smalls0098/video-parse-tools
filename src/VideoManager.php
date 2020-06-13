@@ -17,6 +17,7 @@ use Smalls\VideoTools\Tools\PiPiXia;
 use Smalls\VideoTools\Tools\QuanMingGaoXiao;
 use Smalls\VideoTools\Tools\ShuaBao;
 use Smalls\VideoTools\Tools\TouTiao;
+use Smalls\VideoTools\Tools\WeiBo;
 use Smalls\VideoTools\Tools\WeiShi;
 use Smalls\VideoTools\Tools\XiaoKaXiu;
 use Smalls\VideoTools\Tools\XiGua;
@@ -46,6 +47,7 @@ use Smalls\VideoTools\Tools\ZuiYou;
  * @method static ShuaBao ShuaBao(...$params)
  * @method static XiaoKaXiu XiaoKaXiu(...$params)
  * @method static Bili Bili(...$params)
+ * @method static WeiBo WeiBo(...$params)
  */
 class VideoManager
 {

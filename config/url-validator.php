@@ -17,4 +17,5 @@ return [
     'xiaokaxiu' => ['mobile.xiaokaxiu.com'],
     'xigua' => ['xigua.com'],
     'zuiyou' => ['izuiyou.com'],
+    'weibo' => ['weibo.com','weibo.cn'],
 ];

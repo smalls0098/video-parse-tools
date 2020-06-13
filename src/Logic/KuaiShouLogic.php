@@ -20,17 +20,16 @@ class KuaiShouLogic extends Base
     private $contents;
 
     /**
-     * 多了可能是短时间屏蔽IP
+     * 多了可能是短时间kuaishou屏蔽IP
      * @throws ErrorVideoException
      */
     public function setContents()
     {
-        $cookie = $this->config->get('kuaishou_cookie', 'did=web_00536bb16309421a93a09c3e4998aa04; didv=1586963699000; clientid=3; client_key=65890b29; kuaishou.live.bfb1s=7206d814e5c089a58c910ed8bf52ace5; Hm_lvt_86a27b7db2c5c0ae37fee4a8a35033ee=1589811139,1591779408,1591880526; Hm_lpvt_86a27b7db2c5c0ae37fee4a8a35033ee=1591880526');
+        $cookie = $this->getConfig('kuaishou_cookie', 'did=web_00536bb16309421a93a09c3e4998aa04; didv=1586963699000; clientid=3; client_key=65890b29; kuaishou.live.bfb1s=7206d814e5c089a58c910ed8bf52ace5; Hm_lvt_86a27b7db2c5c0ae37fee4a8a35033ee=1589811139,1591779408,1591880526; Hm_lpvt_86a27b7db2c5c0ae37fee4a8a35033ee=1591880526');
         $contents = $this->get($this->url, [], [
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,
             'cookie' => $cookie,
         ]);
-        //file_put_contents($this->logDir . (string)time() . ".html", $contents);
         preg_match('/data-pagedata="(.*?)"/i', $contents, $this->match);
         if (CommonUtil::checkEmptyMatch($this->match)) {
             preg_match('/window.pageData= (.*?)<\/script>/i', $contents, $this->match);

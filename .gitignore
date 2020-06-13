@@ -3,5 +3,5 @@
 /vendor
 composer.lock
 *.log
-/vendor/proxy.php
+/tests/proxy.php
 /log
