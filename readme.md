@@ -50,8 +50,9 @@ composer update smalls/video-tools
     小.咖.秀：VideoManager::XiaoKaXiu()->start($url);
     B.站：VideoManager::Bili()->start($url);
     微.博：VideoManager::WeiBo()->start($url);
+    微.博短视频：VideoManager::WeiBo()->newVideoStart($url);
     B.站.指定参数：VideoManager::Bili()->setUrl($url)->setQuality(BiliQualityType::LEVEL_2)->execution();
-   自定义配置文件：url-validator
+   自定义URL配置文件：url-validator
    --
    ````
     例如抖.音：$res = VideoManager::KuaiShou([

@@ -49,7 +49,9 @@ $res = '';
 //$res = VideoManager::Bili()->setUrl("https://b23.tv/av84665662")->setQuality(BiliQualityType::LEVEL_2)->execution();
 //var_dump($res['video_url']);
 //$res = VideoManager::WeiBo()->start("http://weibo.com/tv/v/EFSNuE1Ky");
-$res = VideoManager::WeiBo()->start("http://weibo.com/tv/v/EFSNuE1Ky");
+//$res = VideoManager::WeiBo()->start("http://weibo.com/tv/v/EFSNuE1Ky");
+//var_dump($res);
+$res = VideoManager::WeiBo()->newVideoStart("https://video.weibo.com/show?fid=1034:4513329142497297");
 var_dump($res);
 
 
