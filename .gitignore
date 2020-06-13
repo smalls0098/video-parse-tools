@@ -4,3 +4,4 @@
 composer.lock
 *.log
 /vendor/proxy.php
+/log

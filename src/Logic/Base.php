@@ -52,6 +52,8 @@ class Base
      */
     protected $proxyIpPort = "";
 
+    protected $logDir = __DIR__ . "/../../log/";
+
     public function __construct($url, $urlList, $config)
     {
         $this->url = $url;

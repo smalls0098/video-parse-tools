@@ -30,7 +30,11 @@ class KuaiShouLogic extends Base
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,
             'cookie' => $cookie,
         ]);
+        //file_put_contents($this->logDir . (string)time() . ".html", $contents);
         preg_match('/data-pagedata="(.*?)"/i', $contents, $this->match);
+        if (CommonUtil::checkEmptyMatch($this->match)) {
+            preg_match('/window.pageData= (.*?)<\/script>/i', $contents, $this->match);
+        }
         if (CommonUtil::checkEmptyMatch($this->match)) {
             throw new ErrorVideoException("获取不到指定的内容信息");
         }
