@@ -7,11 +7,13 @@
 </p>
 
 ## 短视频去水印
-集成了：抖.音、火.山、头.条、快.手、梨.视.频、美.拍、陌.陌、皮.皮.搞.笑、皮.皮.虾、全.民.搞.笑、刷.宝、微.视、小.咖.秀、最.右、B.站、微.博等等。其他如果需要对接的可以issues
+集成了：抖.音、火.山、头.条、快.手、梨.视.频、美.拍、陌.陌、皮.皮.搞.笑、皮.皮.虾、全.民.搞.笑、刷.宝、微.视、小.咖.秀、最.右、B.站、微.博、秒.拍等等。其他如果需要对接的可以issues
 
 * 技术交流群：1055772768 - 进群密码：smalls
+* 我们已经对接了19个平台的视频提取（部分视频是有水印的，没办法做到无水印）
 
 ===============
+* 2020-06-14：添加秒拍提取视频，修复美拍提取视频失败
 * 2020-06-13：添加微博提取视频（远古视频有水印）
 * 2020-06-10：新加代理功能，有点不稳定，有什么好的建议可以issues给我
 * 2020-06-10：添加url-validator配置类
@@ -51,6 +53,7 @@ composer update smalls/video-tools
     B.站：VideoManager::Bili()->start($url);
     微.博：VideoManager::WeiBo()->start($url);
     微.博短视频：VideoManager::WeiBo()->newVideoStart($url);
+    秒.拍：VideoManager::MiaoPai()->start($url);
     B.站.指定参数：VideoManager::Bili()->setUrl($url)->setQuality(BiliQualityType::LEVEL_2)->execution();
    自定义URL配置文件：url-validator
    --
