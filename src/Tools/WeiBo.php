@@ -15,7 +15,11 @@ use Smalls\VideoTools\Logic\WeiBoLogic;
 class WeiBo extends Base implements IVideo
 {
 
-
+    /**
+     * 更新时间：2020/6/13
+     * @param string $url
+     * @return array
+     */
     public function start(string $url): array
     {
         $this->logic = new WeiBoLogic($url, $this->urlValidator->get('weibo'), $this->config);
@@ -25,6 +29,11 @@ class WeiBo extends Base implements IVideo
         return $this->exportData();
     }
 
+    /**
+     * 更新时间：2020/6/13
+     * @param string $url
+     * @return array
+     */
     public function newVideoStart(string $url): array
     {
         $this->logic = new NewWeiBoLogic($url, $this->urlValidator->get('newweibo'), $this->config);

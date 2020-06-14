@@ -10,9 +10,9 @@ namespace Smalls\VideoTools\Tools;
  **/
 
 use Smalls\VideoTools\Interfaces\IVideo;
-use Smalls\VideoTools\Logic\MeiPaiLogic;
+use Smalls\VideoTools\Logic\MiaoPaiLogic;
 
-class MeiPai extends Base implements IVideo
+class MiaoPai extends Base implements IVideo
 {
 
     /**
@@ -22,10 +22,10 @@ class MeiPai extends Base implements IVideo
      */
     public function start(string $url): array
     {
-        $this->logic = new MeiPaiLogic($url, $this->urlValidator->get('meipai'), $this->config);
+        $this->logic = new MiaoPaiLogic($url, $this->urlValidator->get('miaopai'), $this->config);
         $this->logic->checkUrlHasTrue();
+        $this->logic->setMid();
         $this->logic->setContents();
-        $this->logic->setVideoRelatedInfo();
         return $this->exportData();
     }
 

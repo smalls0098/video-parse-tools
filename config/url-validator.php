@@ -19,4 +19,5 @@ return [
     'zuiyou' => ['izuiyou.com'],
     'weibo' => ['weibo.com','weibo.cn'],
     'newweibo' => ['video.weibo.com/show'],
+    'miaopai' => ['miaopai.com'],
 ];

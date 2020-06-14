@@ -33,7 +33,7 @@ $res = '';
 //$res = VideoManager::ZuiYou()->start("https://share.izuiyou.com/detail/152254948?zy_to=applink&to=applink");
 //var_dump($res['video_url']);
 //$res = VideoManager::MeiPai()->start("http://www.meipai.com/media/1200571483?client_id=1089857302&utm_media_id=1200571483&utm_source=meipai_share&utm_term=meipai_android&gid=2211243272");
-//var_dump($res['video_url']);
+//var_dump($res);
 //$res = VideoManager::LiVideo()->start("https://www.pearvideo.com/detail_1671290?st=7");
 //var_dump($res['video_url']);
 //$res = VideoManager::QuanMingGaoXiao()->start("https://longxia.music.xiaomi.com/share/video/6528730793005613056?sharerUserId=1939294&ref=WEIXIN");
@@ -51,7 +51,8 @@ $res = '';
 //$res = VideoManager::WeiBo()->start("http://weibo.com/tv/v/EFSNuE1Ky");
 //$res = VideoManager::WeiBo()->start("http://weibo.com/tv/v/EFSNuE1Ky");
 //var_dump($res);
-$res = VideoManager::WeiBo()->newVideoStart("https://video.weibo.com/show?fid=1034:4513329142497297");
+//$res = VideoManager::WeiBo()->newVideoStart("https://video.weibo.com/show?fid=1034:4513329142497297");
+//var_dump($res);
+
+$res = VideoManager::MiaoPai()->start("http://www.miaopai.com/show/SSDlgDXVOwOqIEFkuzmTtap-~2T-HUwI.htm");
 var_dump($res);
-
-
