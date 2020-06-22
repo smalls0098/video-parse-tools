@@ -68,9 +68,9 @@ class PiPiGaoXiaoLogic extends Base
 
     public function getVideoUrl()
     {
-        $id = CommonUtil::getData($this->contents['data']['post']['imgs'][0]['id']);
+        $id = isset($this->contents['data']['post']['imgs'][0]['id']) ? $this->contents['data']['post']['imgs'][0]['id'] : '';
         if ($id) {
-            return CommonUtil::getData($this->contents['data']['post']['videos'][$id]['url']);
+            return isset($this->contents['data']['post']['videos'][$id]['url']) ? $this->contents['data']['post']['videos'][$id]['url'] : '';
         }
         return '';
     }
@@ -78,7 +78,7 @@ class PiPiGaoXiaoLogic extends Base
 
     public function getVideoImage()
     {
-        $id = CommonUtil::getData($this->contents['data']['post']['imgs'][0]['id']);
+        $id = isset($this->contents['data']['post']['imgs'][0]['id']) ? $this->contents['data']['post']['imgs'][0]['id'] : '';
         if ($id) {
             return "https://file.ippzone.com/img/view/id/{$id}";
         }
@@ -87,7 +87,7 @@ class PiPiGaoXiaoLogic extends Base
 
     public function getVideoDesc()
     {
-        return CommonUtil::getData($this->contents['data']['post']['content']);
+        return isset($this->contents['data']['post']['content']) ? $this->contents['data']['post']['content'] : '';
     }
 
     public function getUserPic()

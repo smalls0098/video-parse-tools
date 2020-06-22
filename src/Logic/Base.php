@@ -87,10 +87,10 @@ class Base
 
     /**
      * 获取获取配置信息，防止出错
-     * @author smalls
      * @param string $key
      * @param string $default
      * @return mixed|string
+     * @author smalls
      */
     public function getConfig($key = '', $default = '')
     {
@@ -106,10 +106,11 @@ class Base
     /**
      * 测试的时候写入日志使用
      * @param string $contents
+     * @param string $suffix
      */
-    public function WriterTestLog($contents = '')
+    public function WriterTestLog($contents = '', $suffix = 'log')
     {
-        file_put_contents($this->logDir . (string)time() . ".html", $contents);
+        file_put_contents($this->logDir . (string)time() . "." . $suffix, $contents);
     }
 
 }

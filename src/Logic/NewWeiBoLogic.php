@@ -17,9 +17,6 @@ class NewWeiBoLogic extends Base
 
     private $fid;
     private $mid;
-    /**
-     * @var string
-     */
     private $contents;
 
 
@@ -90,27 +87,27 @@ class NewWeiBoLogic extends Base
 
     public function getVideoUrl()
     {
-        return CommonUtil::getData($this->contents['data']['object']['stream']['hd_url']);
+        return isset($this->contents['data']['object']['stream']['hd_url']) ? $this->contents['data']['object']['stream']['hd_url'] : '';
     }
 
     public function getVideoImage()
     {
-        return CommonUtil::getData($this->contents['data']['object']['image']['url']);
+        return isset($this->contents['data']['object']['image']['url']) ? $this->contents['data']['object']['image']['url'] : '';
     }
 
     public function getVideoDesc()
     {
-        return CommonUtil::getData($this->contents['data']['object']['summary']);
+        return isset($this->contents['data']['object']['summary']) ? $this->contents['data']['object']['summary'] : '';
     }
 
     public function getUsername()
     {
-        return CommonUtil::getData($this->contents['data']['object']['author']['screen_name']);
+        return isset($this->contents['data']['object']['author']['screen_name']) ? $this->contents['data']['object']['author']['screen_name'] : '';
     }
 
     public function getUserPic()
     {
-        return CommonUtil::getData($this->contents['data']['object']['author']['profile_image_url']);
+        return isset($this->contents['data']['object']['author']['profile_image_url']) ? $this->contents['data']['object']['author']['profile_image_url'] : '';
     }
 
 }

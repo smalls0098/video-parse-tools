@@ -71,18 +71,18 @@ class XiaoKaXiuLogic extends Base
 
     public function getVideoUrl()
     {
-        return CommonUtil::getData($this->contents['data']['video']['url'][0]);
+        return isset($this->contents['data']['video']['url'][0]) ? $this->contents['data']['video']['url'][0] : '';
     }
 
 
     public function getVideoImage()
     {
-        return CommonUtil::getData($this->contents['data']['video']['cover']);
+        return isset($this->contents['data']['video']['cover']) ? $this->contents['data']['video']['cover'] : '';
     }
 
     public function getVideoDesc()
     {
-        return CommonUtil::getData($this->contents['data']['video']['title']);
+        return isset($this->contents['data']['video']['title']) ? $this->contents['data']['video']['title'] : '';
     }
 
     public function getUserPic()
@@ -92,7 +92,7 @@ class XiaoKaXiuLogic extends Base
 
     public function getUsername()
     {
-        return CommonUtil::getData($this->contents['data']['video']['user']['nickname']);
+        return isset($this->contents['data']['video']['user']['nickname']) ? $this->contents['data']['video']['user']['nickname'] : '';
     }
 
 

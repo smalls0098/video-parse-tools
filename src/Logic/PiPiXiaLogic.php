@@ -55,7 +55,7 @@ class PiPiXiaLogic extends Base
      */
     public function getContents()
     {
-        return $this->contents['data']['item'];
+        return $this->contents;
     }
 
     /**
@@ -76,28 +76,28 @@ class PiPiXiaLogic extends Base
 
     public function getVideoUrl()
     {
-        return CommonUtil::getData($this->getContents()['video']['video_fallback']['url_list'][0]['url']);
+        return isset($this->contents['data']['item']['video']['video_fallback']['url_list'][0]['url']) ? $this->contents['data']['item']['video']['video_fallback']['url_list'][0]['url'] : '';
     }
 
 
     public function getVideoImage()
     {
-        return CommonUtil::getData($this->getContents()['video']['cover_image']['url_list'][0]['url']);
+        return isset($this->contents['data']['item']['video']['cover_image']['url_list'][0]['url']) ? $this->contents['data']['item']['video']['cover_image']['url_list'][0]['url'] : '';
     }
 
     public function getVideoDesc()
     {
-        return CommonUtil::getData($this->getContents()['share']['title']);
+        return isset($this->contents['data']['item']['share']['title']) ? $this->contents['data']['item']['share']['title'] : '';
     }
 
     public function getUserPic()
     {
-        return CommonUtil::getData($this->getContents()['author']['avatar']['url_list'][0]['url']);
+        return isset($this->contents['data']['item']['author']['avatar']['url_list'][0]['url']) ? $this->contents['data']['item']['author']['avatar']['url_list'][0]['url'] : '';
     }
 
     public function getUsername()
     {
-        return CommonUtil::getData($this->getContents()['author']['name']);
+        return isset($this->contents['data']['item']['author']['name']) ? $this->contents['data']['item']['author']['name'] : '';
     }
 
 

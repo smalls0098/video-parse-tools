@@ -39,7 +39,6 @@ class MeiPaiLogic extends Base
         preg_match('/data-video="(.*?)"/i', $contents, $videoMatches);
 
         preg_match('/img src="(.*?)" width="74" height="74" class="avatar pa detail-avatar" alt="(.*?)"/i', $contents, $userInfoMatches);
-        var_dump($userInfoMatches);
         preg_match('/<img src="(.*?)"/i', $contents, $videoImageMatches);
         preg_match('/<title>(.*?)<\/title>/i', $contents, $titleMatches);
         if (CommonUtil::checkEmptyMatch($videoMatches) || CommonUtil::checkEmptyMatch($userInfoMatches) || CommonUtil::checkEmptyMatch($videoImageMatches) || CommonUtil::checkEmptyMatch($titleMatches)) {

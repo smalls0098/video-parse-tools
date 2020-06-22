@@ -17,9 +17,7 @@ class HuoShanLogic extends Base
 {
 
     private $itemId;
-    /**
-     * @var string
-     */
+
     private $contents;
 
 
@@ -78,7 +76,7 @@ class HuoShanLogic extends Base
 
     public function getVideoImage()
     {
-        return CommonUtil::getData($this->contents['data']['item_info']['cover']);
+        return isset($this->contents['data']['item_info']['cover']) ? $this->contents['data']['item_info']['cover'] : '';
     }
 
     public function getVideoDesc()

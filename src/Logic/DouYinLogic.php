@@ -28,6 +28,7 @@ class DouYinLogic extends Base
         preg_match('/dytk:[^+]"(.*?)"[^+]}\);/i', $contents, $dyTks);
         preg_match('/itemId:[^+]"(.*?)",/i', $contents, $itemIds);
         if (CommonUtil::checkEmptyMatch($dyTks) || CommonUtil::checkEmptyMatch($itemIds)) {
+            $this->WriterTestLog($contents);
             throw new ErrorVideoException("dytks或itemid获取不到");
         }
         $this->dyTkId = $dyTks[1];

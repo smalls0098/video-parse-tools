@@ -66,27 +66,27 @@ class QuanMingGaoXiaoLogic extends Base
 
     public function getVideoUrl()
     {
-        return CommonUtil::getData($this->contents['videoInfo']['url']);
+        return isset($this->contents['videoInfo']['url']) ? $this->contents['videoInfo']['url'] : '';
     }
 
     public function getVideoImage()
     {
-        return CommonUtil::getData($this->contents['videoInfo']['coverUrl']);
+        return isset($this->contents['videoInfo']['coverUrl']) ? $this->contents['videoInfo']['coverUrl'] : '';
     }
 
     public function getVideoDesc()
     {
-        return CommonUtil::getData($this->contents['videoInfo']['desc']);
+        return isset($this->contents['videoInfo']['desc']) ? $this->contents['videoInfo']['desc'] : '';
     }
 
     public function getUsername()
     {
-        return CommonUtil::getData($this->contents['author']['authorName']);
+        return isset($this->contents['author']['authorName']) ? $this->contents['author']['authorName'] : '';
     }
 
     public function getUserPic()
     {
-        return CommonUtil::getData($this->contents['author']['authorAvatarUrl']);
+        return isset($this->contents['author']['authorAvatarUrl']) ? $this->contents['author']['authorAvatarUrl'] : '';
     }
 
 

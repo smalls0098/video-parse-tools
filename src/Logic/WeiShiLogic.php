@@ -52,7 +52,7 @@ class WeiShiLogic extends Base
      */
     public function getContents()
     {
-        return $this->contents['data']['feeds'][0];
+        return $this->contents;
     }
 
     /**
@@ -65,28 +65,28 @@ class WeiShiLogic extends Base
 
     public function getVideoUrl()
     {
-        return CommonUtil::getData($this->getContents()['video_url']);
+        return isset($this->contents['data']['feeds'][0]['video_url']) ? $this->contents['data']['feeds'][0]['video_url'] : '';
     }
 
 
     public function getVideoImage()
     {
-        return CommonUtil::getData($this->getContents()['images'][0]['url']);
+        return isset($this->contents['data']['feeds'][0]['images'][0]['url']) ? $this->contents['data']['feeds'][0]['images'][0]['url'] : '';
     }
 
     public function getVideoDesc()
     {
-        return CommonUtil::getData($this->getContents()['share_info']['body_map'][0]['desc']);
+        return isset($this->contents['data']['feeds'][0]['share_info']['body_map'][0]['desc']) ? $this->contents['data']['feeds'][0]['share_info']['body_map'][0]['desc'] : '';
     }
 
     public function getUsername()
     {
-        return CommonUtil::getData($this->getContents()['poster']['nick']);
+        return isset($this->contents['data']['feeds'][0]['poster']['nick']) ? $this->contents['data']['feeds'][0]['poster']['nick'] : '';
     }
 
     public function getUserPic()
     {
-        return CommonUtil::getData($this->getContents()['poster']['avatar']);
+        return isset($this->contents['data']['feeds'][0]['poster']['avatar']) ? $this->contents['data']['feeds'][0]['poster']['avatar'] : '';
     }
 
 

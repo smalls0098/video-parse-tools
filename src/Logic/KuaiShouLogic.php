@@ -51,6 +51,14 @@ class KuaiShouLogic extends Base
     /**
      * @return mixed
      */
+    public function getContents()
+    {
+        return $this->contents;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getUrl()
     {
         return $this->url;
@@ -58,27 +66,29 @@ class KuaiShouLogic extends Base
 
     public function getVideoUrl()
     {
-        return CommonUtil::getData($this->contents['video']['srcNoMark']);
+        return isset($this->contents['video']['srcNoMark']) ? $this->contents['video']['srcNoMark'] : '';
     }
 
     public function getVideoImage()
     {
-        return CommonUtil::getData($this->contents['video']['poster']);
+        return isset($this->contents['video']['poster']) ? $this->contents['video']['poster'] : '';
     }
 
     public function getVideoDesc()
     {
-        return CommonUtil::getData($this->contents['video']['caption']);
+        return isset($this->contents['video']['caption']) ? $this->contents['video']['caption'] : '';
     }
 
     public function getUsername()
     {
-        return CommonUtil::getData($this->contents['user']['name']);
+        return isset($this->contents['user']['name']) ? $this->contents['user']['name'] : '';
+
     }
 
     public function getUserPic()
     {
-        return CommonUtil::getData($this->contents['user']['avatar']);
+        return isset($this->contents['user']['avatar']) ? $this->contents['user']['avatar'] : '';
+
     }
 
 

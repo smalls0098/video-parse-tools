@@ -61,28 +61,28 @@ class MoMoLogic extends Base
 
     public function getVideoUrl()
     {
-        return CommonUtil::getData($this->contents['data']['list'][0]['video']['video_url']);
+        return isset($this->contents['data']['list'][0]['video']['video_url']) ? $this->contents['data']['list'][0]['video']['video_url'] : '';
     }
 
 
     public function getVideoImage()
     {
-        return CommonUtil::getData($this->contents['data']['list'][0]['video']['cover']['l']);
+        return isset($this->contents['data']['list'][0]['video']['cover']['l']) ? $this->contents['data']['list'][0]['video']['cover']['l'] : '';
     }
 
     public function getVideoDesc()
     {
-        return CommonUtil::getData($this->contents['data']['list'][0]['video']['decorator_texts']);
+        return isset($this->contents['data']['list'][0]['video']['decorator_texts']) ? $this->contents['data']['list'][0]['video']['decorator_texts'] : '';
     }
 
     public function getUserPic()
     {
-        return CommonUtil::getData($this->contents['data']['list'][0]['user']['img']);
+        return isset($this->contents['data']['list'][0]['user']['img']) ? $this->contents['data']['list'][0]['user']['img'] : '';
     }
 
     public function getUsername()
     {
-        return CommonUtil::getData($this->contents['data']['list'][0]['user']['name']);
+        return isset($this->contents['data']['list'][0]['user']['name']) ? $this->contents['data']['list'][0]['user']['name'] : '';
     }
 
 

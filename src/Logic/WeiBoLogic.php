@@ -16,9 +16,6 @@ class WeiBoLogic extends Base
 {
 
     private $statusId;
-    /**
-     * @var string
-     */
     private $contents;
 
     public function setStatusId()
@@ -75,27 +72,27 @@ class WeiBoLogic extends Base
 
     public function getVideoUrl()
     {
-        return CommonUtil::getData($this->contents['status']['page_info']['media_info']['stream_url_hd']);
+        return isset($this->contents['status']['page_info']['media_info']['stream_url_hd']) ? $this->contents['status']['page_info']['media_info']['stream_url_hd'] : '';
     }
 
     public function getVideoImage()
     {
-        return CommonUtil::getData($this->contents['status']['page_info']['page_pic']['url']);
+        return isset($this->contents['status']['page_info']['page_pic']['url']) ? $this->contents['status']['page_info']['page_pic']['url'] : '';
     }
 
     public function getVideoDesc()
     {
-        return CommonUtil::getData($this->contents['status']['page_info']['title']);
+        return isset($this->contents['status']['page_info']['title']) ? $this->contents['status']['page_info']['title'] : '';
     }
 
     public function getUsername()
     {
-        return CommonUtil::getData($this->contents['status']['user']['screen_name']);
+        return isset($this->contents['status']['user']['screen_name']) ? $this->contents['status']['user']['screen_name'] : '';
     }
 
     public function getUserPic()
     {
-        return CommonUtil::getData($this->contents['status']['user']['profile_image_url']);
+        return isset($this->contents['status']['user']['profile_image_url']) ? $this->contents['status']['user']['profile_image_url'] : '';
     }
 
 }

@@ -120,7 +120,7 @@ class BiliLogic extends Base
 
     public function getVideoUrl()
     {
-        return CommonUtil::getData($this->contents['data']['durl'][0]['url']);
+        return isset($this->contents['data']['durl'][0]['url']) ? $this->contents['data']['durl'][0]['url'] : '';
     }
 
     public function getVideoImage()

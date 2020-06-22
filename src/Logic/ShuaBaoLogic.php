@@ -63,28 +63,28 @@ class ShuaBaoLogic extends Base
 
     public function getVideoUrl()
     {
-        return CommonUtil::getData($this->contents['data']['video_url']);
+        return isset($this->contents['data']['video_url']) ? $this->contents['data']['video_url'] : '';
     }
 
 
     public function getVideoImage()
     {
-        return CommonUtil::getData($this->contents['data']['cover_pic']['720']);
+        return isset($this->contents['data']['cover_pic']['720']) ? $this->contents['data']['cover_pic']['720'] : '';
     }
 
     public function getVideoDesc()
     {
-        return CommonUtil::getData($this->contents['data']['description']);
+        return isset($this->contents['data']['description']) ? $this->contents['data']['description'] : '';
     }
 
     public function getUserPic()
     {
-        return CommonUtil::getData($this->contents['data']['user_info']['avatar']['720']);
+        return isset($this->contents['data']['user_info']['avatar']['720']) ? $this->contents['data']['user_info']['avatar']['720'] : '';
     }
 
     public function getUsername()
     {
-        return CommonUtil::getData($this->contents['data']['user_info']['nickname']);
+        return isset($this->contents['data']['user_info']['nickname']) ? $this->contents['data']['user_info']['nickname'] : '';
     }
 
 

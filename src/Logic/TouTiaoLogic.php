@@ -73,6 +73,9 @@ class TouTiaoLogic extends Base
 
     public function getVideoUrl(): string
     {
+        if (empty($this->contents['data']['video_id'])) {
+            return '';
+        }
         return $this->redirects('http://hotsoon.snssdk.com/hotsoon/item/video/_playback/', [
             'video_id' => $this->contents['data']['video_id'],
         ], [
@@ -82,22 +85,22 @@ class TouTiaoLogic extends Base
 
     public function getVideoImage()
     {
-        return CommonUtil::getData($this->contents['data']['poster_url']);
+        return isset($this->contents['data']['poster_url']) ? $this->contents['data']['poster_url'] : '';
     }
 
     public function getVideoDesc()
     {
-        return CommonUtil::getData($this->contents['data']['title']);
+        return isset($this->contents['data']['title']) ? $this->contents['data']['title'] : '';
     }
 
     public function getUsername()
     {
-        return CommonUtil::getData($this->contents['data']['media_user']['screen_name']);
+        return isset($this->contents['data']['media_user']['screen_name']) ? $this->contents['data']['media_user']['screen_name'] : '';
     }
 
     public function getUserPic()
     {
-        return CommonUtil::getData($this->contents['data']['media_user']['avatar_url']);
+        return isset($this->contents['data']['media_user']['avatar_url']) ? $this->contents['data']['media_user']['avatar_url'] : '';
     }
 
 }

@@ -84,13 +84,16 @@ class ZuiYouLogic extends Base
 
     public function getVideoUrl()
     {
-        return CommonUtil::getData($this->getContents()['videos'][$this->id]['url']);
+        return isset($this->contents['data']['post']['videos'][$this->id]['url']) ? $this->contents['data']['post']['videos'][$this->id]['url'] : '';
     }
 
 
     public function getVideoImage()
     {
-        $id = CommonUtil::getData($this->getContents()['imgs'][0]['id']);
+        if (empty($this->contents['data']['post']['imgs'][0]['id'])) {
+            return '';
+        }
+        $id = $this->contents['data']['post']['imgs'][0]['id'];
         if ($id) {
             return 'http://tbfile.izuiyou.com/img/frame/id/' . $id;
         }
@@ -98,17 +101,17 @@ class ZuiYouLogic extends Base
 
     public function getVideoDesc()
     {
-        return CommonUtil::getData($this->getContents()['content']);
+        return isset($this->contents['data']['post']['content']) ? $this->contents['data']['post']['content'] : '';
     }
 
     public function getUsername()
     {
-        return CommonUtil::getData($this->getContents()['member']['name']);
+        return isset($this->contents['data']['post']['member']['name']) ? $this->contents['data']['post']['member']['name'] : '';
     }
 
     public function getUserPic()
     {
-        return CommonUtil::getData($this->getContents()['member']['avatar_urls']['aspect_low']['urls'][0]);
+        return isset($this->contents['data']['post']['member']['avatar_urls']['aspect_low']['urls'][0]) ? $this->contents['data']['post']['member']['avatar_urls']['aspect_low']['urls'][0] : '';
     }
 
 

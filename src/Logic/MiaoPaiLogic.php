@@ -78,27 +78,28 @@ class MiaoPaiLogic extends Base
 
     public function getVideoUrl()
     {
-        return CommonUtil::getData($this->contents['data']['meta_data'][0]['play_urls']['l']);
+        return isset($this->contents['data']['meta_data'][0]['play_urls']['l']) ? $this->contents['data']['meta_data'][0]['play_urls']['l'] : '';
     }
 
     public function getVideoImage()
     {
-        return CommonUtil::getData($this->contents['data']['meta_data'][0]['pics']['interlace']);
+        return isset($this->contents['data']['meta_data'][0]['pics']['interlace']) ? $this->contents['data']['meta_data'][0]['pics']['interlace'] : '';
     }
 
     public function getVideoDesc()
     {
-        return CommonUtil::getData($this->contents['data']['description']);
+        return isset($this->contents['data']['description']) ? $this->contents['data']['description'] : '';
+
     }
 
     public function getUsername()
     {
-        return CommonUtil::getData($this->contents['data']['user']['nick']);
+        return isset($this->contents['data']['user']['nick']) ? $this->contents['data']['user']['nick'] : '';
     }
 
     public function getUserPic()
     {
-        return CommonUtil::getData($this->contents['data']['user']['avatar']);
+        return isset($this->contents['data']['user']['avatar']) ? $this->contents['data']['user']['avatar'] : '';
     }
 
 }
