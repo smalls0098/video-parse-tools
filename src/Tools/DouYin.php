@@ -16,7 +16,7 @@ class DouYin extends Base implements IVideo
 {
 
     /**
-     * 更新时间：2020/6/10
+     * 更新时间：2020/6/24
      * @param string $url
      * @return array
      */
@@ -24,7 +24,7 @@ class DouYin extends Base implements IVideo
     {
         $this->logic = new DouYinLogic($url, $this->urlValidator->get('douyin'), $this->config);
         $this->logic->checkUrlHasTrue();
-        $this->logic->setDyTksAndItemIds();
+        $this->logic->setItemIds();
         $this->logic->setContents();
         return $this->exportData();
     }

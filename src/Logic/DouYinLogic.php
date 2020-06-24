@@ -17,29 +17,28 @@ class DouYinLogic extends Base
 {
 
     private $contents;
-    private $dyTkId;
     private $itemId;
 
-    public function setDyTksAndItemIds()
+    public function setItemIds()
     {
-        $contents = $this->get($this->url, [], [
-            'User-Agent' => UserGentType::ANDROID_USER_AGENT,
-        ]);
-        preg_match('/dytk:[^+]"(.*?)"[^+]}\);/i', $contents, $dyTks);
-        preg_match('/itemId:[^+]"(.*?)",/i', $contents, $itemIds);
-        if (CommonUtil::checkEmptyMatch($dyTks) || CommonUtil::checkEmptyMatch($itemIds)) {
-            $this->WriterTestLog($contents);
-            throw new ErrorVideoException("dytks或itemid获取不到");
+        if (strpos($this->url, '/share/video')) {
+            $url = $this->url;
+        } else {
+            $url = $this->redirects($this->url, [], [
+                'User-Agent' => UserGentType::ANDROID_USER_AGENT,
+            ]);
         }
-        $this->dyTkId = $dyTks[1];
-        $this->itemId = $itemIds[1];
+        preg_match('/video\/([0-9]+)\//i', $url, $matches);
+        if (CommonUtil::checkEmptyMatch($matches)) {
+            throw new ErrorVideoException("item_id获取不到");
+        }
+        $this->itemId = $matches[1];
     }
 
     public function setContents()
     {
         $contents = $this->get('https://www.iesdouyin.com/web/api/v2/aweme/iteminfo', [
             'item_ids' => $this->itemId,
-            'dytk' => $this->dyTkId,
         ], [
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,
             'Referer' => "https://www.iesdouyin.com",
@@ -60,14 +59,6 @@ class DouYinLogic extends Base
     public function getContents()
     {
         return $this->contents;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDyTkId()
-    {
-        return $this->dyTkId;
     }
 
     /**
