@@ -25,7 +25,7 @@ class KuaiShouLogic extends Base
     {
         $data = [
             'client_key' => '3c2cd3f3',
-            'shareText'  => 'https://v.kuaishou.com/2RbSva',
+            'shareText'  => $this->url,
             'appver'     => '6.9.2.11245',
             'did'        => 'ANDROID_c45e742737e8' . rand(1000, 9999),
         ];
