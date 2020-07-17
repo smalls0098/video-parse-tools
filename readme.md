@@ -38,6 +38,9 @@ composer require smalls/video-tools
 composer update smalls/video-tools
 ~~~
  ********
+### 日志与发布
+[原生PHP演示案例，下载后拉进环境](https://github.com/smalls0098/origin-php-watermark-api)
+ ********
 > 运行环境要求PHP70+
  
  VideoManager使用文档：(可以参考tests/testphp)
