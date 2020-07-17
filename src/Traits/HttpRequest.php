@@ -70,17 +70,21 @@ trait HttpRequest
      * @param $url
      * @param array $query
      * @param array $headers
+     * @param bool $isAllReturn
      * @return mixed|string
      */
-    public function redirects($url, $query = [], $headers = [])
+    public function redirects($url, $query = [], $headers = [], $isAllReturn = false)
     {
         $response = $this->getHttpClient($this->getBaseOptions())->get($url, [
             'headers' => $headers,
             'query' => $query,
             'allow_redirects' => false
         ]);
-        if ($response->getStatusCode() == 302 || $response->getStatusCode() == 301) {
+        if (substr((string)$response->getStatusCode(), 0, 2) === '30') {
             $headers = $response->getHeaders();
+            if ($isAllReturn) {
+                return $headers;
+            }
             if (isset($headers['location'][0])) {
                 return $headers['location'][0];
             }

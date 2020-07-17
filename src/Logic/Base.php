@@ -56,16 +56,16 @@ class Base
 
     public function __construct($url, $urlList, $config)
     {
-        $this->url = $url;
+        $this->url     = $url;
         $this->urlList = $urlList;
-        $this->config = $config;
+        $this->config  = $config;
         if (isset($this->config)) {
-            $this->isCheckUrl = $this->config->get('is_check_url', true);
-            $className = str_replace(__NAMESPACE__, "", get_class($this));
-            $className = substr($className, 1, strlen($className) - 6);
-            $className = strtolower($className);
-            $proxyWhitelist = $this->config->get('proxy_whitelist', []);
-            $this->isProxy = in_array($className, $proxyWhitelist);
+            $this->isCheckUrl  = $this->config->get('is_check_url', true);
+            $className         = str_replace(__NAMESPACE__, "", get_class($this));
+            $className         = substr($className, 1, strlen($className) - 6);
+            $className         = strtolower($className);
+            $proxyWhitelist    = $this->config->get('proxy_whitelist', []);
+            $this->isProxy     = in_array($className, $proxyWhitelist);
             $this->proxyIpPort = $this->config->get('proxy', '');
         }
     }

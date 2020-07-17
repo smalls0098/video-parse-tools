@@ -27,7 +27,7 @@ class KuaiShou extends Base implements IVideo
         $this->logic = new KuaiShouLogic($url, $this->urlValidator->get('kuaishou'), $this->config);
         $this->logic->checkUrlHasTrue();
         $this->logic->setContents();
-        $this->logic->formatData();
+//        $this->logic->formatData();
         return $this->exportData();
     }
 

@@ -6,25 +6,24 @@
  * Date：2020/4/26 - 22:15
  **/
 
-require '../vendor/autoload.php';
-
-use Smalls\VideoTools\Enumerates\BiliQualityType;
 use Smalls\VideoTools\VideoManager;
 
+require '../vendor/autoload.php';
+
 $res = '';
-$res = VideoManager::DouYin()->start("https://v.douyin.com/JeoLRe4/");
-var_dump($res);
+
+//$res = VideoManager::DouYin()->start("https://v.douyin.com/JeoLRe4/");
+//var_dump($res);
 //$res = VideoManager::KuaiShou([
-////    'proxy_whitelist' => ['kuaishou'],
-////    'proxy' => '221.122.91.75:10286',
-//    'kuaishou_cookie' => 'did=web_a6a7e3e1a4014bc695f672424895d4b1; didv=1591109751000; clientid=3; client_key=65890b29; Hm_lvt_86a27b7db2c5c0ae37fee4a8a35033ee=1591109757,1591970427; kuaishou.live.bfb1s=9b8f70844293bed778aade6e0a8f9942; userId=51611533; userId=51611533; kuaishou.live.web_st=ChRrdWFpc2hvdS5saXZlLndlYi5zdBKgAaCjxgTeOKOKuBZb5DHiOZCRd47RetP6Uq7ja8Qc0K8YUzu_Dnd2zXqKdQxBk7WoqxC4hPA2XrlP9-gKRy0E7pJXWIVoNcoPLqHZ20r8XKIv-NW8dXdxmwAefMMQzOahP0M37oaBe5ryNzgZi84YdjOgyW-NBqbGSRqtr4yp7DONw_5N8SaKff4SUwt5iBh5K6h1rekzLxA7KnJNQXRFsroaEhq2DZZ7DUHSmXUzdRyAf3O3USIgqzysiMZcXUjuioTj7guBkES98eKxDNMXR44vGILtMMMoBTAB; kuaishou.live.web_ph=ea1aa21b1f3b1305776dd0eebc926ba94a3e'
+//    'proxy_whitelist' => ['kuaishou'],
+//    'proxy'           => '221.122.91.75:10286',
 //])->start("https://v.kuaishou.com/2RbSva");
-//$res = VideoManager::KuaiShou()->start("https://v.kuaishou.com/2RbSva");
+//$res = VideoManager::KuaiShou()->start("https://v.kuaishou.com/63LExC");
 //var_dump($res);
 //$res = VideoManager::HuoShan()->start("https://share.huoshan.com/hotsoon/s/kcU0XOnSO78/");
 //var_dump($res['video_url']);
-//$res = VideoManager::TouTiao()->start("https://m.toutiaoimg.cn/a6818537223466516995/?app=news_article&is_hit_share_recommend=0");
-//var_dump($res['video_url']);
+//$res = VideoManager::TouTiao()->start("https://m.toutiaoimg.cn/a6849721585574773262/?app=news_article&is_hit_share_recommend=0");
+//var_dump($res);
 //$res = VideoManager::XiGua()->start("https://m.ixigua.com/group/6761303513852019214/?app=video_article&timestamp=1587970696&utm_source=copy_link&utm_medium=android&utm_campaign=client_share");
 //var_dump($res['video_url']);
 //$res = VideoManager::WeiShi()->start("https://h5.weishi.qq.com/weishi/feed/6Z7Uxwu7H1JsBFXPo/wsfeed?wxplay=1&id=6Z7Uxwu7H1JsBFXPo&collectionid=1bc8fe60a09dce07a4c5ce449b3c16bf&spid=8404838818534879236&qua=v1_and_weishi_6.7.6_588_312027000_d&chid=100081003&pkg=&attach=cp_reserves3_1000370721");
@@ -54,4 +53,9 @@ var_dump($res);
 //$res = VideoManager::WeiBo()->newVideoStart("https://video.weibo.com/show?fid=1034:4513329142497297");
 //var_dump($res['video_url']);
 //$res = VideoManager::MiaoPai()->start("http://www.miaopai.com/show/SSDlgDXVOwOqIEFkuzmTtap-~2T-HUwI.htm");
-//var_dump($res['video_url']);
+//var_dump($res);
+//$res = VideoManager::MiaoPai()->start("http://n.miaopai.com/media/3nN8LEK6wFsEOuyvNKPxoqIWC0eew5G~.htm");
+//var_dump($res);
+
+//$res = VideoManager::QQVideo()->start("http://m.v.qq.com/play/play.html?vid=a3114mjefcj&url_from=share&second_share=0&share_from=copy&pgid=page_smallvideo_immersive&ztid=120136&mod_id=sp_immersive_poster");
+//var_dump($res);

@@ -33,8 +33,8 @@ class proxy
                 'User-Agent' => 'Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Mobile Safari/537.36',
             ],
             'timeout' => 5,
-            'proxy' => [
-                'http' => $ip, // Use this proxy with "http"
+            'proxy'   => [
+                'http'  => $ip, // Use this proxy with "http"
                 'https' => $ip,
             ]
         ]);

@@ -33,11 +33,11 @@ class BiliLogic extends Base
      */
     public function __construct($url, string $cookie, int $quality, $urlList, $config)
     {
-        $this->cookie = $cookie;
+        $this->cookie  = $cookie;
         $this->quality = $quality;
-        $this->url = $url;
+        $this->url     = $url;
         $this->urlList = $urlList;
-        $this->config = $config;
+        $this->config  = $config;
     }
 
     public function setAidAndCid()
@@ -56,15 +56,15 @@ class BiliLogic extends Base
 
     public function setContents()
     {
-        $apiUrl = 'https://api.bilibili.com/x/player/playurl';
-        $contents = $this->get($apiUrl, [
-            'avid' => $this->aid,
-            'cid' => $this->cid,
-            'qn' => $this->quality,
+        $apiUrl         = 'https://api.bilibili.com/x/player/playurl';
+        $contents       = $this->get($apiUrl, [
+            'avid'  => $this->aid,
+            'cid'   => $this->cid,
+            'qn'    => $this->quality,
             'otype' => 'json',
         ], [
-            'Cookie' => $this->cookie,
-            'Referer' => $apiUrl,
+            'Cookie'     => $this->cookie,
+            'Referer'    => $apiUrl,
             'User-Agent' => UserGentType::WIN_USER_AGENT
         ]);
         $this->contents = $contents;

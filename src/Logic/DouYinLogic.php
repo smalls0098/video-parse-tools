@@ -41,8 +41,8 @@ class DouYinLogic extends Base
             'item_ids' => $this->itemId,
         ], [
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,
-            'Referer' => "https://www.iesdouyin.com",
-            'Host' => "www.iesdouyin.com",
+            'Referer'    => "https://www.iesdouyin.com",
+            'Host'       => "www.iesdouyin.com",
         ]);
         if ((isset($contents['status_code']) && $contents['status_code'] != 0) || empty($contents['item_list'][0]['video']['play_addr']['uri'])) {
             throw new ErrorVideoException("parsing failed");
@@ -84,8 +84,8 @@ class DouYinLogic extends Base
         }
         return $this->redirects('https://aweme.snssdk.com/aweme/v1/play/', [
             'video_id' => $this->contents['item_list'][0]['video']['play_addr']['uri'],
-            'ratio' => '1080',
-            'line' => '0',
+            'ratio'    => '1080',
+            'line'     => '0',
         ], [
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,
         ]);

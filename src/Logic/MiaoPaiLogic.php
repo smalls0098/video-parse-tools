@@ -23,30 +23,35 @@ class MiaoPaiLogic extends Base
 
     public function setMid()
     {
-        $url = $this->redirects($this->url, [], [
-            'User-Agent' => UserGentType::WIN_USER_AGENT,
-        ]);
+        if (!strpos($this->url, 'n.miaopai.com/media')) {
+            $url = $this->redirects($this->url, [], [
+                'User-Agent' => UserGentType::WIN_USER_AGENT,
+            ]);
+        } else {
+            $url = $this->url;
+        }
         preg_match('/\/media\/(.*?)$/i', $url, $matches);
         if (CommonUtil::checkEmptyMatch($matches)) {
             throw new ErrorVideoException("获取不到mid信息");
         }
+        $matches[1] = str_replace(['.htm','.html'], '', $matches[1]);
         $this->mid = $matches[1];
     }
 
     public function setContents()
     {
-        $callback = '_jsonp' . (string)time();
-        $contents = $this->get('http://n.miaopai.com/api/aj_media/info.json', [
-            'smid' => $this->getMid(),
+        $callback       = '_jsonp' . (string)time();
+        $contents       = $this->get('http://n.miaopai.com/api/aj_media/info.json', [
+            'smid'  => $this->getMid(),
             'appid' => '530',
-            '_cb' => $callback,
+            '_cb'   => $callback,
         ], [
             'User-Agent' => UserGentType::WIN_USER_AGENT,
-            'Referer' => 'http://n.miaopai.com/media/' . $this->getMid(),
+            'Referer'    => 'http://n.miaopai.com/media/' . $this->getMid(),
         ]);
-        $contents = str_replace("window." . $callback . " && " . $callback . "(", '', $contents);
-        $contents = str_replace(");", '', $contents);
-        $contents = json_decode($contents, true);
+        $contents       = str_replace("window." . $callback . " && " . $callback . "(", '', $contents);
+        $contents       = str_replace(");", '', $contents);
+        $contents       = json_decode($contents, true);
         $this->contents = $contents;
     }
 

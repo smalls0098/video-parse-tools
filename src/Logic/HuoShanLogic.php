@@ -65,6 +65,7 @@ class HuoShanLogic extends Base
         }
         parse_str($parseUrl['query'], $parseArr);
         $parseArr['watermark'] = 0;
+
         $videoUrl = $this->redirects('https://api.huoshan.com/hotsoon/item/video/_source/', $parseArr, [
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,
         ]);

@@ -15,6 +15,7 @@ use Smalls\VideoTools\Tools\MiaoPai;
 use Smalls\VideoTools\Tools\MoMo;
 use Smalls\VideoTools\Tools\PiPiGaoXiao;
 use Smalls\VideoTools\Tools\PiPiXia;
+use Smalls\VideoTools\Tools\QQVideo;
 use Smalls\VideoTools\Tools\QuanMingGaoXiao;
 use Smalls\VideoTools\Tools\ShuaBao;
 use Smalls\VideoTools\Tools\TouTiao;
@@ -50,6 +51,7 @@ use Smalls\VideoTools\Tools\ZuiYou;
  * @method static Bili Bili(...$params)
  * @method static WeiBo WeiBo(...$params)
  * @method static MiaoPai MiaoPai(...$params)
+ * @method static QQVideo QQVideo(...$params)
  */
 class VideoManager
 {

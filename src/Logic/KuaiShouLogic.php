@@ -3,9 +3,7 @@ declare (strict_types=1);
 
 namespace Smalls\VideoTools\Logic;
 
-use Smalls\VideoTools\Enumerates\UserGentType;
 use Smalls\VideoTools\Exception\ErrorVideoException;
-use Smalls\VideoTools\Utils\CommonUtil;
 
 /**
  * Created By 1
@@ -25,27 +23,26 @@ class KuaiShouLogic extends Base
      */
     public function setContents()
     {
-        $cookie = $this->getConfig('kuaishou_cookie', 'did=web_00536bb16309421a93a09c3e4998aa04; didv=1586963699000; clientid=3; client_key=65890b29; kuaishou.live.bfb1s=7206d814e5c089a58c910ed8bf52ace5; Hm_lvt_86a27b7db2c5c0ae37fee4a8a35033ee=1589811139,1591779408,1591880526; Hm_lpvt_86a27b7db2c5c0ae37fee4a8a35033ee=1591880526');
-        $contents = $this->get($this->url, [], [
-            'User-Agent' => UserGentType::ANDROID_USER_AGENT,
-            'cookie' => $cookie,
+        $data = [
+            'client_key' => '3c2cd3f3',
+            'shareText'  => 'https://v.kuaishou.com/2RbSva',
+            'appver'     => '6.9.2.11245',
+            'did'        => 'ANDROID_c45e742737e8' . rand(1000, 9999),
+        ];
+        $salt = "382700b563f4";
+        ksort($data);
+        $str         = http_build_query($data);
+        $str         = urldecode($str);
+        $str         = str_replace('&', '', $str) . $salt;
+        $md5         = md5($str);
+        $data['sig'] = $md5;
+        $contents    = $this->post('http://api.gifshow.com/rest/n/tokenShare/info/byText', $data, [
+            'User-Agent' => 'kwai-android',
         ]);
-        preg_match('/data-pagedata="(.*?)"/i', $contents, $this->match);
-        if (CommonUtil::checkEmptyMatch($this->match)) {
-            preg_match('/window.pageData= (.*?)<\/script>/i', $contents, $this->match);
+        if (isset($contents['result']) && $contents['result'] == 50) {
+            throw new ErrorVideoException($contents['error_msg']);
         }
-        if (CommonUtil::checkEmptyMatch($this->match)) {
-            throw new ErrorVideoException("获取不到指定的内容信息");
-        }
-    }
-
-    public function formatData()
-    {
-        $contents = htmlspecialchars_decode($this->match[1]);
-        if (!$contents || $contents == NULL) {
-            throw new ErrorVideoException("内容为空");
-        }
-        $this->contents = json_decode($contents, true);
+        $this->contents = $contents;
     }
 
     /**
@@ -66,28 +63,28 @@ class KuaiShouLogic extends Base
 
     public function getVideoUrl()
     {
-        return isset($this->contents['video']['srcNoMark']) ? $this->contents['video']['srcNoMark'] : '';
+        return isset($this->contents['shareTokenDialog']['feed']['main_mv_urls'][0]['url']) ? $this->contents['shareTokenDialog']['feed']['main_mv_urls'][0]['url'] : '';
     }
 
     public function getVideoImage()
     {
-        return isset($this->contents['video']['poster']) ? $this->contents['video']['poster'] : '';
+        return isset($this->contents['shareTokenDialog']['feed']['cover_thumbnail_urls'][0]['url']) ? $this->contents['shareTokenDialog']['feed']['cover_thumbnail_urls'][0]['url'] : '';
     }
 
     public function getVideoDesc()
     {
-        return isset($this->contents['video']['caption']) ? $this->contents['video']['caption'] : '';
+        return isset($this->contents['shareTokenDialog']['feed']['caption']) ? $this->contents['shareTokenDialog']['feed']['caption'] : '';
     }
 
     public function getUsername()
     {
-        return isset($this->contents['user']['name']) ? $this->contents['user']['name'] : '';
+        return isset($this->contents['shareTokenDialog']['feed']['user_name']) ? $this->contents['shareTokenDialog']['feed']['user_name'] : '';
 
     }
 
     public function getUserPic()
     {
-        return isset($this->contents['user']['avatar']) ? $this->contents['user']['avatar'] : '';
+        return isset($this->contents['shareTokenDialog']['feed']['headurls'][0]['url']) ? $this->contents['shareTokenDialog']['feed']['headurls'][0]['url'] : '';
 
     }
 

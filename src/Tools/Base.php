@@ -3,7 +3,7 @@ declare (strict_types=1);
 
 namespace Smalls\VideoTools\Tools;
 
-use phpDocumentor\Reflection\Types\Object_;
+
 use Smalls\VideoTools\Utils\Config;
 
 /**
@@ -45,7 +45,7 @@ class Base
             $this->config = new Config($params);
         }
         if (empty($params[0][self::URL_VALIDATOR])) {
-            $config = include __DIR__ . '/../../config/url-validator.php';
+            $config             = include __DIR__ . '/../../config/url-validator.php';
             $this->urlValidator = new Config($config);
         } else {
             $this->urlValidator = $params[0][self::URL_VALIDATOR];
@@ -68,14 +68,14 @@ class Base
     protected function returnData(string $url, string $userName, string $userHeadPic, string $desc, string $videoImage, string $videoUrl, string $type): array
     {
         return [
-            'md5' => md5($url),
-            'message' => $url,
-            'user_name' => $userName,
+            'md5'           => md5($url),
+            'message'       => $url,
+            'user_name'     => $userName,
             'user_head_img' => $userHeadPic,
-            'desc' => $desc,
-            'img_url' => $videoImage,
-            'video_url' => $videoUrl,
-            'type' => $type
+            'desc'          => $desc,
+            'img_url'       => $videoImage,
+            'video_url'     => $videoUrl,
+            'type'          => $type
         ];
     }
 
