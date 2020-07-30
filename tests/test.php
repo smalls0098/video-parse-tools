@@ -11,14 +11,14 @@ use Smalls\VideoTools\VideoManager;
 require '../vendor/autoload.php';
 
 $res = '';
-
-$res = VideoManager::DouYin()->start("https://v.douyin.com/JeoLRe4/");
-var_dump($res);
+//
+//$res = VideoManager::DouYin()->start("https://v.douyin.com/JeoLRe4/");
+//var_dump($res);
 //$res = VideoManager::KuaiShou([
 //    'proxy_whitelist' => ['kuaishou'],
 //    'proxy'           => '221.122.91.75:10286',
 //])->start("https://v.kuaishou.com/2RbSva");
-//$res = VideoManager::KuaiShou()->start("https://v.kuaishou.com/5HBat9");
+//$res = VideoManager::KuaiShou()->start("https://v.kuaishou.com/8qIlZu");
 //$res = VideoManager::KuaiShou()->start("https://v.kuaishou.com/2RbSva");
 //$res = VideoManager::KuaiShou()->start("https://live.kuaishou.com/u/shengxue1111/3xwgehu7uyudyeq");
 //var_dump($res);
