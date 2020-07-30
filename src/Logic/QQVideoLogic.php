@@ -23,7 +23,7 @@ class QQVideoLogic extends Base
 
     public function setVid()
     {
-        if (!strpos($this->url, 'play/play.html?vid=')) {
+        if (!strpos($this->url, 'play/play.html')) {
             throw new ErrorVideoException('获取不到vid');
         }
         preg_match('/vid=(.*?)&/i', $this->url, $matches);

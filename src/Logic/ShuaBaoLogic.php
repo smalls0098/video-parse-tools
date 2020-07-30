@@ -22,6 +22,14 @@ class ShuaBaoLogic extends Base
 
     public function setShowId()
     {
+        if (strpos($this->url, 'm.shua8cn.com') > -1) {
+            $res = $this->redirects($this->url);
+            if (strpos($res, 'h5.shua8cn.com') > -1) {
+                $this->url = $res;
+            }else{
+                throw new ErrorVideoException("提交的域名不符合格式");
+            }
+        }
         preg_match('/show_id=(.*?)&/i', $this->url, $itemMatches);
 
         if (CommonUtil::checkEmptyMatch($itemMatches)) {
@@ -33,7 +41,7 @@ class ShuaBaoLogic extends Base
     public function setContents()
     {
         $contents = $this->get('http://h5.shua8cn.com/api/video/detail', [
-            'show_id' => $this->showId,
+            'show_id'  => $this->showId,
             'provider' => 'weixin',
         ], [
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,

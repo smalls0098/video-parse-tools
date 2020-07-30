@@ -84,7 +84,7 @@ class DouYinLogic extends Base
         }
         return $this->redirects('https://aweme.snssdk.com/aweme/v1/play/', [
             'video_id' => $this->contents['item_list'][0]['video']['play_addr']['uri'],
-            'ratio'    => '1080',
+            'ratio'    => '720',
             'line'     => '0',
         ], [
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,

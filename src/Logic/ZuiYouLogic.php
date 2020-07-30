@@ -23,7 +23,13 @@ class ZuiYouLogic extends Base
 
     public function setPId()
     {
-        preg_match('/detail\/([0-9]+)\/?/i', $this->url, $match);
+        if (strpos($this->url, 'hybrid/share/post')) {
+            preg_match('/hybrid\/share\/post\?pid=([0-9]+)&/i', $this->url, $match);
+        } elseif (strpos($this->url, '/detail/')) {
+            preg_match('/detail\/([0-9]+)\/?/i', $this->url, $match);
+        }else{
+            throw new ErrorVideoException("提交的域名不符合格式");
+        }
         if (CommonUtil::checkEmptyMatch($match)) {
             throw new ErrorVideoException("获取不到pid参数信息");
         }
@@ -33,11 +39,11 @@ class ZuiYouLogic extends Base
     public function setContents()
     {
         $newGetContentsUrl = 'https://share.izuiyou.com/api/post/detail';
-        $contents = $this->post($newGetContentsUrl, '{"pid":' . $this->pid . '}', [
-            'Referer' => $newGetContentsUrl,
+        $contents          = $this->post($newGetContentsUrl, '{"pid":' . $this->pid . '}', [
+            'Referer'    => $newGetContentsUrl,
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,
         ]);
-        $this->contents = $contents;
+        $this->contents    = $contents;
     }
 
     public function parseId()
@@ -46,7 +52,7 @@ class ZuiYouLogic extends Base
         if ((isset($contents['ret']) && $contents['ret'] != 1) || (isset($contents['data']['post']['imgs'][0]['id']) && $contents['data']['post']['imgs'][0]['id'] == null)) {
             throw new ErrorVideoException("获取不到指定的内容信息");
         }
-        $id = $contents['data']['post']['imgs'][0]['id'];
+        $id       = $contents['data']['post']['imgs'][0]['id'];
         $this->id = $id;
     }
 
