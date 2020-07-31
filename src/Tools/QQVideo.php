@@ -1,9 +1,9 @@
 <?php
+declare (strict_types=1);
 
 namespace Smalls\VideoTools\Tools;
 
 use Smalls\VideoTools\Interfaces\IVideo;
-use Smalls\VideoTools\Logic\QQVideoLogic;
 
 /**
  * Created By 1
@@ -17,7 +17,8 @@ class QQVideo extends Base implements IVideo
 
     public function start(string $url): array
     {
-        $this->logic = new QQVideoLogic($url, $this->urlValidator->get('qqvideo'), $this->config);
+        $this->make();
+        $this->logic->setOriginalUrl($url);
         $this->logic->checkUrlHasTrue();
         $this->logic->setVid();
         $this->logic->setContents();

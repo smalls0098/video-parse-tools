@@ -1,4 +1,5 @@
 <?php
+declare (strict_types=1);
 
 namespace Smalls\VideoTools\Logic;
 
@@ -39,7 +40,7 @@ class WeiBoLogic extends Base
         if (empty($statusId)) {
             throw new ErrorVideoException("获取不到statusId参数信息");
         }
-        $url = 'https://m.weibo.cn/status/' . $statusId;
+        $url      = 'https://m.weibo.cn/status/' . $statusId;
         $contents = $this->get($url, [
             'jumpfrom' => 'weibocom'
         ], [

@@ -34,8 +34,8 @@ class MiaoPaiLogic extends Base
         if (CommonUtil::checkEmptyMatch($matches)) {
             throw new ErrorVideoException("获取不到mid信息");
         }
-        $matches[1] = str_replace(['.htm','.html'], '', $matches[1]);
-        $this->mid = $matches[1];
+        $matches[1] = str_replace(['.htm', '.html'], '', $matches[1]);
+        $this->mid  = $matches[1];
     }
 
     public function setContents()

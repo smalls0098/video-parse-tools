@@ -1,4 +1,5 @@
 <?php
+declare (strict_types=1);
 
 namespace Smalls\VideoTools\Logic;
 
@@ -48,10 +49,10 @@ class NewWeiBoLogic extends Base
 
     public function setContents()
     {
-        $url = 'https://video.h5.weibo.cn/s/video/object';
-        $contents = $this->get($url, [
+        $url            = 'https://video.h5.weibo.cn/s/video/object';
+        $contents       = $this->get($url, [
             'object_id' => $this->fid,
-            'mid' => $this->mid,
+            'mid'       => $this->mid,
         ], [
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,
         ]);

@@ -31,7 +31,7 @@ class WeiShiLogic extends Base
 
     public function setContents()
     {
-        $contents = $this->post('https://h5.qzone.qq.com/webapp/json/weishi/WSH5GetPlayPage?t=0.4185745904612037&g_tk=', [
+        $contents       = $this->post('https://h5.qzone.qq.com/webapp/json/weishi/WSH5GetPlayPage?t=0.4185745904612037&g_tk=', [
             'feedid' => $this->feedId,
         ], [
             'User-Agent' => UserGentType::ANDROID_USER_AGENT

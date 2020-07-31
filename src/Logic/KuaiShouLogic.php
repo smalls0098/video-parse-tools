@@ -13,8 +13,7 @@ use Smalls\VideoTools\Exception\ErrorVideoException;
  **/
 class KuaiShouLogic extends Base
 {
-
-    private $match;
+    
     private $contents;
 
     /**

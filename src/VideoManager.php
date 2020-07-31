@@ -55,6 +55,7 @@ use Smalls\VideoTools\Tools\ZuiYou;
  */
 class VideoManager
 {
+
     public function __construct()
     {
     }
@@ -63,7 +64,6 @@ class VideoManager
      * @param $method
      * @param $params
      * @return mixed
-     * @throws InvalidManagerException
      */
     public static function __callStatic($method, $params)
     {
@@ -100,5 +100,4 @@ class VideoManager
         }
         throw new InvalidManagerException("this method does not integrate IVideo . namespace : {$className}");
     }
-
 }

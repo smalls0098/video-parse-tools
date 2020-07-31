@@ -6,7 +6,6 @@ namespace Smalls\VideoTools\Logic;
 use Smalls\VideoTools\Exception\ErrorVideoException;
 use Smalls\VideoTools\Traits\HttpRequest;
 use Smalls\VideoTools\Utils\CommonUtil;
-use Smalls\VideoTools\Utils\Config;
 
 /**
  * Created By 1
@@ -28,17 +27,12 @@ class Base
      * @var array
      */
     protected $urlList;
+
     /**
      * 是否开启检查验证列表
      * @var bool
      */
-    private $isCheckUrl = true;
-    /**
-     * 公共配置器
-     * @var Config
-     */
-    protected $config;
-
+    private $isCheckUrl;
 
     /**
      * 代理类型 默认为false
@@ -54,21 +48,22 @@ class Base
 
     protected $logDir = __DIR__ . "/../../log/";
 
-    public function __construct($url, $urlList, $config)
+
+    public function __construct($tools)
     {
-        $this->url     = $url;
-        $this->urlList = $urlList;
-        $this->config  = $config;
-        if (isset($this->config)) {
-            $this->isCheckUrl  = $this->config->get('is_check_url', true);
-            $className         = str_replace(__NAMESPACE__, "", get_class($this));
-            $className         = substr($className, 1, strlen($className) - 6);
-            $className         = strtolower($className);
-            $proxyWhitelist    = $this->config->get('proxy_whitelist', []);
-            $this->isProxy     = in_array($className, $proxyWhitelist);
-            $this->proxyIpPort = $this->config->get('proxy', '');
+        //获取类名
+        $className = str_replace(__NAMESPACE__, "", get_class($this));
+        $className = substr($className, 1, strlen($className) - 6);
+        $className = strtolower($className);
+        //初始化数据
+        $this->urlList     = $tools->getUrlValidator()->get($className, []);
+        $this->isCheckUrl  = $tools->getIsCheckUrl();
+        $this->proxyIpPort = $tools->getProxy();
+        if ($this->proxyIpPort) {
+            $this->isProxy = true;
         }
     }
+
 
     public function checkUrlHasTrue()
     {
@@ -86,24 +81,6 @@ class Base
     }
 
     /**
-     * 获取获取配置信息，防止出错
-     * @param string $key
-     * @param string $default
-     * @return mixed|string
-     * @author smalls
-     */
-    public function getConfig($key = '', $default = '')
-    {
-        if ($key == '' || !$key) {
-            return $default;
-        }
-        if (isset($this->config)) {
-            return $this->config->get($key, $default);
-        }
-        return $default;
-    }
-
-    /**
      * 测试的时候写入日志使用
      * @param string $contents
      * @param string $suffix
@@ -111,6 +88,15 @@ class Base
     public function WriterTestLog($contents = '', $suffix = 'log')
     {
         file_put_contents($this->logDir . (string)time() . "." . $suffix, $contents);
+    }
+
+
+    public function setOriginalUrl(string $url)
+    {
+        if (!$url) {
+            throw new ErrorVideoException('网址不能为空');
+        }
+        $this->url = $url;
     }
 
 }

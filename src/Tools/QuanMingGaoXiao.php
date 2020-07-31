@@ -4,7 +4,6 @@ declare (strict_types=1);
 namespace Smalls\VideoTools\Tools;
 
 use Smalls\VideoTools\Interfaces\IVideo;
-use Smalls\VideoTools\Logic\QuanMingGaoXiaoLogic;
 
 /**
  * Created By 1
@@ -16,13 +15,14 @@ class QuanMingGaoXiao extends Base implements IVideo
 {
 
     /**
-     * 更新时间：2020/6/10
+     * 更新时间：2020/7/31
      * @param string $url
      * @return array
      */
     public function start(string $url): array
     {
-        $this->logic = new QuanMingGaoXiaoLogic($url, $this->urlValidator->get('quanminggaoxiao'), $this->config);
+        $this->make();
+        $this->logic->setOriginalUrl($url);
         $this->logic->checkUrlHasTrue();
         $this->logic->setContentId();
         $this->logic->getContents();

@@ -16,7 +16,7 @@ use Smalls\VideoTools\Utils\CommonUtil;
 class TouTiaoLogic extends Base
 {
 
-    private $itemId;
+    protected $itemId;
     private $contents;
 
 
@@ -29,15 +29,12 @@ class TouTiaoLogic extends Base
         $this->itemId = $match[1];
     }
 
-    public function setContents($itemId = '')
+    public function setContents()
     {
-        if ($itemId) {
-            $this->itemId = $itemId;
-        }
         $getContentUrl = 'https://m.365yg.com/i' . $this->itemId . '/info/';
 
         $contents = $this->get($getContentUrl, ['i' => $this->itemId], [
-            'Referer' => $getContentUrl,
+            'Referer'    => $getContentUrl,
             'User-Agent' => UserGentType::ANDROID_USER_AGENT
         ]);
 

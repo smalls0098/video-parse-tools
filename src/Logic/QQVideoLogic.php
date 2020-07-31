@@ -1,4 +1,5 @@
 <?php
+declare (strict_types=1);
 
 namespace Smalls\VideoTools\Logic;
 
@@ -38,7 +39,7 @@ class QQVideoLogic extends Base
         $contents = $this->get('https://h5vv6.video.qq.com/getinfo', [
             'vid'       => $this->vid,
             'show1080p' => "true",
-            'platform' => "11001",
+            'platform'  => "11001",
         ], [
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,
         ]);

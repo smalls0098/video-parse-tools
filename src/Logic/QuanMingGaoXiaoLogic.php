@@ -34,7 +34,7 @@ class QuanMingGaoXiaoLogic extends Base
     {
         $contents = $this->get('https://longxia.music.xiaomi.com/api/share', [
             'contentType' => 'video',
-            'contentId' => $this->contentId,
+            'contentId'   => $this->contentId,
         ], [
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,
         ]);

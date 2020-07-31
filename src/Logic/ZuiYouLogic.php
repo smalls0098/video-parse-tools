@@ -27,7 +27,7 @@ class ZuiYouLogic extends Base
             preg_match('/hybrid\/share\/post\?pid=([0-9]+)&/i', $this->url, $match);
         } elseif (strpos($this->url, '/detail/')) {
             preg_match('/detail\/([0-9]+)\/?/i', $this->url, $match);
-        }else{
+        } else {
             throw new ErrorVideoException("提交的域名不符合格式");
         }
         if (CommonUtil::checkEmptyMatch($match)) {

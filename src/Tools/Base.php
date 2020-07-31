@@ -4,6 +4,8 @@ declare (strict_types=1);
 namespace Smalls\VideoTools\Tools;
 
 
+use Smalls\VideoTools\Common\Common;
+use Smalls\VideoTools\Exception\InvalidManagerException;
 use Smalls\VideoTools\Utils\Config;
 
 /**
@@ -12,10 +14,8 @@ use Smalls\VideoTools\Utils\Config;
  * Email：smalls0098@gmail.com
  * Date：2020/4/26 - 23:08
  **/
-class Base
+class Base extends Common
 {
-
-    const URL_VALIDATOR = 'url_validator';
     /**
      * 解析逻辑层
      * @var Object
@@ -29,27 +29,54 @@ class Base
     protected $urlValidator;
 
     /**
-     * 公共配置器
-     * @var Config
-     */
-    protected $config;
-
-    /**
      * Base constructor.
      * @param $params
+     * @return void
      */
     public function __construct($params = [])
     {
-        if (isset($params) && isset($params[0])) {
-            list($params) = $params;
-            $this->config = new Config($params);
+        //设置域名验证器
+        $config = include __DIR__ . '/../../config/url-validator.php';
+        $this->setUrlValidator(new Config($config));
+    }
+
+    /**
+     * 初始化逻辑对象
+     * @throws InvalidManagerException
+     * @author smalls
+     * @email smalls0098@gmail.com
+     */
+    public function make()
+    {
+        //创建逻辑对象
+        $className      = str_replace(__NAMESPACE__, "", get_class($this));
+        $className      = substr($className, 1);
+        $className      = strtolower($className);
+        $logicClassName = $className . 'Logic';
+        $logicClassName = str_replace("\\Tools", '\\Logic', __NAMESPACE__) . '\\' . $logicClassName;
+        if (!class_exists($logicClassName)) {
+            throw new InvalidManagerException("the class does not exist . class name : {$logicClassName}");
         }
-        if (empty($params[0][self::URL_VALIDATOR])) {
-            $config             = include __DIR__ . '/../../config/url-validator.php';
-            $this->urlValidator = new Config($config);
-        } else {
-            $this->urlValidator = $params[0][self::URL_VALIDATOR];
-        }
+        $obj         = new $logicClassName($this, $className);
+        $this->logic = $obj;
+    }
+
+    /**
+     * @return Config
+     */
+    public function getUrlValidator(): Config
+    {
+        return $this->urlValidator;
+    }
+
+    /**
+     * @param Config $urlValidator
+     * @return Base
+     */
+    public function setUrlValidator(Config $urlValidator)
+    {
+        $this->urlValidator = $urlValidator;
+        return $this;
     }
 
 

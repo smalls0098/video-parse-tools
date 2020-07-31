@@ -27,7 +27,7 @@ class MeiPaiLogic extends Base
 
     public function setContents()
     {
-        $contents = $this->get($this->url, [], [
+        $contents       = $this->get($this->url, [], [
             'User-Agent' => UserGentType::WIN_USER_AGENT,
         ]);
         $this->contents = $contents;
@@ -44,19 +44,19 @@ class MeiPaiLogic extends Base
         if (CommonUtil::checkEmptyMatch($videoMatches) || CommonUtil::checkEmptyMatch($userInfoMatches) || CommonUtil::checkEmptyMatch($videoImageMatches) || CommonUtil::checkEmptyMatch($titleMatches)) {
             throw new ErrorVideoException("获取不到视频信息和用户信息");
         }
-        $this->title = $titleMatches[1];
-        $this->userName = $userInfoMatches[1];
-        $this->userPic = $userInfoMatches[2];
-        $this->videoPic = $videoImageMatches[1];
+        $this->title          = $titleMatches[1];
+        $this->userName       = $userInfoMatches[1];
+        $this->userPic        = $userInfoMatches[2];
+        $this->videoPic       = $videoImageMatches[1];
         $this->videoBase64Url = $videoMatches[1];
     }
 
 
     public function getVideoUrl()
     {
-        $hex = MeiPaiUtil::getHex($this->videoBase64Url);
-        $arr = MeiPaiUtil::getDec($hex[0]);
-        $d = MeiPaiUtil::subStr($arr[0], $hex[1]);
+        $hex      = MeiPaiUtil::getHex($this->videoBase64Url);
+        $arr      = MeiPaiUtil::getDec($hex[0]);
+        $d        = MeiPaiUtil::subStr($arr[0], $hex[1]);
         $videoUrl = base64_decode(MeiPaiUtil::subStr(MeiPaiUtil::getPos($d, $arr[1]), $d));
         return $videoUrl;
     }

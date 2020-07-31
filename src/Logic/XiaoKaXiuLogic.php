@@ -33,11 +33,11 @@ class XiaoKaXiuLogic extends Base
     {
         list($time, $sign) = $this->makeSign();
         $newGetContentUrl = 'https://appapi.xiaokaxiu.com/api/v1/web/share/video/' . $this->videoId;
-        $contents = $this->get($newGetContentUrl, [
+        $contents         = $this->get($newGetContentUrl, [
             'time' => $time,
         ], [
-            'Referer' => $newGetContentUrl,
-            'x-sign' => $sign,
+            'Referer'    => $newGetContentUrl,
+            'x-sign'     => $sign,
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,
         ]);
         if (isset($contents['code']) && $contents['code'] != 0) {

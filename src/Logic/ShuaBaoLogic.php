@@ -26,7 +26,7 @@ class ShuaBaoLogic extends Base
             $res = $this->redirects($this->url);
             if (strpos($res, 'h5.shua8cn.com') > -1) {
                 $this->url = $res;
-            }else{
+            } else {
                 throw new ErrorVideoException("提交的域名不符合格式");
             }
         }

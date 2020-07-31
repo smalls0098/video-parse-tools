@@ -22,7 +22,7 @@ class LiVideoLogic extends Base
 
     public function setContents()
     {
-        $contents = $this->get($this->url, [], [
+        $contents       = $this->get($this->url, [], [
             'User-Agent' => UserGentType::WIN_USER_AGENT,
         ]);
         $this->contents = $contents;

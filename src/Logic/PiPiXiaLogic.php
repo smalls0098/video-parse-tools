@@ -40,7 +40,7 @@ class PiPiXiaLogic extends Base
         $contents = $this->get($newGetContentsUrl, [
             'item_id' => $this->itemId,
         ], [
-            'Referer' => $newGetContentsUrl,
+            'Referer'    => $newGetContentsUrl,
             'User-Agent' => UserGentType::ANDROID_USER_AGENT
         ]);
 

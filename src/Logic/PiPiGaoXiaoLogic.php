@@ -32,8 +32,8 @@ class PiPiGaoXiaoLogic extends Base
     public function setContents()
     {
         $newGetContentsUrl = 'http://share.ippzone.com/ppapi/share/fetch_content';
-        $contents = $this->post($newGetContentsUrl, '{"pid":' . $this->postId . ',"type":"post","mid":null}', [
-            'Referer' => $newGetContentsUrl,
+        $contents          = $this->post($newGetContentsUrl, '{"pid":' . $this->postId . ',"type":"post","mid":null}', [
+            'Referer'    => $newGetContentsUrl,
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,
         ]);
         if ((isset($contents['ret']) && $contents['ret'] != 1) || (isset($contents['data']['post']['imgs'][0]['id']) && !$contents['data']['post']['imgs'][0]['id'])) {

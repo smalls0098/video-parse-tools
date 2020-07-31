@@ -24,20 +24,14 @@ class BiliLogic extends Base
     private $contents;
 
     /**
-     * BiliLogic constructor.
-     * @param $url
+     * BiliLogic初始化.
      * @param string $cookie
      * @param int $quality
-     * @param $urlList
-     * @param $config
      */
-    public function __construct($url, string $cookie, int $quality, $urlList, $config)
+    public function init(string $cookie, int $quality)
     {
         $this->cookie  = $cookie;
         $this->quality = $quality;
-        $this->url     = $url;
-        $this->urlList = $urlList;
-        $this->config  = $config;
     }
 
     public function setAidAndCid()
@@ -62,10 +56,14 @@ class BiliLogic extends Base
             'cid'   => $this->cid,
             'qn'    => $this->quality,
             'otype' => 'json',
+            'type'  => 'mp4',
+            'platform' => 'html5',
         ], [
             'Cookie'     => $this->cookie,
-            'Referer'    => $apiUrl,
-            'User-Agent' => UserGentType::WIN_USER_AGENT
+            'Referer'    => 'https://m.bilibili.com/video/av84665662',
+            'origin'    => 'https://m.bilibili.com',
+            'Host'    => 'api.bilibili.com',
+            'User-Agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.14(0x17000e29) NetType/WIFI Language/zh_CN',
         ]);
         $this->contents = $contents;
     }
