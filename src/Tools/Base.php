@@ -51,7 +51,7 @@ class Base extends Common
         //创建逻辑对象
         $className      = str_replace(__NAMESPACE__, "", get_class($this));
         $className      = substr($className, 1);
-        $className      = strtolower($className);
+        $className      = ucfirst(strtolower($className));
         $logicClassName = $className . 'Logic';
         $logicClassName = str_replace("\\Tools", '\\Logic', __NAMESPACE__) . '\\' . $logicClassName;
         if (!class_exists($logicClassName)) {

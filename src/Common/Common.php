@@ -13,7 +13,6 @@ namespace Smalls\VideoTools\Common;
 abstract class Common
 {
 
-
     /**
      * 代理信息
      * @var string

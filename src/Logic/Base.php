@@ -46,19 +46,33 @@ class Base
      */
     protected $proxyIpPort = "";
 
+    /**
+     * tools base类对象
+     */
+    private $toolsObj;
+
     protected $logDir = __DIR__ . "/../../log/";
 
 
-    public function __construct($tools)
+    public function __construct($toolsObj)
+    {
+        $this->toolsObj = $toolsObj;
+        if(!$this->toolsObj) {
+            throw new ErrorVideoException("对象不存在");
+        }
+        $this->init();
+    }
+
+    private function init()
     {
         //获取类名
         $className = str_replace(__NAMESPACE__, "", get_class($this));
         $className = substr($className, 1, strlen($className) - 6);
         $className = strtolower($className);
         //初始化数据
-        $this->urlList     = $tools->getUrlValidator()->get($className, []);
-        $this->isCheckUrl  = $tools->getIsCheckUrl();
-        $this->proxyIpPort = $tools->getProxy();
+        $this->urlList     = $this->toolsObj->getUrlValidator()->get($className, []);
+        $this->isCheckUrl  = $this->toolsObj->getIsCheckUrl();
+        $this->proxyIpPort = $this->toolsObj->getProxy();
         if ($this->proxyIpPort) {
             $this->isProxy = true;
         }
