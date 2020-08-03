@@ -6,14 +6,16 @@
  * Date：2020/4/26 - 22:15
  **/
 
+use Smalls\VideoTools\VideoManager;
+
 require '../vendor/autoload.php';
 
 $res = '';
 
 
 //$res = VideoManager::DouYin()->setIsCheckUrl(true)->setProxy('47.112.221.156:3128')->start("https://v.douyin.com/JeoLRe4/");
-//$res = VideoManager::DouYin()->start("https://v.douyin.com/JeoLRe4/");
-//var_dump($res['video_url']);
+$res = VideoManager::DouYin()->start("https://v.douyin.com/JeoLRe4/");
+var_dump($res['video_url']);
 //$res = VideoManager::KuaiShou()->start("https://v.kuaishou.com/8qIlZu");
 //var_dump($res['video_url']);
 //$res = VideoManager::HuoShan()->start("https://share.huoshan.com/hotsoon/s/xlYI8QN0pa8/");
