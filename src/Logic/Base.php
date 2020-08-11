@@ -49,15 +49,18 @@ class Base
     /**
      * tools base类对象
      */
-    private $toolsObj;
+    protected $toolsObj;
 
     protected $logDir = __DIR__ . "/../../log/";
 
+    protected $toolsClass;
 
-    public function __construct($toolsObj)
+
+    public function __construct($toolsObj, $toolsClass)
     {
-        $this->toolsObj = $toolsObj;
-        if(!$this->toolsObj) {
+        $this->toolsClass = $toolsClass;
+        $this->toolsObj   = $toolsObj;
+        if (!$this->toolsObj) {
             throw new ErrorVideoException("对象不存在");
         }
         $this->init();
@@ -65,12 +68,8 @@ class Base
 
     private function init()
     {
-        //获取类名
-        $className = str_replace(__NAMESPACE__, "", get_class($this));
-        $className = substr($className, 1, strlen($className) - 6);
-        $className = strtolower($className);
         //初始化数据
-        $this->urlList     = $this->toolsObj->getUrlValidator()->get($className, []);
+        $this->urlList     = $this->toolsObj->getUrlValidator()->get(strtolower($this->toolsClass), []);
         $this->isCheckUrl  = $this->toolsObj->getIsCheckUrl();
         $this->proxyIpPort = $this->toolsObj->getProxy();
         if ($this->proxyIpPort) {

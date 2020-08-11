@@ -6,7 +6,6 @@ namespace Smalls\VideoTools\Tools;
 
 use Smalls\VideoTools\Common\Common;
 use Smalls\VideoTools\Exception\InvalidManagerException;
-use Smalls\VideoTools\Utils\Config;
 
 /**
  * Created By 1
@@ -23,10 +22,10 @@ class Base extends Common
     protected $logic;
 
     /**
-     * url验证器
-     * @var Config
+     * 打印结果
+     * @var bool
      */
-    protected $urlValidator;
+    private $println = false;
 
     /**
      * Base constructor.
@@ -37,7 +36,7 @@ class Base extends Common
     {
         //设置域名验证器
         $config = include __DIR__ . '/../../config/url-validator.php';
-        $this->setUrlValidator(new Config($config));
+        $this->setUrlValidator($config);
     }
 
     /**
@@ -49,9 +48,7 @@ class Base extends Common
     public function make()
     {
         //创建逻辑对象
-        $className      = str_replace(__NAMESPACE__, "", get_class($this));
-        $className      = substr($className, 1);
-        $className      = ucfirst($className);
+        $className      = ucfirst($this->getClassName());
         $logicClassName = $className . 'Logic';
         $logicClassName = str_replace("\\Tools", '\\Logic', __NAMESPACE__) . '\\' . $logicClassName;
         if (!class_exists($logicClassName)) {
@@ -61,24 +58,13 @@ class Base extends Common
         $this->logic = $obj;
     }
 
-    /**
-     * @return Config
-     */
-    public function getUrlValidator(): Config
+    public function getClassName()
     {
-        return $this->urlValidator;
+        //创建逻辑对象
+        $className = str_replace(__NAMESPACE__, "", get_class($this));
+        $className = substr($className, 1);
+        return $className;
     }
-
-    /**
-     * @param Config $urlValidator
-     * @return Base
-     */
-    public function setUrlValidator(Config $urlValidator)
-    {
-        $this->urlValidator = $urlValidator;
-        return $this;
-    }
-
 
     /**
      * 返回数据结果
@@ -112,7 +98,7 @@ class Base extends Common
      */
     protected function exportData()
     {
-        return $this->returnData(
+        $data = $this->returnData(
             $this->logic->getUrl(),
             $this->logic->getUsername(),
             $this->logic->getUserPic(),
@@ -121,6 +107,22 @@ class Base extends Common
             $this->logic->getVideoUrl(),
             'video'
         );
+        if ($this->println) {
+            var_dump($data);
+        }
+        return $data;
+    }
+
+    /**
+     * 输出打印内容
+     * @return $this
+     * @author smalls
+     * @email smalls0098@gmail.com
+     */
+    public function println()
+    {
+        $this->println = true;
+        return $this;
     }
 
 }

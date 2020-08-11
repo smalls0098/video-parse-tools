@@ -10,13 +10,29 @@ use Smalls\VideoTools\VideoManager;
 
 require '../vendor/autoload.php';
 
-$res = '';
+VideoManager::DouYin()
+    ->setIsCheckUrl(true)
+    ->setUrlValidator(['douyin.com', 'iesdouyin.com'])
+    ->println()
+    ->start("https://v.douyin.com/JeoLRe4/");
+
+VideoManager::KuaiShou()
+    ->setCookie('did=web_e19cfe96787746a5b4311f56acaf5be4; didv=1593660908000; clientid=3; client_key=65890b29; Hm_lvt_86a27b7db2c5c0ae37fee4a8a35033ee=1594966818,1595649199; sid=6281151b7052a88cfaba3a43')
+    ->println()
+    ->startGetH5("https://v.kuaishou.com/8qIlZu");
 
 
 //$res = VideoManager::DouYin()->setIsCheckUrl(true)->setProxy('47.112.221.156:3128')->start("https://v.douyin.com/JeoLRe4/");
-$res = VideoManager::DouYin()->start("https://v.douyin.com/JeoLRe4/");
-var_dump($res['video_url']);
-//$res = VideoManager::KuaiShou()->start("https://v.kuaishou.com/8qIlZu");
+//VideoManager::DouYin()
+//    ->setIsCheckUrl(true)
+//    ->setUrlValidator(['douyin.com', 'iesdouyin.com'])
+//    ->setProxy('47.112.221.156:3128')
+//    ->println()
+//    ->start("https://v.douyin.com/JeoLRe4/");
+//VideoManager::KuaiShou()
+//    ->setCookie('did=web_e19cfe96787746a5b4311f56acaf5be4; didv=1593660908000; clientid=3; client_key=65890b29; Hm_lvt_86a27b7db2c5c0ae37fee4a8a35033ee=1594966818,1595649199; sid=6281151b7052a88cfaba3a43')
+//    ->println()
+//    ->startGetH5("https://v.kuaishou.com/8qIlZu");
 //var_dump($res['video_url']);
 //$res = VideoManager::HuoShan()->start("https://share.huoshan.com/hotsoon/s/xlYI8QN0pa8/");
 //var_dump($res['video_url']);
@@ -47,7 +63,9 @@ var_dump($res['video_url']);
 //$res = VideoManager::XiaoKaXiu()->start("https://mobile.xiaokaxiu.com/video?id=6522164847705071616");
 //var_dump($res['video_url']);
 //$res = VideoManager::Bili()->setUrl("https://b23.tv/3uPg39")->setQuality(BiliQualityType::LEVEL_2)->execution();
+//
 //$res = VideoManager::Bili()->start("https://b23.tv/3uPg39");
+//
 //var_dump($res['video_url']);
 //$res = VideoManager::WeiBo()->start("http://weibo.com/tv/v/EFSNuE1Ky");
 //var_dump($res['video_url']);

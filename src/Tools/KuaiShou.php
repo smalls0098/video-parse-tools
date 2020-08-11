@@ -4,6 +4,7 @@ declare (strict_types=1);
 namespace Smalls\VideoTools\Tools;
 
 use Smalls\VideoTools\Interfaces\IVideo;
+use Smalls\VideoTools\Logic\H5KuaiShouLogic;
 
 /**
  * Created By 1
@@ -13,6 +14,8 @@ use Smalls\VideoTools\Interfaces\IVideo;
  **/
 class KuaiShou extends Base implements IVideo
 {
+
+    private $cookie = '';
 
     /**
      * 更新时间：2020/7/31
@@ -27,5 +30,30 @@ class KuaiShou extends Base implements IVideo
         $this->logic->setContents();
         return $this->exportData();
     }
+
+
+    public function startGetH5(string $url): array
+    {
+        $this->logic = new H5KuaiShouLogic($this, 'kuaishou');
+        $this->logic->setOriginalUrl($url);
+        $this->logic->checkUrlHasTrue();
+        $this->logic->setContents();
+        return $this->exportData();
+    }
+
+    public function setCookie($cookie)
+    {
+        $this->cookie = $cookie;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCookie(): string
+    {
+        return $this->cookie;
+    }
+
 
 }
