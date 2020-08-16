@@ -28,15 +28,15 @@ trait HttpRequest
      * @param array $headers
      * @return mixed|string
      */
-    public function get($url, $query = [], $headers = [])
+    public function get(string $url = '', array $query = [], array $headers = [])
     {
         $params = [
             'headers' => $headers,
-            'query' => $query,
+            'query'   => $query,
         ];
         if ($this->isProxy) {
             $params['proxy'] = [
-                'http' => $this->proxyIpPort,
+                'http'  => $this->proxyIpPort,
                 'https' => $this->proxyIpPort,
             ];
         }
@@ -50,7 +50,7 @@ trait HttpRequest
      * @param array $headers
      * @return mixed|string
      */
-    public function post($url, $data, $headers = [])
+    public function post(string $url = '', array $data = [], array $headers = [])
     {
         $options = [
             'headers' => $headers,
@@ -66,6 +66,32 @@ trait HttpRequest
     }
 
     /**
+     * 公共POST方法
+     * @param $url
+     * @param array $query
+     * @param array $headers
+     * @return mixed|string
+     */
+    public function getCookie(string $url = '', array $query = [], array $headers = [])
+    {
+        $params = [
+            'headers' => $headers,
+            'query'   => $query,
+        ];
+        if ($this->isProxy) {
+            $params['proxy'] = [
+                'http'  => $this->proxyIpPort,
+                'https' => $this->proxyIpPort,
+            ];
+        }
+        $response = $this->getHttpClient($this->getBaseOptions())->get($url, [
+            'headers' => $headers,
+            'query'   => $query,
+        ]);
+        return $response->getHeaderLine('set-Cookie');
+    }
+
+    /**
      * 公共GET方法
      * @param $url
      * @param array $query
@@ -76,9 +102,9 @@ trait HttpRequest
     public function redirects($url, $query = [], $headers = [], $isAllReturn = false)
     {
         $response = $this->getHttpClient($this->getBaseOptions())->get($url, [
-            'headers' => $headers,
-            'query' => $query,
-            'allow_redirects' => false
+            'headers'         => $headers,
+            'query'           => $query,
+            'allow_redirects' => false,
         ]);
         if (substr((string)$response->getStatusCode(), 0, 2) === '30') {
             $headers = $response->getHeaders();
@@ -100,7 +126,8 @@ trait HttpRequest
     {
         $options = [
             'base_uri' => property_exists($this, 'baseUri') ? $this->baseUri : '',
-            'timeout' => property_exists($this, 'timeout') ? $this->timeout : 5.0,
+            'timeout'  => property_exists($this, 'timeout') ? $this->timeout : 5.0,
+            'verify'   => false,
         ];
         return $options;
     }
@@ -130,7 +157,7 @@ trait HttpRequest
     public function unwrapResponse(ResponseInterface $response)
     {
         $contentType = $response->getHeaderLine('Content-Type');
-        $contents = $response->getBody()->getContents();
+        $contents    = $response->getBody()->getContents();
         if (false !== stripos($contentType, 'json') || stripos($contentType, 'javascript')) {
             return json_decode($contents, true);
         } elseif (false !== stripos($contentType, 'xml')) {

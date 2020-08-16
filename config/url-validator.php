@@ -21,4 +21,5 @@ return [
     'newweibo'        => ['video.weibo.com/show'],
     'miaopai'         => ['miaopai.com'],
     'qqvideo'         => ['m.v.qq.com'],
+    'taobao'          => ['h5.m.taobao.com', 'm.tb.cn'],
 ];

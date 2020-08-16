@@ -10,16 +10,27 @@ use Smalls\VideoTools\VideoManager;
 
 require '../vendor/autoload.php';
 
-VideoManager::DouYin()
-    ->setIsCheckUrl(true)
-    ->setUrlValidator(['douyin.com', 'iesdouyin.com'])
-    ->println()
-    ->start("https://v.douyin.com/JeoLRe4/");
+//VideoManager::DouYin()
+//    ->setIsCheckUrl(true)
+//    ->setUrlValidator(['douyin.com', 'iesdouyin.com'])
+//    ->println()
+//    ->start("https://v.douyin.com/JeoLRe4/");
+//
+//VideoManager::KuaiShou()
+//    ->setCookie('did=web_e19cfe96787746a5b4311f56acaf5be4; didv=1593660908000; clientid=3; client_key=65890b29; Hm_lvt_86a27b7db2c5c0ae37fee4a8a35033ee=1594966818,1595649199; sid=6281151b7052a88cfaba3a43')
+//    ->println()
+//    ->startGetH5("https://v.kuaishou.com/8qIlZu");
 
-VideoManager::KuaiShou()
-    ->setCookie('did=web_e19cfe96787746a5b4311f56acaf5be4; didv=1593660908000; clientid=3; client_key=65890b29; Hm_lvt_86a27b7db2c5c0ae37fee4a8a35033ee=1594966818,1595649199; sid=6281151b7052a88cfaba3a43')
+
+//VideoManager::KuaiShou()
+//    ->println()
+//    ->setCookie('did=web_e19cfe96787746a5b4311f56acaf5be4; didv=1593660908000; clientid=3; client_key=65890b29; Hm_lvt_86a27b7db2c5c0ae37fee4a8a35033ee=1594966818,1595649199; sid=6281151b7052a88cfaba3a43')
+//    ->start("https://v.kuaishou.com/8qIlZu");
+
+
+VideoManager::TaoBao()
     ->println()
-    ->startGetH5("https://v.kuaishou.com/8qIlZu");
+    ->start("https://m.tb.cn/h.VsEn4Y1?sm=1afdc1");
 
 
 //$res = VideoManager::DouYin()->setIsCheckUrl(true)->setProxy('47.112.221.156:3128')->start("https://v.douyin.com/JeoLRe4/");
@@ -29,10 +40,6 @@ VideoManager::KuaiShou()
 //    ->setProxy('47.112.221.156:3128')
 //    ->println()
 //    ->start("https://v.douyin.com/JeoLRe4/");
-//VideoManager::KuaiShou()
-//    ->setCookie('did=web_e19cfe96787746a5b4311f56acaf5be4; didv=1593660908000; clientid=3; client_key=65890b29; Hm_lvt_86a27b7db2c5c0ae37fee4a8a35033ee=1594966818,1595649199; sid=6281151b7052a88cfaba3a43')
-//    ->println()
-//    ->startGetH5("https://v.kuaishou.com/8qIlZu");
 //var_dump($res['video_url']);
 //$res = VideoManager::HuoShan()->start("https://share.huoshan.com/hotsoon/s/xlYI8QN0pa8/");
 //var_dump($res['video_url']);
