@@ -119,10 +119,15 @@ composer update smalls/video-tools
   ********
 结束：  
 ==
-  <font>注：仅供学习,切勿用于其他用途。</font> <br>
+  <font>注：仅供学习,切勿用于其他用途，由使用人自行承担因此引发的一切法律责任，作者不承担法律责任。</font> <br>
   **喜欢的话，给个star呗**<br>
   **喜欢的话，给个star呗**<br>
   **喜欢的话，给个star呗**<br>
   
   自己可以参考tests/test.php（需要在主页面里面调式：小白一枚）<br>
   都无法使用再提issue
+  
+  
+赞助：  
+==
+感谢JetBrains的支持，推荐大家使用IDE：[PHPSOTRM](https://www.jetbrains.com/?from=video-tools)
