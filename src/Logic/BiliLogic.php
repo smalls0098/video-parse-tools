@@ -69,14 +69,6 @@ class BiliLogic extends Base
     }
 
     /**
-     * @return string
-     */
-    public function getCookie(): string
-    {
-        return $this->cookie;
-    }
-
-    /**
      * @return int
      */
     public function getQuality(): int
