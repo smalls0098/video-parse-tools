@@ -15,12 +15,4 @@ use Smalls\VideoTools\Utils\CommonUtil;
 class XiGuaLogic extends TouTiaoLogic
 {
 
-    public function setItemId()
-    {
-        preg_match('/group\/([0-9]+)\/?/i', $this->url, $match);
-        if (CommonUtil::checkEmptyMatch($match)) {
-            throw new ErrorVideoException("item_id获取失败");
-        }
-        $this->itemId = $match[1];
-    }
 }
