@@ -22,7 +22,14 @@ class TouTiaoLogic extends Base
 
     public function setItemId()
     {
-        preg_match('/a([0-9]+)\/?/i', $this->url, $match);
+        if (strpos($this->url, 'v.ixigua.com')) {
+            $this->url = $this->redirects($this->url);
+        }
+        if (strpos($this->url, 'group')) {
+            preg_match('/group\/([0-9]+)\/?/i', $this->url, $match);
+        } else {
+            preg_match('/a([0-9]+)\/?/i', $this->url, $match);
+        }
         if (CommonUtil::checkEmptyMatch($match)) {
             throw new ErrorVideoException("获取不到item_id参数信息");
         }
@@ -34,7 +41,7 @@ class TouTiaoLogic extends Base
         $getContentUrl = 'https://m.365yg.com/i' . $this->itemId . '/info/';
 
         $contents = $this->get($getContentUrl, ['i' => $this->itemId], [
-            'Referer'    => $getContentUrl,
+            'Referer' => $getContentUrl,
             'User-Agent' => UserGentType::ANDROID_USER_AGENT
         ]);
 
