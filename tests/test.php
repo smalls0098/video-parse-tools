@@ -10,6 +10,20 @@ use Smalls\VideoTools\VideoManager;
 
 require '../vendor/autoload.php';
 
+//$res = VideoManager::XiGua()
+//    ->println()
+//    ->start("https://v.ixigua.com/JPk2Mxb/");
+//
+
+$res = VideoManager::TouTiao()
+    ->println()
+    ->start("https://m.toutiaoimg.cn/group/6862508958330932492/?app=news_article_lite×tamp=1602815645");
+
+//$res = VideoManager::LiVideo()
+//    ->println()
+//    ->start("https://www.pearvideo.com/detail_1671290?st=7");
+
+
 //VideoManager::DouYin()
 //    ->setIsCheckUrl(true)
 //    ->setUrlValidator(['douyin.com', 'iesdouyin.com'])
@@ -28,9 +42,9 @@ require '../vendor/autoload.php';
 //    ->start("https://v.kuaishou.com/8qIlZu");
 
 
-VideoManager::TaoBao()
-    ->println()
-    ->start("https://m.tb.cn/h.VsEn4Y1?sm=1afdc1");
+//VideoManager::TaoBao()
+//    ->println()
+//    ->start("https://m.tb.cn/h.VsEn4Y1?sm=1afdc1");
 
 
 //$res = VideoManager::DouYin()->setIsCheckUrl(true)->setProxy('47.112.221.156:3128')->start("https://v.douyin.com/JeoLRe4/");
