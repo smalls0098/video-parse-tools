@@ -6,3 +6,5 @@ composer.lock
 /tests/proxy.php
 /log
 composer.phar
+.phpunit.result.cache
+*.html

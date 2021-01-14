@@ -39,7 +39,7 @@ class ZuiYouLogic extends Base
     public function setContents()
     {
         $newGetContentsUrl = 'https://share.izuiyou.com/api/post/detail';
-        $contents          = $this->post($newGetContentsUrl, '{"pid":' . $this->pid . '}', [
+        $contents          = $this->post($newGetContentsUrl, ['pid' => (int)$this->pid], [
             'Referer'    => $newGetContentsUrl,
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,
         ]);
