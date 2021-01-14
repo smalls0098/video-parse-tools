@@ -1,5 +1,5 @@
 {
-    "name": "smalls/video-tools",
+    "name": "caojianfei/video-tools",
     "description": "短视频的拓展包，集成各大短视频的去水印功能",
     "type": "library",
     "keywords": [
