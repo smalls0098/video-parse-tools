@@ -8,7 +8,7 @@ return [
     'livideo'         => ['www.pearvideo.com'],
     'meipai'          => ['www.meipai.com'],
     'momo'            => ['immomo.com'],
-    'pipigaoxiao'     => ['ippzone.com'],
+    'pipigaoxiao'     => ['ippzone.com', 'pipigx.com'],
     'pipixia'         => ['pipix.com'],
     'quanminggaoxiao' => ['longxia.music.xiaomi.com'],
     'shuabao'         => ['h5.shua8cn.com', 'm.shua8cn.com'],

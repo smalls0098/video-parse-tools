@@ -55,12 +55,7 @@ trait HttpRequest
         $options = [
             'headers' => $headers,
         ];
-
-        if (!is_array($data)) {
-            $options['body'] = $data;
-        } else {
-            $options['form_params'] = $data;
-        }
+        $options['body'] = json_encode($data);
 
         return $this->request('post', $url, $options);
     }

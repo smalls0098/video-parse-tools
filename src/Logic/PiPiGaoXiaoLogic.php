@@ -16,30 +16,45 @@ use Smalls\VideoTools\Utils\CommonUtil;
 class PiPiGaoXiaoLogic extends Base
 {
 
-    private $postId;
+    private $pid;
+    private $mid;
     private $contents;
 
-
-    public function setPostId()
+    /**
+     * @throws ErrorVideoException
+     */
+    public function setPidAndMid()
     {
-        preg_match('/pp\/post\/([0-9]+)/i', $this->url, $match);
-        if (CommonUtil::checkEmptyMatch($match)) {
-            throw new ErrorVideoException("获取不到post_id信息");
+        $parseUrl = parse_url($this->url);
+        $query = $parseUrl['query'] ?? '';
+        if (empty($query)) {
+            throw new ErrorVideoException("皮皮搞笑视频 url 不完整");
         }
-        $this->postId = $match[1];
+
+        parse_str($query, $queryParam);
+        $this->pid = $queryParam['pid'] ?? '';
+        $this->mid = $queryParam['mid'] ?? '';
+
+        if (empty($this->pid) || empty($this->mid)) {
+            throw new ErrorVideoException("pid 或者 mid 为空");
+        }
     }
 
+    /**
+     * @throws ErrorVideoException
+     */
     public function setContents()
     {
-        $newGetContentsUrl = 'http://share.ippzone.com/ppapi/share/fetch_content';
+        $newGetContentsUrl = 'https://h5.pipigx.com/ppapi/share/fetch_content';
         $contents = $this->post($newGetContentsUrl, [
-            'pid' => $this->postId,
+            'pid' => (int)$this->getPid(),
             'type' => 'post',
-            'mid' => '',
+            'mid' => (int)$this->getMid(),
         ], [
-            'Referer' => $newGetContentsUrl,
+            'Referer' => $this->url,
             'User-Agent' => UserGentType::ANDROID_USER_AGENT,
         ]);
+
         if ((isset($contents['ret']) && $contents['ret'] != 1) || (isset($contents['data']['post']['imgs'][0]['id']) && !$contents['data']['post']['imgs'][0]['id'])) {
             throw new ErrorVideoException("获取不到指定的内容信息");
         }
@@ -49,9 +64,17 @@ class PiPiGaoXiaoLogic extends Base
     /**
      * @return mixed
      */
-    public function getPostId()
+    public function getPid()
     {
-        return $this->postId;
+        return $this->pid;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMid()
+    {
+        return $this->mid;
     }
 
     /**

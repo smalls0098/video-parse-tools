@@ -76,7 +76,8 @@ class PiPiXiaLogic extends Base
 
     public function getVideoUrl()
     {
-        return isset($this->contents['data']['item']['video']['video_fallback']['url_list'][0]['url']) ? $this->contents['data']['item']['video']['video_fallback']['url_list'][0]['url'] : '';
+        // 皮皮虾无水印视频暂时没找到获取办法
+        return isset($this->contents['data']['item']['video']['video_download']['url_list'][0]['url']) ? $this->contents['data']['item']['video']['video_download']['url_list'][0]['url'] : '';
     }
 
 

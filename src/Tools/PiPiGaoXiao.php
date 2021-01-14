@@ -24,7 +24,7 @@ class PiPiGaoXiao extends Base implements IVideo
         $this->make();
         $this->logic->setOriginalUrl($url);
         $this->logic->checkUrlHasTrue();
-        $this->logic->setPostId();
+        $this->logic->setPidAndMid();
         $this->logic->setContents();
         return $this->exportData();
     }
