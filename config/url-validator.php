@@ -12,7 +12,7 @@ return [
     'pipixia'         => ['pipix.com'],
     'quanminggaoxiao' => ['longxia.music.xiaomi.com'],
     'shuabao'         => ['h5.shua8cn.com', 'm.shua8cn.com'],
-    'toutiao'         => ['toutiaoimg.com', 'toutiaoimg.cn'],
+    'toutiao'         => ['toutiaoimg.com', 'toutiaoimg.cn', 'toutiao.com'],
     'weishi'          => ['weishi.qq.com'],
     'xiaokaxiu'       => ['mobile.xiaokaxiu.com'],
     'xigua'           => ['xigua.com'],

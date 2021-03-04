@@ -8,7 +8,29 @@
 
 use Smalls\VideoTools\VideoManager;
 
-require '../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
+
+$links = [
+    'https://m.toutiao.com/is/eerctDG/',
+    'https://m.toutiao.com/is/eehA7tB/',
+    'https://m.toutiao.com/is/eehY7Y8/',
+    'https://m.toutiao.com/is/eehYLuF/',
+    'https://m.toutiao.com/is/eehM36J/',
+    'ttps://m.toutiao.com/is/eeh6kb4/',
+];
+
+foreach ($links as $link) {
+    $res = VideoManager::TouTiao()->start($link);
+    if (!empty($res['video_url'])) {
+        echo $link . 'parsed: ' . $res['video_url'];
+        echo PHP_EOL;
+    } else {
+        echo $link . 'parse error.';
+        echo PHP_EOL;
+    }
+}
+
+exit;
 
 //$res = VideoManager::XiGua()
 //    ->println()
