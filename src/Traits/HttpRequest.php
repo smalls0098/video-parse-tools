@@ -47,15 +47,20 @@ trait HttpRequest
      * 公共POST方法
      * @param $url
      * @param $data
-     * @param array $headers
+     * @param mixed $headers
      * @return mixed|string
      */
-    public function post(string $url = '', array $data = [], array $headers = [])
+    public function post(string $url = '', $data = null, array $headers = [])
     {
         $options = [
             'headers' => $headers,
         ];
-        $options['body'] = json_encode($data);
+
+        if (is_array($data)) {
+            $options['form_params'] = $data;
+        } else {
+            $options['body'] = $data;
+        }
 
         return $this->request('post', $url, $options);
     }

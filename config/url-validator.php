@@ -17,7 +17,7 @@ return [
     'xiaokaxiu'       => ['mobile.xiaokaxiu.com'],
     'xigua'           => ['xigua.com'],
     'zuiyou'          => ['izuiyou.com'],
-    'weibo'           => ['weibo.com', 'weibo.cn'],
+    'weibo'           => ['weibo.com', 'f.video.weibocdn.com'],
     'newweibo'        => ['video.weibo.com/show'],
     'miaopai'         => ['miaopai.com'],
     'qqvideo'         => ['m.v.qq.com'],

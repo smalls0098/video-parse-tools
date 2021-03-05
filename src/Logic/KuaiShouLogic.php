@@ -36,7 +36,7 @@ class KuaiShouLogic extends Base
         $md5         = md5($str);
         $data['sig'] = $md5;
         //https://api.kuaishouzt.com/rest/zt/share/show/any?mod=oppo%28oppo%20a33m%29&lon=116.469144&subBiz=share&userId=2010791230&kpf=ANDROID_PHONE&did=ANDROID_b2b37711742e41e3&kpn=KUAISHOU&net=WIFI&os=android&gid=DFP0033387ED2BF796BA6683B22488809F1D576E7CA3403872B4BB64DAF0DA67&countryCode=cn&c=GENERIC&sys=ANDROID_5.1.1&appver=7.7.10.15712&language=zh-cn&lat=39.902831&ver=7.7
-        $contents    = $this->post('http://api.gifshow.com/rest/n/tokenShare/info/byText', $data, [
+        $contents    = $this->post('http://api.gifshow.com/rest/n/tokenShare/info/byText', json_encode($data), [
             'User-Agent' => 'kwai-android',
         ]);
         if (isset($contents['result']) && $contents['result'] != 1) {

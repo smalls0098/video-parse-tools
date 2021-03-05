@@ -15,6 +15,19 @@ use Smalls\VideoTools\Logic\NewWeiBoLogic;
 class WeiBo extends Base implements IVideo
 {
 
+    private $quality;
+
+    public function setQuality($quality)
+    {
+        $this->quality = $quality;
+        return $this;
+    }
+
+    public function getQuality()
+    {
+        return $this->quality;
+    }
+
     /**
      * 更新时间：2020/7/31
      * @param string $url
@@ -25,24 +38,7 @@ class WeiBo extends Base implements IVideo
         $this->make();
         $this->logic->setOriginalUrl($url);
         $this->logic->checkUrlHasTrue();
-        $this->logic->setStatusId();
-        $this->logic->setContents();
-        return $this->exportData();
-    }
-
-    /**
-     * 更新时间：2020/7/31
-     * @param string $url
-     * @return array
-     */
-    public function newVideoStart(string $url): array
-    {
-        $obj         = new NewWeiBoLogic($this, 'newweibo');
-        $this->logic = $obj;
-        $this->logic->setOriginalUrl($url);
-        $this->logic->checkUrlHasTrue();
         $this->logic->setFid();
-        $this->logic->setMid();
         $this->logic->setContents();
         return $this->exportData();
     }
