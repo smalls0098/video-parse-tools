@@ -14,13 +14,13 @@
         }
     ],
     "require": {
-        "php": ">= 7.0",
+        "php": ">=7.0",
         "ext-json": "*",
         "ext-openssl": "*",
         "ext-SimpleXML": "*",
         "ext-mbstring": "*",
         "ext-libxml": "*",
-        "guzzlehttp/guzzle": "^6.5"
+        "guzzlehttp/guzzle": "^7.3|^6.5"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.2"
