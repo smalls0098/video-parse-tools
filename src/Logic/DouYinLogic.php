@@ -40,7 +40,7 @@ class DouYinLogic extends Base
         $contents = $this->get('https://www.iesdouyin.com/web/api/v2/aweme/iteminfo', [
             'item_ids' => $this->itemId,
         ], [
-            'User-Agent' => UserGentType::ANDROID_USER_AGENT,
+            //'User-Agent' => UserGentType::ANDROID_USER_AGENT,
             'Referer'    => "https://www.iesdouyin.com",
             'Host'       => "www.iesdouyin.com",
         ]);
