@@ -1,41 +1,47 @@
 {
-    "name": "smalls/video-tools",
-    "description": "短视频的拓展包，集成各大短视频的去水印功能",
-    "type": "library",
-    "keywords": [
-        "smalls",
-        "video-tools"
-    ],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Smalls",
-            "email": "smalls0098@gmail.com"
-        }
-    ],
-    "require": {
-        "php": ">=7.0",
-        "ext-json": "*",
-        "ext-openssl": "*",
-        "ext-SimpleXML": "*",
-        "ext-mbstring": "*",
-        "ext-libxml": "*",
-        "guzzlehttp/guzzle": "^7.3|^6.5"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^9.2"
-    },
-    "autoload": {
-        "psr-4": {
-            "Smalls\\VideoTools\\": "src"
-        },
-        "files": [
-            "config/url-validator.php"
-        ]
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Smalls\\Tests\\": "tests"
-        }
+  "name": "smalls/video-tools",
+  "description": "短视频的拓展包，集成各大短视频的去水印功能",
+  "type": "library",
+  "keywords": [
+    "smalls",
+    "video-tools"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Smalls",
+      "email": "smalls0098@gmail.com"
     }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "ext-json": "*",
+    "ext-openssl": "*",
+    "ext-SimpleXML": "*",
+    "ext-mbstring": "*",
+    "ext-libxml": "*",
+    "guzzlehttp/guzzle": "^7.3|^6.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "smalls\\videoParseTools\\": "src"
+    },
+    "files": [
+      "config/url-validator.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Smalls\\Tests\\": "tests"
+    }
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://mirrors.aliyun.com/composer/"
+    }
+  }
 }
