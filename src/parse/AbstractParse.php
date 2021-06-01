@@ -49,4 +49,23 @@ abstract class AbstractParse implements IParse
 
     public abstract function handle();
 
+    /**
+     * @return string
+     */
+    public function getOriginalUrl(): string
+    {
+        return $this->originalUrl;
+    }
+
+    /**
+     * @param string $originalUrl
+     * @return AbstractParse
+     */
+    public function setOriginalUrl(string $originalUrl): AbstractParse
+    {
+        $this->originalUrl = $originalUrl;
+        return $this;
+    }
+
+
 }

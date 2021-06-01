@@ -35,7 +35,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Smalls\\Tests\\": "tests"
+      "smalls\\tests\\": "tests"
     }
   },
   "repositories": {

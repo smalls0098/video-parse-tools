@@ -7,24 +7,12 @@
 </p>
 
 ## 短视频去水印
-集成了：抖音、火山、头条、快手、梨视频、美拍、陌陌、皮皮搞笑、皮皮虾、全民搞笑、刷宝、微视、小咖秀、最右、B站、微博、秒拍、淘宝等等。其他如果需要对接的可以issues
+集成了：抖音等等。其他如果需要对接的可以issues
 
 * 技术交流群：1055772768 - 进群密码：smalls
-* 我们已经对接了21个平台的视频提取（部分视频是有水印的，没办法做到无水印）
-* 不懂怎么使用可以看一下我的博客。http://www.smalls.vip
 
 ===============
-* 2020-10-25：更新梨视频提取不了，视频有问题可以发邮箱联系我
-* 2020-08-16：添加淘宝提取视频
-* 2020-08-16：近期版本更新：去除快手APP去水印，引入旧版的H5，如果想要高性能可以自己对接代理然后进行提取链接，其他继续稳定，不懂的话看一下我的博客有教程
-* 2020-07-17：更新快速提取无水印视频、添加腾讯视频短视频提取视频
-* 2020-06-24：更新抖音提取视频
-* 2020-06-14：添加秒拍提取视频，修复美拍提取视频失败
-* 2020-06-13：添加微博提取视频（远古视频有水印）
-* 2020-06-10：新加代理功能，有点不稳定，有什么好的建议可以issues给我
-* 2020-06-10：添加url-validator配置类
-* 2020-06-09：全部优化了一下更加面向对象，新加B站解析视频
-* 2020-04-29：第一个版本
+* 2021-06-01：初始化2.0.0版本
 
 ## 安装
 
@@ -50,60 +38,22 @@ composer update smalls/video-tools
  VideoManager使用文档：(可以参考tests/testphp)
  ==
     抖音：VideoManager::DouYin()->start($url);
-    快手：VideoManager::KuaiShou()->start($url);
-    火山：VideoManager::HuoShan()->start($url);
-    头条：VideoManager::TouTiao()->start($url);
-    快手：VideoManager::XiGua()->start($url);
-    快手：VideoManager::WeiShi()->start($url);
-    皮皮虾：VideoManager::PiPiXia()->start($url);
-    最右：VideoManager::ZuiYou()->start($url);
-    美拍：VideoManager::MeiPai()->start($url);
-    梨视频：VideoManager::LiVideo()->start($url);
-    全民搞笑：VideoManager::QuanMingGaoXiao()->start($url);
-    皮皮搞笑：VideoManager::PiPiGaoXiao()->start($url);
-    陌陌：VideoManager::MoMo()->start($url);
-    刷宝：VideoManager::ShuaBao()->start($url);
-    小咖秀：VideoManager::XiaoKaXiu()->start($url);
-    B站：VideoManager::Bili()->start($url);
-    微博：VideoManager::WeiBo()->start($url);
-    微博短视频：VideoManager::WeiBo()->newVideoStart($url);
-    秒拍：VideoManager::MiaoPai()->start($url);
-    B站指定参数：VideoManager::Bili()->setUrl($url)->setQuality(BiliQualityType::LEVEL_2)->execution();
-    腾讯视频短视频：VideoManager::QQVideo()->start($url);
-    淘宝：VideoManager::TaoBao()->start($url);
-   自定义URL配置文件：url-validator
-   --
-   ````
-    例如抖音：$res = VideoManager::KuaiShou([
-              'proxy_whitelist' => ['kuaishou'],//白名单，需要提交类名，全部小写
-              'proxy' => '$ip:$port',
-              'url_validator' => [
-                    这边参考config/url-validator.php
-              ]
-          ])->start($url);
-    可以参考config/url-validator.php的格式用参数传递，如果不指定则使用默认的
-    不会怎么编写全部使用默认也是可以的
-   ````
    返回成功：array
    --
    ````
-    array(8) {
-       ["md5"]=>
-       string(32) "fb0f49b1158923a972d9eed40f97965e"
-       ["message"]=>
-       string(29) "https://v.kuaishou.com/xxxx"
-       ["user_name"]=>
-       string(15) "xxxx"
-       ["user_head_img"]=>
-       string(103) "https://tx2.a.yximgs.com/uhead/AB/2020/04/20/14/xxxxx.jpg"
-       ["desc"]=>
-       string(46) "小子，xxxxx"
-       ["img_url"]=>
-       string(139) "https://js2.a.yximgs.com/xxxxx.jpg"
-       ["video_url"]=>
-       string(144) "https://jsmov2.a.yximgs.com/xxxxx.mp4"
-       ["type"]=>
-       string(5) "video"
+    class smalls\videoParseTools\parse\model\ParseResponse#55 (6) {
+      private $originalUrl =>
+      string(29) "https://v.xxxxx.com/JeoLRe4/"
+      private $userName =>
+      string(11) "xxxxx"
+      private $userHeadImg =>
+      string(108) "https://p3.xxxxxxx.com/img/tos-cn-i-0813/8abfaad90ed1459fbec4cd464a3d4600~c5_1080x1080.jpeg?from=116350172"
+      private $description =>
+      string(63) "xxxxxxxxxxxxxx"
+      private $videoCover =>
+      string(125) "https://p11.xxxxxx.com/img/tos-cn-p-0015/874bdde5eb0949db836a5de27e6e658f_1590144147~c5_300x400.jpeg?from=4257465056_large"
+      private $videoUrl =>
+      string(414) "http://v26.xxxxxx.com/3b5def4cd873901b323a6fb2e3562820/60b5954a/video/tos/cn/tos-cn-ve-15/c161b5f9f5094fe79f567d03b83db916/?a=1128&br=1767&bt=1767&btag=3&cd=0%7C0%7C0&ch=0&cr=0&cs=0&cv=1&dr=0&ds=6&er=&l=2021060109023101019811215221002A19&lr=&mime_type=video_mp4&net=0&pl=0&qs=0&rc=M3c1Z3ZpM2t0dTMzOWkzM0ApOTtmODY0aTw4Nzo4aWU4OWcpaGRqbGRoaGRmcG9ncmhmXmswXy0tYC0vc3MxYi8wNjIwYzAvXmAzLmI1OmNwb2wrbStqdDo%3D&vl=&vr="
     }
    ````
    返回失败：exception
@@ -125,7 +75,7 @@ composer update smalls/video-tools
   **喜欢的话，给个star呗**<br>
   **喜欢的话，给个star呗**<br>
   
-  自己可以参考tests/test.php（需要在主页面里面调式：小白一枚）<br>
+  自己可以参考tests 里面的单元测试（需要在主页面里面调式：小白一枚）<br>
   都无法使用再提issue
   
   
