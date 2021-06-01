@@ -20,7 +20,7 @@ class DouyinParse extends AbstractParse
 
     private $itemId = "";
 
-    private $contents = "";
+    private $contents = [];
 
     public function handle()
     {
