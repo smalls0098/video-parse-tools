@@ -18,6 +18,6 @@ interface IParse
      * @param string $url 需要解析的url
      * @return ParseResponse 解析响应类
      */
-    public function start(string $url): ParseResponse;
+    public function execute(string $url): ParseResponse;
 
 }

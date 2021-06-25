@@ -39,7 +39,7 @@ abstract class AbstractParse implements IParse
         return new ParseResponse($this->originalUrl, $this->userName, $this->userHeadImg, $this->description, $this->videoCover, $this->videoUrl);
     }
 
-    public function start(string $url): ParseResponse
+    public function execute(string $url): ParseResponse
     {
         $this->originalUrl = $url;
         $this->handle();
