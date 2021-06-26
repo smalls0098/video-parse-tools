@@ -1,17 +1,17 @@
 <?php
 
-namespace Smalls\Tests\parse\factory;
+namespace Smalls\Tests\parser\factory;
 
-use smalls\videoParseTools\parse\factory\HuoshanParse;
+use smalls\videoParseTools\parser\factory\PipixiaParser;
 use PHPUnit\Framework\TestCase;
 
-class HuoshanParseTest extends TestCase
+class PipixiaParseTest extends TestCase
 {
 
     public function testHandle()
     {
-        $url = "https://share.huoshan.com/hotsoon/s/Y6I1b80eNi8/";
-        $parseObj = new HuoshanParse();
+        $url = "https://h5.pipix.com/s/wkwJBk/";
+        $parseObj = new PipixiaParser();
         $parseResponse = $parseObj->execute($url);
         var_dump($parseResponse);
         $this->assertNotEquals("", $parseResponse->getVideoUrl());

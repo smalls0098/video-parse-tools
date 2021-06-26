@@ -6,8 +6,8 @@
  * Date：2020/4/26 - 22:15
  **/
 
-use smalls\videoParseTools\parse\factory\DouyinParse;
-use smalls\videoParseTools\parse\factory\HuoshanParse;
+use smalls\videoParseTools\parser\factory\DouyinParser;
+use smalls\videoParseTools\parser\factory\HuoshanParser;
 use smalls\videoParseTools\VideoManager;
 
 require '../vendor/autoload.php';
@@ -16,5 +16,5 @@ require '../vendor/autoload.php';
 //    ->execute("https://v.douyin.com/JeoLRe4/");
 //var_dump($res);
 
-$res = VideoManager::customParser(DouyinParse::class)->execute("https://v.douyin.com/JeoLRe4/");
+$res = VideoManager::customParser(DouyinParser::class)->execute("https://v.douyin.com/JeoLRe4/");
 var_dump($res);

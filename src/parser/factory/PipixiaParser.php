@@ -1,12 +1,12 @@
 <?php
 
 
-namespace smalls\videoParseTools\parse\factory;
+namespace smalls\videoParseTools\parser\factory;
 
 
 use smalls\videoParseTools\enums\UserAgentType;
 use smalls\videoParseTools\exception\InvalidParseException;
-use smalls\videoParseTools\parse\AbstractParse;
+use smalls\videoParseTools\parser\AbstractParser;
 use smalls\videoParseTools\utils\CommonUtil;
 
 /**
@@ -15,7 +15,7 @@ use smalls\videoParseTools\utils\CommonUtil;
  * <p>Email：smalls0098@gmail.com</p>
  * <p>Blog：https://www.smalls0098.com</p>
  */
-class PipixiaParse extends AbstractParse
+class PipixiaParser extends AbstractParser
 {
 
     public function handle()

@@ -1,11 +1,11 @@
 <?php
 
-namespace Smalls\Tests\parse\factory;
+namespace Smalls\Tests\parser\factory;
 
-use smalls\videoParseTools\parse\factory\DouyinParse;
+use smalls\videoParseTools\parser\factory\DouyinParser;
 use PHPUnit\Framework\TestCase;
-use smalls\videoParseTools\parse\factory\ToutiaoParse;
-use smalls\videoParseTools\parse\factory\XiguaParse;
+use smalls\videoParseTools\parser\factory\ToutiaoParser;
+use smalls\videoParseTools\parser\factory\XiguaParse;
 
 class XiguaParseTest extends TestCase
 {

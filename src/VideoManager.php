@@ -4,7 +4,7 @@
 namespace smalls\videoParseTools;
 
 use smalls\videoParseTools\exception\InvalidManagerException;
-use smalls\videoParseTools\interfaces\IParse;
+use smalls\videoParseTools\interfaces\IParser;
 
 /**
  * @author smalls
@@ -39,7 +39,7 @@ class VideoManager
      *
      * @param $method string 方法名称
      * @param $params array 方法参数
-     * @return IParse
+     * @return IParser
      */
     public static function __callStatic(string $method,
                                         array $params)
@@ -57,24 +57,24 @@ class VideoManager
      * @param $class string 对象
      * @return mixed
      */
-    public static function customParser(string $class): IParse
+    public static function customParser(string $class): IParser
     {
         if (!class_exists($class)) {
             throw new InvalidManagerException("the class does not exist . class : {$class}");
         }
         $classImpls = class_implements($class);
         if (!$classImpls) {
-            throw new InvalidManagerException("this method does not integrate IParse . class : {$class}");
+            throw new InvalidManagerException("this method does not integrate IParser . class : {$class}");
         }
         $isOk = false;
         foreach ($classImpls as $impl) {
-            if ($impl == IParse::class) {
+            if ($impl == IParser::class) {
                 $isOk = true;
                 break;
             }
         }
         if (!$isOk) {
-            throw new InvalidManagerException("this method does not integrate IParse . class : {$class}");
+            throw new InvalidManagerException("this method does not integrate IParser . class : {$class}");
         }
         return self::getManager()->make($class);
     }
@@ -83,20 +83,20 @@ class VideoManager
      * 通过包名创建对象
      *
      * @param string $className
-     * @return IParse
+     * @return IParser
      * @throws InvalidManagerException
      */
-    private function make(string $className): IParse
+    private function make(string $className): IParser
     {
         if ($this->parser[$className]) {
             return $this->parser[$className];
         }
         $app = new $className();
-        if ($app instanceof IParse) {
+        if ($app instanceof IParser) {
             $this->parser[$className] = $app;
             return $app;
         }
-        throw new InvalidManagerException("this method does not integrate IParse . class : {$className}");
+        throw new InvalidManagerException("this method does not integrate IParser . class : {$className}");
     }
 
 }

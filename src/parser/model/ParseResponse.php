@@ -1,7 +1,7 @@
 <?php
 
 
-namespace smalls\videoParseTools\parse\model;
+namespace smalls\videoParseTools\parser\model;
 
 /**
  * @author smalls

@@ -1,8 +1,8 @@
 <?php
 
-namespace Smalls\Tests\parse\factory;
+namespace Smalls\Tests\parser\factory;
 
-use smalls\videoParseTools\parse\factory\DouyinParse;
+use smalls\videoParseTools\parser\factory\DouyinParser;
 use PHPUnit\Framework\TestCase;
 
 class DouyinParseTest extends TestCase
@@ -11,7 +11,7 @@ class DouyinParseTest extends TestCase
     public function testHandle()
     {
         $url = "https://v.douyin.com/JeoLRe4/";
-        $parseObj = new DouyinParse();
+        $parseObj = new DouyinParser();
         $parseResponse = $parseObj->execute($url);
         var_dump($parseResponse);
         $this->assertEquals($url, $parseResponse->getOriginalUrl());

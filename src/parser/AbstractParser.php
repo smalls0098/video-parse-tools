@@ -1,12 +1,12 @@
 <?php
 
 
-namespace smalls\videoParseTools\parse;
+namespace smalls\videoParseTools\parser;
 
 use smalls\videoParseTools\common\HttpRequest;
 use smalls\videoParseTools\common\Log;
-use smalls\videoParseTools\interfaces\IParse;
-use smalls\videoParseTools\parse\model\ParseResponse;
+use smalls\videoParseTools\interfaces\IParser;
+use smalls\videoParseTools\parser\model\ParseResponse;
 
 /**
  * @author smalls
@@ -14,7 +14,7 @@ use smalls\videoParseTools\parse\model\ParseResponse;
  * <p>Email：smalls0098@gmail.com</p>
  * <p>Blog：https://www.smalls0098.com</p>
  */
-abstract class AbstractParse implements IParse
+abstract class AbstractParser implements IParser
 {
 
     use HttpRequest;
@@ -59,9 +59,9 @@ abstract class AbstractParse implements IParse
 
     /**
      * @param string $originalUrl
-     * @return AbstractParse
+     * @return AbstractParser
      */
-    public function setOriginalUrl(string $originalUrl): AbstractParse
+    public function setOriginalUrl(string $originalUrl): AbstractParser
     {
         $this->originalUrl = $originalUrl;
         return $this;

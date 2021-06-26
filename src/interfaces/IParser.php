@@ -3,7 +3,7 @@
 
 namespace smalls\videoParseTools\interfaces;
 
-use smalls\videoParseTools\parse\model\ParseResponse;
+use smalls\videoParseTools\parser\model\ParseResponse;
 
 /**
  * @author smalls
@@ -11,7 +11,7 @@ use smalls\videoParseTools\parse\model\ParseResponse;
  * <p>Email：smalls0098@gmail.com</p>
  * <p>Blog：https://www.smalls0098.com</p>
  */
-interface IParse
+interface IParser
 {
 
     /**
