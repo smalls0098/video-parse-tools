@@ -22,11 +22,10 @@ class ToutiaoParse extends AbstractParse
 
     private $contents = [];
 
-    private $url = "";
-
     public function handle()
     {
-        $this->parseItemIds()->parseContents();
+        $this->parseItemIds();
+        $this->parseContents();
         if (empty($this->contents['data']['video_id'])) {
             throw new InvalidParseException("item_id获取不到");
         }
@@ -41,26 +40,25 @@ class ToutiaoParse extends AbstractParse
         $this->userHeadImg = $this->contents['data']['media_user']['avatar_url'] ?? '';
     }
 
-    private function parseItemIds(): ToutiaoParse
+    private function parseItemIds()
     {
         if (strpos($this->originalUrl, 'v.ixigua.com')) {
-            $this->url = $this->redirects($this->originalUrl);
-        }else{
-            $this->url = $this->originalUrl;
-        }
-        if (strpos($this->url, 'group')) {
-            preg_match('/group\/([0-9]+)\/?/i', $this->url, $match);
+            $url = $this->redirects($this->originalUrl);
         } else {
-            preg_match('/a([0-9]+)\/?/i', $this->url, $match);
+            $url = $this->originalUrl;
+        }
+        if (strpos($url, 'group')) {
+            preg_match('/group\/([0-9]+)\/?/i', $url, $match);
+        } else {
+            preg_match('/a([0-9]+)\/?/i', $url, $match);
         }
         if (CommonUtil::checkEmptyMatch($match)) {
             throw new InvalidParseException("获取不到item_id参数信息");
         }
         $this->itemId = $match[1];
-        return $this;
     }
 
-    private function parseContents(): ToutiaoParse
+    private function parseContents()
     {
         $getContentUrl = 'https://m.365yg.com/i' . $this->itemId . '/info/';
 
@@ -73,6 +71,5 @@ class ToutiaoParse extends AbstractParse
             throw new InvalidParseException("获取不到指定的内容信息");
         }
         $this->contents = $contents;
-        return $this;
     }
 }

@@ -13,7 +13,7 @@ class ToutiaoParseTest extends TestCase
     {
         $url = "https://m.toutiaoimg.cn/group/6862508958330932492/?app=news_article_lite×tamp=1602815645";
         $parseObj = new ToutiaoParse();
-        $parseResponse = $parseObj->start($url);
+        $parseResponse = $parseObj->execute($url);
         var_dump($parseResponse);
         $this->assertEquals($url, $parseResponse->getOriginalUrl());
     }

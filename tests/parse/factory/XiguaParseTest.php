@@ -14,7 +14,7 @@ class XiguaParseTest extends TestCase
     {
         $url = "https://v.ixigua.com/JPk2Mxb/";
         $parseObj = new XiguaParse();
-        $parseResponse = $parseObj->start($url);
+        $parseResponse = $parseObj->execute($url);
         var_dump($parseResponse);
         $this->assertEquals($url, $parseResponse->getOriginalUrl());
     }

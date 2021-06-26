@@ -23,7 +23,8 @@ class WeishiParse extends AbstractParse
 
     public function handle()
     {
-        $this->parseItemIds()->parseContents();
+        $this->parseItemIds();
+        $this->parseContents();
         $this->videoUrl = $this->contents['data']['feeds'][0]['video_url'] ?? '';
         $this->videoCover = $this->contents['data']['feeds'][0]['images'][0]['url'] ?? '';
         $this->description = $this->contents['data']['feeds'][0]['share_info']['body_map'][0]['desc'] ?? '';
@@ -32,17 +33,16 @@ class WeishiParse extends AbstractParse
     }
 
 
-    private function parseItemIds(): WeishiParse
+    private function parseItemIds()
     {
         preg_match('/feed\/(.*?)\/wsfeed/i', $this->originalUrl, $match);
         if (CommonUtil::checkEmptyMatch($match)) {
             throw new InvalidParseException("feed_id参数获取失败");
         }
         $this->feedId = $match[1];
-        return $this;
     }
 
-    private function parseContents(): WeishiParse
+    private function parseContents()
     {
         $contents = $this->post('https://h5.qzone.qq.com/webapp/json/weishi/WSH5GetPlayPage?t=0.4185745904612037&g_tk=', [
             'feedid' => $this->feedId,
@@ -50,6 +50,5 @@ class WeishiParse extends AbstractParse
             'User-Agent' => UserAgentType::ANDROID_USER_AGENT
         ]);
         $this->contents = $contents;
-        return $this;
     }
 }

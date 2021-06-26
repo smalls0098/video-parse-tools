@@ -12,7 +12,7 @@ class DouyinParseTest extends TestCase
     {
         $url = "https://v.douyin.com/JeoLRe4/";
         $parseObj = new DouyinParse();
-        $parseResponse = $parseObj->start($url);
+        $parseResponse = $parseObj->execute($url);
         var_dump($parseResponse);
         $this->assertEquals($url, $parseResponse->getOriginalUrl());
     }

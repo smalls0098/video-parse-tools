@@ -24,7 +24,8 @@ class DouyinParse extends AbstractParse
 
     public function handle()
     {
-        $this->parseItemIds()->parseContents();
+        $this->parseItemIds();
+        $this->parseContents();
         if (empty($this->contents['item_list'][0]['video']['play_addr']['uri'])) {
             throw new InvalidParseException("item_id获取不到");
         }
@@ -41,7 +42,7 @@ class DouyinParse extends AbstractParse
         $this->userHeadImg = CommonUtil::getData($this->contents['item_list'][0]['author']['avatar_larger']['url_list'][0]);
     }
 
-    private function parseItemIds(): DouyinParse
+    private function parseItemIds()
     {
         if (strpos($this->originalUrl, '/share/video')) {
             $url = $this->originalUrl;
@@ -55,15 +56,14 @@ class DouyinParse extends AbstractParse
             throw new InvalidParseException("item_id获取不到");
         }
         $this->itemId = $matches[1];
-        return $this;
     }
 
-    private function parseContents(): DouyinParse
+    private function parseContents()
     {
         $contents = $this->get('https://www.iesdouyin.com/web/api/v2/aweme/iteminfo', [
             'item_ids' => $this->itemId,
         ], [
-//            'User-Agent' => UserAgentType::ANDROID_USER_AGENT,
+//            'User-Agent' => UserAgentType::ANDROID_USER_AGENT, // 这边使用安卓的会出现问题
             'Referer' => "https://www.iesdouyin.com",
             'Host' => "www.iesdouyin.com",
         ]);
@@ -74,6 +74,5 @@ class DouyinParse extends AbstractParse
             throw new InvalidParseException("不存在item_list无法获取视频信息");
         }
         $this->contents = $contents;
-        return $this;
     }
 }

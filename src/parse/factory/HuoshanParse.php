@@ -23,7 +23,8 @@ class HuoshanParse extends AbstractParse
 
     public function handle()
     {
-        $this->parseItemIds()->parseContents();
+        $this->parseItemIds();
+        $this->parseContents();
         $videoUrl = $this->contents['data']['item_info']['url'] ?? '';
         $parseUrl = parse_url($videoUrl);
         if (empty($parseUrl['query'])) {
@@ -43,7 +44,7 @@ class HuoshanParse extends AbstractParse
         $this->videoCover = isset($this->contents['data']['item_info']['cover']) ?? "";
     }
 
-    private function parseItemIds(): HuoshanParse
+    private function parseItemIds()
     {
         $originalUrl = $this->redirects($this->originalUrl, [], [
             'User-Agent' => UserAgentType::ANDROID_USER_AGENT,
@@ -54,10 +55,9 @@ class HuoshanParse extends AbstractParse
             throw new InvalidParseException("item_id获取不到参数");
         }
         $this->itemId = $match[1];
-        return $this;
     }
 
-    private function parseContents(): HuoshanParse
+    private function parseContents()
     {
         $contents = $this->get('https://share.huoshan.com/api/item/info', [
             'item_id' => $this->itemId
@@ -69,6 +69,5 @@ class HuoshanParse extends AbstractParse
             throw new InvalidParseException("获取不到指定的内容信息");
         }
         $this->contents = $contents;
-        return $this;
     }
 }
