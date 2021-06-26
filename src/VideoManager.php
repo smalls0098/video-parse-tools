@@ -15,9 +15,14 @@ use smalls\videoParseTools\interfaces\IParse;
 class VideoManager
 {
 
+    private $parser;
+
+    private static $videoManager;
+
     public function __construct()
     {
     }
+
 
     /**
      * @param $method
@@ -27,33 +32,41 @@ class VideoManager
     public static function __callStatic($method, $params)
     {
         $app = new self();
-        return $app->create($method, $params);
+        if (!self::$videoManager) {
+            self::$videoManager = $app;
+        } else {
+            $app = self::$videoManager;
+        }
+        return $app->create($method);
     }
 
     /**
      * @param string $method
-     * @param array $params
      * @return mixed
      * @throws InvalidManagerException
      */
-    private function create(string $method, array $params)
+    private function create(string $method)
     {
+        if ($this->parser[$method]) {
+            return $this->parser[$method];
+        }
         $className = __NAMESPACE__ . '\\parse\\factory\\' . $method . "Parse";
         if (!class_exists($className)) {
             throw new InvalidManagerException("the method name does not exist . method : {$method}");
         }
-        return $this->make($className, $params);
+        $make = $this->make($className);
+        $this->parser[$method] = $make;
+        return $make;
     }
 
     /**
      * @param string $className
-     * @param array $params
-     * @return mixed
+     * @return IParse
      * @throws InvalidManagerException
      */
-    private function make(string $className, array $params)
+    private function make(string $className): IParse
     {
-        $app = new $className($params);
+        $app = new $className();
         if ($app instanceof IParse) {
             return $app;
         }

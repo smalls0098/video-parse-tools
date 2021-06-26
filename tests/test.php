@@ -11,5 +11,5 @@ use smalls\videoParseTools\VideoManager;
 require '../vendor/autoload.php';
 
 $res = VideoManager::Douyin()
-    ->start("https://v.douyin.com/JeoLRe4/");
+    ->execute("https://v.douyin.com/JeoLRe4/");
 var_dump($res);
