@@ -23,54 +23,80 @@ class VideoManager
     {
     }
 
-
-    /**
-     * @param $method
-     * @param $params
-     * @return mixed
-     */
-    public static function __callStatic($method, $params)
+    private static function getManager(): self
     {
-        $app = new self();
         if (!self::$videoManager) {
+            $app = new self();
             self::$videoManager = $app;
         } else {
             $app = self::$videoManager;
         }
-        return $app->create($method);
+        return $app;
     }
 
     /**
-     * @param string $method
-     * @return mixed
-     * @throws InvalidManagerException
+     * 通过魔法方法获取解析器对象
+     *
+     * @param $method string 方法名称
+     * @param $params array 方法参数
+     * @return IParse
      */
-    private function create(string $method)
+    public static function __callStatic(string $method,
+                                        array $params)
     {
-        if ($this->parser[$method]) {
-            return $this->parser[$method];
-        }
         $className = __NAMESPACE__ . '\\parse\\factory\\' . $method . "Parse";
         if (!class_exists($className)) {
-            throw new InvalidManagerException("the method name does not exist . method : {$method}");
+            throw new InvalidManagerException("the class does not exist . class : {$className}");
         }
-        $make = $this->make($className);
-        $this->parser[$method] = $make;
-        return $make;
+        return self::getManager()->make($className);
     }
 
     /**
+     * 通过自定义对象获取解析器对象
+     *
+     * @param $class string 对象
+     * @return mixed
+     */
+    public static function customParser(string $class): IParse
+    {
+        if (!class_exists($class)) {
+            throw new InvalidManagerException("the class does not exist . class : {$class}");
+        }
+        $classImpls = class_implements($class);
+        if (!$classImpls) {
+            throw new InvalidManagerException("this method does not integrate IParse . class : {$class}");
+        }
+        $isOk = false;
+        foreach ($classImpls as $impl) {
+            if ($impl == IParse::class) {
+                $isOk = true;
+                break;
+            }
+        }
+        if (!$isOk) {
+            throw new InvalidManagerException("this method does not integrate IParse . class : {$class}");
+        }
+        return self::getManager()->make($class);
+    }
+
+    /**
+     * 通过包名创建对象
+     *
      * @param string $className
      * @return IParse
      * @throws InvalidManagerException
      */
     private function make(string $className): IParse
     {
+        if ($this->parser[$className]) {
+            return $this->parser[$className];
+        }
         $app = new $className();
         if ($app instanceof IParse) {
+            $this->parser[$className] = $app;
             return $app;
         }
-        throw new InvalidManagerException("this method does not integrate IVideo . namespace : {$className}");
+        throw new InvalidManagerException("this method does not integrate IParse . class : {$className}");
     }
 
 }
