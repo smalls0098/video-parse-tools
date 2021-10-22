@@ -29,4 +29,9 @@ class UserGentType
      */
     const ANDROID_USER_AGENT = "Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Mobile Safari/537.36";
 
+    /**
+     * postman
+     */
+    const POSTMAN_USER_AGENT = "PostmanRuntime/7.26.8";
+
 }

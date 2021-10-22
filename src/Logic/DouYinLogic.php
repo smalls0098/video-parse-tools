@@ -40,7 +40,8 @@ class DouYinLogic extends Base
         $contents = $this->get('https://www.iesdouyin.com/web/api/v2/aweme/iteminfo', [
             'item_ids' => $this->itemId,
         ], [
-            //'User-Agent' => UserGentType::ANDROID_USER_AGENT,
+            // @Todo 分析此接口header校验规则，完善参数
+            'User-Agent' => UserGentType::POSTMAN_USER_AGENT, // user-agent请求中必须，否则返回状态码444。常规UA无有效数据返回，可能存在某种校验，临时使用postmanUA头，保证正常返回
             'Referer'    => "https://www.iesdouyin.com",
             'Host'       => "www.iesdouyin.com",
         ]);
