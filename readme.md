@@ -6,14 +6,13 @@
 <a href="https://packagist.org/packages/smalls/video-tools"><img src="https://poser.pugx.org/smalls/video-tools/license" alt="License"></a>
 </p>
 
-# 该项目不再更新
+# 该项目不再更新，有问题可以加群：1055772768
 
 ## 短视频去水印
 集成了：抖音、火山、头条、快手、梨视频、美拍、陌陌、皮皮搞笑、皮皮虾、全民搞笑、刷宝、微视、小咖秀、最右、B站、微博、秒拍、淘宝等等。其他如果需要对接的可以issues
 
 * 技术交流群：1055772768 - 进群密码：smalls
 * 我们已经对接了21个平台的视频提取（部分视频是有水印的，没办法做到无水印）
-* 不懂怎么使用可以看一下我的博客。http://www.smalls.vip
 
 ===============
 * 2020-10-25：更新梨视频提取不了，视频有问题可以发邮箱联系我
